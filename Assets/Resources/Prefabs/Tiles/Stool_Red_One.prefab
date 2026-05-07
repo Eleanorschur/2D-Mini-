@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8810833435449574792}
   m_Layer: 6
   m_Name: Stool_Red_One
-  m_TagString: Untagged
+  m_TagString: Platform_Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
