@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 
 public class StageSelectManager : MonoBehaviour {
@@ -117,11 +118,12 @@ public class StageSelectManager : MonoBehaviour {
         btnRight.interactable = currentIndex < stageDatas.Length - 1;
     }
 
-    void OnSelectStage(int idx) 
+    void OnSelectStage(int idx)
     {
-        PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
-        SceneManager.LoadScene("StageScene");
+        cards[idx].PlaySelectAnimation();
+        StartCoroutine(LoadAfterAnimation(idx));
     }
+
 
     void OnClickBack() 
     {
@@ -152,21 +154,12 @@ public class StageSelectManager : MonoBehaviour {
     }
 
 
-    //void OnSelectStage(int idx)
-    //{
-    //    cards[idx].PlaySelectAnimation();
-    //    PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
-
-    //    StartCoroutine(LoadAfterAnimation(idx));
-
-    //}
-
-
-    //IEnumerable LoadAfterAnimation(int idx)
-    //{
-    //    yield return new WaitForSeconds(AnimationSpeed);
-    //    Scen
-    //}
+    IEnumerator LoadAfterAnimation(int idx)
+    {
+        yield return new WaitForSeconds(AnimationSpeed);
+        PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
+        SceneManager.LoadScene("StageScene");
+    }
 
 
 
