@@ -11,6 +11,12 @@ public class StageCard : MonoBehaviour
     public Sprite emptyStar;
     public GameObject lockOverlay;  // 잠금 오버레이
     public Button selectButton;
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();    
+    }
 
     public void Init(StageData data)
     {
@@ -25,4 +31,11 @@ public class StageCard : MonoBehaviour
         if (thumb != null)
             thumbnailImage.sprite = thumb;
     }
+
+    public void PlaySelectAnimation()
+    {
+        animator.SetTrigger("Select");
+    }
+
+
 }

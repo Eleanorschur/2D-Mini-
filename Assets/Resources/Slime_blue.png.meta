@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 6231f0a4ddaba5b419da4b4b6ca41bc0
+guid: 6d436da0c237a0043b2bbe766c84c470
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4660042494799587015
-    second: PoopSlime_GameTitle_0
+      213: 4807458075731164677
+    second: Slime_blue_0
+  - first:
+      213: -1464572454487057298
+    second: Slime_blue_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,30 +112,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PoopSlime_GameTitle_0
+      name: Slime_blue_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 1920
-        height: 1080
+        width: 63
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 939de3b7a04345fb0800000000000000
-      internalID: -4660042494799587015
+      spriteID: 50ef98c16a587b240800000000000000
+      internalID: 4807458075731164677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime_blue_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c1a7ebc1bccabe0800000000000000
+      internalID: -1464572454487057298
       vertices: []
       indices: 
       edges: []
@@ -161,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PoopSlime_GameTitle_0: -4660042494799587015
+      Slime_blue_0: 4807458075731164677
+      Slime_blue_1: -1464572454487057298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

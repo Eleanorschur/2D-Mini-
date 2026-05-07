@@ -2,13 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+
 
 public class StageSelectManager : MonoBehaviour {
 
     [Header("카드")]
     public GameObject stageCardPrefab;
     public RectTransform cardTrack;
-    public float cardWidth = 720; 
+    public float cardWidth = 1000; 
 
     [Header("화살표")]
     public Button btnLeft;
@@ -16,6 +18,9 @@ public class StageSelectManager : MonoBehaviour {
 
     [Header("뒤로가기")]
     public Button btnBack;
+
+
+    [SerializeField] float AnimationSpeed = 0.5f;
 
     private StageData[] stageDatas;
     private StageCard[] cards;
@@ -115,12 +120,12 @@ public class StageSelectManager : MonoBehaviour {
     void OnSelectStage(int idx) 
     {
         PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StageScene");
+        SceneManager.LoadScene("StageScene");
     }
 
     void OnClickBack() 
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("TitleScene");
     }
 
     void UpdateCardVisuals()
@@ -145,6 +150,25 @@ public class StageSelectManager : MonoBehaviour {
             }
         }
     }
+
+
+    //void OnSelectStage(int idx)
+    //{
+    //    cards[idx].PlaySelectAnimation();
+    //    PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
+
+    //    StartCoroutine(LoadAfterAnimation(idx));
+
+    //}
+
+
+    //IEnumerable LoadAfterAnimation(int idx)
+    //{
+    //    yield return new WaitForSeconds(AnimationSpeed);
+    //    Scen
+    //}
+
+
 
 
     //void Start()
