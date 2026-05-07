@@ -33,8 +33,6 @@ public class MapLoader : MonoBehaviour
     [Tooltip("맵 최소 세로 칸 수")]
     [SerializeField] private int minimumVisibleRows = 18;
 
-    [SerializeField] private float cameraPadding = 0.2f;
-
     private Transform playerTransform;
     private int currentColumnCount;
     private int currentRowCount;
