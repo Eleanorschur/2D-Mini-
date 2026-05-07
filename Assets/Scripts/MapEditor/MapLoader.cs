@@ -43,7 +43,7 @@ public class MapLoader : MonoBehaviour
     [SerializeField] private int fitScreenColumns = 30;
 
     [Tooltip("카메라가 한 화면에 보여줄 세로 칸 수")]
-    [SerializeField] private int fitScreenRows = 18;
+    [SerializeField] private int fitScreenRows = 16;
 
     [Tooltip("맵 최소 가로 칸 수")]
     [SerializeField] private int minimumVisibleColumns = 30;
@@ -100,8 +100,6 @@ public class MapLoader : MonoBehaviour
         ApplyCameraSize();
         UpdateCameraBounds();
         ConnectPlayerToCinemachine();
-
-        StartCoroutine(SnapCameraToPlayerNextFrame());
 
         Debug.Log($"맵 로드 완료: {stageName}");
     }
