@@ -5,41 +5,23 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Logo.unity
-    guid: 8c23ae40edb779d4380756ef965f8828
   - enabled: 1
-    path: Assets/Scenes/Title.unity
-    guid: 66015a6611622d5489049a55e563e0f1
+    path: Assets/Scenes/0_GameStart.unity
+    guid: ca533db4d5b6aa549840366116e50060
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
-    guid: 60238b3430e178a47ae4d2e756899be0
-  - enabled: 1
-    path: Assets/Scenes/1. TeamLogo.unity
+    path: Assets/Scenes/1_Logo.unity
     guid: 430b20f241ef15d4184e873c246a1a89
   - enabled: 1
-    path: Assets/Scenes/BadEnding 7.unity
-    guid: df98c37f0dc846b4cb0429a184bbf6e3
-  - enabled: 1
-    path: Assets/Scenes/HappyEnding 7.unity
-    guid: 7f2997ba719a86745a597cbf69f047e5
-  - enabled: 1
-    path: Assets/Scenes/5. StageSelect.unity
-    guid: d6b65f1b3de23c04b89ecc20766594f4
-  - enabled: 1
-    path: Assets/Scenes/3. MBCAcademyLogo.unity
-    guid: 99403bb897927ee459257b42806f254f
-  - enabled: 1
-    path: Assets/Scenes/2. NEOWILogo.unity
-    guid: e7c86825d7e6f974293371bd1652493e
-  - enabled: 1
-    path: Assets/Scenes/4. PoopSlimeTitle.unity
+    path: Assets/Scenes/2_Title.unity
     guid: 9375d3f2165be9a45a919f07bfdc391c
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 92673d1dbf3c32f479531f53fef11569
+    path: Assets/Scenes/3_StageSelect.unity
+    guid: d6b65f1b3de23c04b89ecc20766594f4
   - enabled: 1
-    path: Assets/Scenes/6. Game.unity
+    path: Assets/Scenes/4_Intro.unity
+    guid: c4edb5b5408e9c644ad6442490bdce44
+  - enabled: 1
+    path: Assets/Scenes/5_Stage.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
