@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using Unity.Cinemachine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class MapLoader : MonoBehaviour
 {
     [Header("프리팹 Resources 경로")]
-    [SerializeField] private string tilePrefabFolderPath = "Prefabs/Tiles";
+    [SerializeField] private string tilePrefabFolderPath = "Prefabs";
 
     [Header("현재 Stage 이름")]
     [SerializeField] private string stageName = "Stage1";
@@ -27,12 +26,6 @@ public class MapLoader : MonoBehaviour
 
     [Header("플레이어 코드")]
     [SerializeField] private string playerCode = "1";
-
-    [Header("시네머신")]
-    [SerializeField] private CinemachineCamera cinemachineCamera;
-
-    [Header("카메라 제한 범위")]
-    [SerializeField] private CameraBoundsController cameraBoundsController;
 
     [Header("카메라 자동 줌")]
     [SerializeField] private bool autoCameraSize = true;
@@ -56,6 +49,39 @@ public class MapLoader : MonoBehaviour
     private Transform playerTransform;
     private int currentColumnCount;
     private int currentRowCount;
+
+    private readonly Dictionary<string, string> codeToPrefabName
+    = new Dictionary<string, string>()
+{
+    { "1", "Player" },
+    { "2", "Entrance" },
+    { "3", "Exit" },
+    { "4", "Lever" },
+    { "5", "Red_liquid_Medicine" },
+    { "6", "Blue_liquid_Medicine" },
+    { "7", "Wall" },
+    { "8", "Companion" },
+    { "9", "CheckPoint" },
+
+    { "10", "Stool_Grey_Center" },
+    { "11", "Stool_Grey_Right" },
+    { "12", "Stool_Grey_Left" },
+    { "13", "Stool_Grey_One" },
+
+    { "20", "Stool_Red_Center" },
+    { "21", "Stool_Red_Right" },
+    { "22", "Stool_Red_Left" },
+    { "23", "Stool_Red_One" },
+
+    { "30", "Stool_Blue_Center" },
+    { "31", "Stool_Blue_Right" },
+    { "32", "Stool_Blue_Left" },
+    { "33", "Stool_Blue_One" },
+
+    { "41", "EntranceRight" },
+    { "42", "ExitLeft" }
+};
+
 
     private void Start()
     {
@@ -98,7 +124,6 @@ public class MapLoader : MonoBehaviour
         ApplyStageSize(stageData);
         BuildMap(stageData);
         ApplyCameraSize();
-        UpdateCameraBounds();
         ConnectPlayerToCinemachine();
 
         Debug.Log($"맵 로드 완료: {stageName}");
@@ -218,7 +243,14 @@ public class MapLoader : MonoBehaviour
 
     private void CreateObject(string code, int col, int row)
     {
-        string prefabPath = $"{tilePrefabFolderPath}/{code}";
+        if (!codeToPrefabName.TryGetValue(code, out string prefabName))
+        {
+            Debug.LogWarning($"등록되지 않은 코드입니다: {code}");
+            return;
+        }
+
+        string prefabPath = $"{tilePrefabFolderPath}/{prefabName}";
+
         GameObject prefab = Resources.Load<GameObject>(prefabPath);
 
         if (prefab == null)
@@ -252,16 +284,6 @@ public class MapLoader : MonoBehaviour
     {
         if (!autoCameraSize)
             return;
-
-        if (cinemachineCamera == null)
-            cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
-
-        if (cinemachineCamera == null)
-        {
-            Debug.LogWarning("CinemachineCamera를 찾지 못했습니다.");
-            return;
-        }
-
         Camera mainCamera = Camera.main;
 
         if (mainCamera == null)
@@ -279,28 +301,10 @@ public class MapLoader : MonoBehaviour
         float targetSize = Mathf.Max(sizeByHeight, sizeByWidth) + cameraPadding;
         targetSize = Mathf.Max(targetSize, minOrthographicSize);
 
-        LensSettings lens = cinemachineCamera.Lens;
-        lens.OrthographicSize = targetSize;
-        cinemachineCamera.Lens = lens;
 
         Debug.Log($"카메라 크기 적용 완료: OrthographicSize={targetSize}");
     }
 
-    private void UpdateCameraBounds()
-    {
-        if (cameraBoundsController == null)
-        {
-            Debug.LogWarning("CameraBoundsController가 연결되지 않았습니다.");
-            return;
-        }
-
-        cameraBoundsController.SetBounds(
-            currentColumnCount,
-            currentRowCount,
-            tileSize,
-            mapRoot.position
-        );
-    }
 
     private void ConnectPlayerToCinemachine()
     {
@@ -308,51 +312,6 @@ public class MapLoader : MonoBehaviour
         {
             Debug.LogWarning($"플레이어 코드 {playerCode}를 찾지 못했습니다.");
             return;
-        }
-
-        if (cinemachineCamera == null)
-            cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
-
-        if (cinemachineCamera == null)
-        {
-            Debug.LogWarning("CinemachineCamera를 찾지 못했습니다.");
-            return;
-        }
-
-        cinemachineCamera.Target.TrackingTarget = playerTransform;
-
-        Debug.Log($"Cinemachine 타겟 연결 완료: {playerTransform.name}");
-    }
-
-    private IEnumerator SnapCameraToPlayerNextFrame()
-    {
-        yield return null;
-
-        if (playerTransform == null)
-            yield break;
-
-        if (cinemachineCamera != null)
-        {
-            cinemachineCamera.Target.TrackingTarget = playerTransform;
-
-            cinemachineCamera.transform.position = new Vector3(
-                playerTransform.position.x,
-                playerTransform.position.y,
-                cinemachineCamera.transform.position.z
-            );
-
-            cinemachineCamera.PreviousStateIsValid = false;
-        }
-
-        Camera mainCamera = Camera.main;
-
-        if (mainCamera != null)
-        {
-            mainCamera.transform.position = new Vector3(
-                playerTransform.position.x,
-                playerTransform.position.y,
-                mainCamera.transform.position.z
-            );
         }
     }
 
@@ -366,7 +325,6 @@ public class MapLoader : MonoBehaviour
             Destroy(mapRoot.GetChild(i).gameObject);
         }
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
