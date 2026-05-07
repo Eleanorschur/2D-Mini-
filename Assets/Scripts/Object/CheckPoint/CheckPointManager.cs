@@ -14,7 +14,7 @@ public class CheckPointManager : MonoBehaviour
     void Start()
     {
         checkPointList.Clear();
-        GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");
+        GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("Checkpoint");
         checkPointList.AddRange(checkPoints);
     }
 
