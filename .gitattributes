@@ -1,0 +1,15 @@
+* text=auto
+*.cs text
+*.meta text
+*.json text
+*.prefab text
+*.unity text
+*.asset text
+*.controller text
+*.overrideController text
+*.physicMaterial text
+*.physicsMaterial2D text
+*.anim text
+*.mask text
+*.terrain text
+*.guiskin text
