@@ -23,10 +23,7 @@ public class RecodeMovement : MonoBehaviour
     private Vector2 previousPos;
 
     private List<PlayerMove> pathList = new List<PlayerMove>();
-    [SerializeField] private int maxStorage = 500;
-
-    //private float recordTimer = 0f;
-    //private const float recordInterval = 0.1f;
+    private int maxStorage = 300;
 
     void Awake()
     {
@@ -42,14 +39,6 @@ public class RecodeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //recordTimer += Time.fixedDeltaTime;
-
-        //if (recordTimer >= recordInterval)
-        //{
-        //    RecordPosition();
-        //    recordTimer = 0f;
-        //}
-
         RecordPosition();
     }
 

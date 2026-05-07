@@ -18,7 +18,7 @@ public class LeverManager : MonoBehaviour
     void Start()
     {
         leverList.Clear();
-        GameObject[] levers = GameObject.FindGameObjectsWithTag("DoorLever");
+        GameObject[] levers = GameObject.FindGameObjectsWithTag("Lever");
         leverList.AddRange(levers);
     }
 

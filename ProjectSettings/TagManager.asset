@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Platform_Normal
+  - Platform_Red
+  - Platform_Blue
+  - Exit
+  - Switch_Red
+  - Switch_Blue
+  - Lever
+  - Checkpoint
+  - Companion
   layers:
   - Default
   - TransparentFX
