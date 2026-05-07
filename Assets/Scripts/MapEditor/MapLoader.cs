@@ -34,8 +34,10 @@ public class MapLoader : MonoBehaviour
     [SerializeField] private int minimumVisibleRows = 18;
 
     private Transform playerTransform;
+    private Transform root;
     private int currentColumnCount;
     private int currentRowCount;
+
 
     private bool loadComplete = false;
     public bool LoadComplete => loadComplete;
@@ -77,7 +79,11 @@ public class MapLoader : MonoBehaviour
         loadComplete = false;
 
         if (loadOnStart)
+        {
+            int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
+            stageName = $"Stage{stageIndex}";
             LoadStage(stageName);
+        }
     }
 
     public void LoadStage(string targetStageName)
@@ -232,7 +238,7 @@ public class MapLoader : MonoBehaviour
 
     private void CreateObject(string code, int col, int row)
     {
-        if (!codeToPrefabName.TryGetValue(code, out string prefabName))
+        if ( ! codeToPrefabName.TryGetValue(code, out string prefabName))
         {
             Debug.LogWarning($"등록되지 않은 코드입니다: {code}");
             return;
@@ -248,7 +254,68 @@ public class MapLoader : MonoBehaviour
             return;
         }
 
-        GameObject obj = Instantiate(prefab, mapRoot);
+        string readTag = prefab.tag;
+
+        switch (readTag)
+        {
+            default:
+                {
+                    root = FindAnyObjectByType<DecorationManager>().transform;
+                    break;
+                }
+            case "Player":
+                {
+                    root = FindAnyObjectByType<PlayerManager>().transform;
+                    break;
+                }
+            case "Platform_Normal":
+                {
+                    root = FindAnyObjectByType<PlatformNormal>().transform;
+                    break;
+                }
+            case "Platform_Red":
+                {
+                    root = FindAnyObjectByType<PlatformRed>().transform;
+                    break;
+                }
+            case "Platform_Blue":
+                {
+                    root = FindAnyObjectByType<PlatformBlue>().transform;
+                    break;
+                }
+            case "Exit":
+                {
+                    root = FindAnyObjectByType<ExitManager>().transform;
+                    break;
+                }
+            case "Switch_Red":
+                {
+                    root = FindAnyObjectByType<SwitchRed>().transform;
+                    break;
+                }
+            case "Switch_Blue":
+                {
+                    root = FindAnyObjectByType<SwitchBlue>().transform;
+                    break;
+                }
+            case "Lever":
+                {
+                    root = FindAnyObjectByType<LeverManager>().transform;
+                    break;
+                }
+            case "CheckPoint":
+                {
+                    root = FindAnyObjectByType<CheckPointManager>().transform;
+                    break;
+                }
+            case "Companion":
+                {
+                    root = FindAnyObjectByType<CompanionManager>().transform;
+                    break;
+                }
+        }
+
+        GameObject obj = Instantiate(prefab, root);
 
         obj.transform.localPosition = GetLocalPosition(col, row);
         obj.transform.localRotation = Quaternion.identity;
