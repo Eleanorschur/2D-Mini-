@@ -25,9 +25,6 @@ public class RecodeMovement : MonoBehaviour
     private List<PlayerMove> pathList = new List<PlayerMove>();
     private int maxStorage = 300;
 
-    //private float recordTimer = 0f;
-    //private const float recordInterval = 0.1f;
-
     void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
@@ -42,14 +39,6 @@ public class RecodeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //recordTimer += Time.fixedDeltaTime;
-
-        //if (recordTimer >= recordInterval)
-        //{
-        //    RecordPosition();
-        //    recordTimer = 0f;
-        //}
-
         RecordPosition();
     }
 
