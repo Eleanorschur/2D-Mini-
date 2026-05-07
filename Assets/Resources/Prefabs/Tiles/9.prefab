@@ -126,6 +126,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
+<<<<<<<< HEAD:Assets/Resources/Prefabs/Tiles/9.prefab
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,3 +139,8 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+========
+  m_Offset: {x: -0.5, y: -0.5}
+  m_Size: {x: 0.8, y: 0.8}
+  m_Direction: 0
+>>>>>>>> cea24864e6b4d62d8e7d7b705afb070a0595d82f:Assets/Resources/Prefabs/Tiles/1.prefab
