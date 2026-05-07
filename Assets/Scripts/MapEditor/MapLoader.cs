@@ -27,17 +27,6 @@ public class MapLoader : MonoBehaviour
     [Header("플레이어 코드")]
     [SerializeField] private string playerCode = "1";
 
-    [Header("카메라 자동 줌")]
-    [SerializeField] private bool autoCameraSize = true;
-
-    [SerializeField] private float minOrthographicSize = 5f;
-
-    [Tooltip("카메라가 한 화면에 보여줄 가로 칸 수")]
-    [SerializeField] private int fitScreenColumns = 30;
-
-    [Tooltip("카메라가 한 화면에 보여줄 세로 칸 수")]
-    [SerializeField] private int fitScreenRows = 16;
-
     [Tooltip("맵 최소 가로 칸 수")]
     [SerializeField] private int minimumVisibleColumns = 30;
 
@@ -123,8 +112,6 @@ public class MapLoader : MonoBehaviour
 
         ApplyStageSize(stageData);
         BuildMap(stageData);
-        ApplyCameraSize();
-        ConnectPlayerToCinemachine();
 
         Debug.Log($"맵 로드 완료: {stageName}");
     }
@@ -278,41 +265,6 @@ public class MapLoader : MonoBehaviour
         float y = -row * tileSize;
 
         return new Vector3(x, y, 0f);
-    }
-
-    private void ApplyCameraSize()
-    {
-        if (!autoCameraSize)
-            return;
-        Camera mainCamera = Camera.main;
-
-        if (mainCamera == null)
-        {
-            Debug.LogWarning("Main Camera를 찾지 못했습니다.");
-            return;
-        }
-
-        float targetHeight = fitScreenRows * tileSize;
-        float targetWidth = fitScreenColumns * tileSize;
-
-        float sizeByHeight = targetHeight / 2f;
-        float sizeByWidth = targetWidth / (2f * mainCamera.aspect);
-
-        float targetSize = Mathf.Max(sizeByHeight, sizeByWidth) + cameraPadding;
-        targetSize = Mathf.Max(targetSize, minOrthographicSize);
-
-
-        Debug.Log($"카메라 크기 적용 완료: OrthographicSize={targetSize}");
-    }
-
-
-    private void ConnectPlayerToCinemachine()
-    {
-        if (playerTransform == null)
-        {
-            Debug.LogWarning($"플레이어 코드 {playerCode}를 찾지 못했습니다.");
-            return;
-        }
     }
 
     public void ClearMap()
