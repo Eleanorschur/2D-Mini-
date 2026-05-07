@@ -6,4 +6,5 @@ public class PlayerData : MonoBehaviour
     public float playerJumpForce = 15f;
     public float playerLandingdelay = 0.3f;
 
+
 }
