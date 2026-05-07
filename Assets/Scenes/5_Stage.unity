@@ -235,13 +235,8 @@ MonoBehaviour:
   loadOnStart: 1
   clearBeforeLoad: 1
   playerCode: 1
-  autoCameraSize: 1
-  minOrthographicSize: 5
-  fitScreenColumns: 30
-  fitScreenRows: 18
   minimumVisibleColumns: 30
   minimumVisibleRows: 18
-  cameraPadding: 0
 --- !u!4 &300028827
 Transform:
   m_ObjectHideFlags: 0
@@ -504,7 +499,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 3.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1411,6 +1406,7 @@ GameObject:
   - component: {fileID: 8952049434295415293}
   - component: {fileID: 481985826474962076}
   - component: {fileID: 158823134168487535}
+  - component: {fileID: 9044027034862364464}
   - component: {fileID: 8274979569622669756}
   - component: {fileID: 8806743778253433400}
   m_Layer: 0
@@ -1552,6 +1548,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9044027034862364464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4817280001912191986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a582cfdca2f7a04c9bfba445f5136ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FindPlayer
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

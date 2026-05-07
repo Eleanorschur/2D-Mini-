@@ -37,8 +37,7 @@ public class MapLoader : MonoBehaviour
     private int currentColumnCount;
     private int currentRowCount;
 
-    private readonly Dictionary<string, string> codeToPrefabName
-    = new Dictionary<string, string>()
+    private readonly Dictionary<string, string> codeToPrefabName = new Dictionary<string, string>()
 {
     { "1", "Player" },
     { "2", "Entrance" },
