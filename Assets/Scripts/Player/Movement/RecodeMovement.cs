@@ -23,7 +23,7 @@ public class RecodeMovement : MonoBehaviour
     private Vector2 previousPos;
 
     private List<PlayerMove> pathList = new List<PlayerMove>();
-    [SerializeField] private int maxStorage = 500;
+    private int maxStorage = 300;
 
     //private float recordTimer = 0f;
     //private const float recordInterval = 0.1f;
