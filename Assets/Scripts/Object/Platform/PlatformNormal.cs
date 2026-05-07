@@ -1,16 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformNormal : MonoBehaviour
 {
-    [SerializeField] public GameObject platformNormal;
+    [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
     {
-        platformNormal = GameObject.FindGameObjectWithTag("Platform_Noraml");
+
     }
 
     void Start()
     {
-
+        platformList.Clear();
+        GameObject[] normalPlatforms = GameObject.FindGameObjectsWithTag("Platform_Normal");
+        platformList.AddRange(normalPlatforms);
     }
 }
