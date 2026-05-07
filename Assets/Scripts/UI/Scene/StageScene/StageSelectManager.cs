@@ -21,7 +21,7 @@ public class StageSelectManager : MonoBehaviour
     public Button btnBack;
 
 
-    [SerializeField] float AnimationSpeed = 0.5f;
+    [SerializeField] float AnimationWait = 3.0f;
 
     private StageData[] stageDatas;
     private StageCard[] cards;
@@ -128,7 +128,7 @@ public class StageSelectManager : MonoBehaviour
 
     void OnClickBack() 
     {
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("2_Title");
     }
 
     void UpdateCardVisuals()
@@ -157,7 +157,7 @@ public class StageSelectManager : MonoBehaviour
 
     IEnumerator LoadAfterAnimation(int idx)
     {
-        yield return new WaitForSeconds(AnimationSpeed);
+        yield return new WaitForSeconds(AnimationWait);
         PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
         SceneManager.LoadScene("5_Stage");
     }
