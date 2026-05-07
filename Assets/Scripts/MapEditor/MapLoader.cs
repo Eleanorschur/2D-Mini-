@@ -37,6 +37,9 @@ public class MapLoader : MonoBehaviour
     private int currentColumnCount;
     private int currentRowCount;
 
+    private bool loadComplete = false;
+    public bool LoadComplete => loadComplete;
+
     private readonly Dictionary<string, string> codeToPrefabName = new Dictionary<string, string>()
 {
     { "1", "Player" },
@@ -71,6 +74,8 @@ public class MapLoader : MonoBehaviour
 
     private void Start()
     {
+        loadComplete = false;
+
         if (loadOnStart)
             LoadStage(stageName);
     }
@@ -274,6 +279,7 @@ public class MapLoader : MonoBehaviour
             Destroy(mapRoot.GetChild(i).gameObject);
         }
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
