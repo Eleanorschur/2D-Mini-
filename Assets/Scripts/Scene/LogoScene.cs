@@ -13,6 +13,6 @@ public class LogoScene : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.Instance.ChangeScene("2_Title");
+        GameSceneManager.Instance.ChangeScene("2_Title");
     }
 }

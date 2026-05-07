@@ -13,6 +13,6 @@ public class IntroScene : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.Instance.ChangeScene("5_Stage");
+        GameSceneManager.Instance.ChangeScene("5_Stage");
     }
 }

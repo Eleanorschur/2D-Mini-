@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 
-
-public class StageSelectManager : MonoBehaviour {
+public class StageSelectManager : MonoBehaviour 
+{
 
     [Header("Ä«µå")]
     public GameObject stageCardPrefab;
@@ -28,7 +28,8 @@ public class StageSelectManager : MonoBehaviour {
     private int currentIndex = 0;
     private bool isMoving = false;
 
-    void Start() {
+    void Start() 
+    {
         InitStageData();
         BuildCards();
         UpdateArrows();
@@ -158,7 +159,7 @@ public class StageSelectManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(AnimationSpeed);
         PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
-        SceneManager.LoadScene("StageScene");
+        SceneManager.LoadScene("5_Stage");
     }
 
 
