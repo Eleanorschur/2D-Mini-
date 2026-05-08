@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Lever : MonoBehaviour
 {
+    private GameObject player;
+    private PlayerManager playerManager;
     private Movement playerMovement;
     private LeverManager leverManager;
     private SpriteRenderer spriteRenderer;
@@ -15,16 +18,28 @@ public class Lever : MonoBehaviour
 
     void Awake()
     {
-        playerMovement = FindAnyObjectByType<Movement>();
+        playerManager = FindAnyObjectByType<PlayerManager>();
         leverManager = GetComponentInParent<LeverManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
+        StartCoroutine(WaitForPlayerObj());
         spriteRenderer.sprite = upSprite;
         activeLever = false;
         nearLever = false;
+    }
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+
+        player = playerManager.GetPlayerObj();
+        playerMovement = FindAnyObjectByType<Movement>();
+        Debug.Log("Companion : player 오브젝트 취득 완료");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
