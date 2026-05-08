@@ -491,7 +491,7 @@ MonoBehaviour:
   btnLeft: {fileID: 840162294}
   btnRight: {fileID: 1208696385}
   btnBack: {fileID: 2137400317}
-  AnimationWait: 1
+  WaitTime: 0
 --- !u!1 &840162292
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 840162296}
   - component: {fileID: 840162295}
   - component: {fileID: 840162294}
+  - component: {fileID: 840162297}
   m_Layer: 5
   m_Name: BtnLeft
   m_TagString: Untagged
@@ -612,6 +613,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840162292}
   m_CullTransparentMesh: 1
+--- !u!225 &840162297
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840162292}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &916131807
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,25 +815,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1536437960}
     m_Modifications:
-    - target: {fileID: 499627698408446431, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -3.3200073
-      objectReference: {fileID: 0}
     - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 1669721691923266198, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_Pivot.x
@@ -904,35 +913,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 5805030498085924873, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_Name
@@ -940,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5805030498085924873, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1096,6 +1105,7 @@ GameObject:
   - component: {fileID: 1208696387}
   - component: {fileID: 1208696386}
   - component: {fileID: 1208696385}
+  - component: {fileID: 1208696388}
   m_Layer: 5
   m_Name: BtnRight
   m_TagString: Untagged
@@ -1204,6 +1214,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208696383}
   m_CullTransparentMesh: 1
+--- !u!225 &1208696388
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208696383}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1397582289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1499,7 @@ GameObject:
   - component: {fileID: 1536437959}
   - component: {fileID: 1536437958}
   - component: {fileID: 1536437957}
+  - component: {fileID: 1536437961}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1572,6 +1595,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &1536437961
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536437956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55137c8590e5395468034629f7645f62, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1544747893
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2256,7 @@ GameObject:
   - component: {fileID: 2137400319}
   - component: {fileID: 2137400318}
   - component: {fileID: 2137400317}
+  - component: {fileID: 2137400320}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -2320,6 +2366,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137400315}
   m_CullTransparentMesh: 1
+--- !u!225 &2137400320
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137400315}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
