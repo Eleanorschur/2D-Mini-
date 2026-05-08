@@ -491,7 +491,7 @@ MonoBehaviour:
   btnLeft: {fileID: 840162294}
   btnRight: {fileID: 1208696385}
   btnBack: {fileID: 2137400317}
-  AnimationWait: 1.5
+  AnimationWait: 3
 --- !u!1 &840162292
 GameObject:
   m_ObjectHideFlags: 0
