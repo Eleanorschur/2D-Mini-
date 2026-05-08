@@ -74,7 +74,6 @@ public class FollowPlayer : MonoBehaviour
     public void SetIndex(int index)
     {
         currentFollowIndex = index;
-        print(index);
         delayFrames = (currentFollowIndex + 1) * 10;
     }
 }

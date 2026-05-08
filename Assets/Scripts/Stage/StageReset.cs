@@ -1,13 +1,15 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class StageReset : MonoBehaviour
 {
     private GameObject player;
     private PlayerManager playerManager;
+    private ExitDoor exitDoor;
+    private ExitManager exitManager;
     private StatusCheck statusCheck;
     private ItemCheck itemCheck;
-    private ExitDoor exitDoor;
     private PlatformManager platformManager;
     private SwitchManager switchManager;
     private CheckPointManager checkPointManager;
@@ -22,9 +24,7 @@ public class StageReset : MonoBehaviour
     void Awake()
     {
         playerManager = FindAnyObjectByType<PlayerManager>();
-        exitDoor = FindAnyObjectByType<ExitDoor>();
-        itemCheck = FindAnyObjectByType<ItemCheck>();
-        statusCheck = FindAnyObjectByType<StatusCheck>();
+        exitManager = FindAnyObjectByType<ExitManager>();
         platformManager = FindAnyObjectByType<PlatformManager>();
         switchManager = FindAnyObjectByType<SwitchManager>();
         checkPointManager = FindAnyObjectByType<CheckPointManager>();
@@ -33,8 +33,9 @@ public class StageReset : MonoBehaviour
 
     void Start()
     {
-        resetLock = false;
         StartCoroutine(WaitForPlayerObj());
+        StartCoroutine(WaitForExitObj());
+        resetLock = false;
     }
 
     void Update()
@@ -53,8 +54,21 @@ public class StageReset : MonoBehaviour
         }
 
         player = playerManager.GetPlayerObj();
-        startPosition = player.transform.position;
+        SetStartPosition(player.transform.position);
+        itemCheck = FindAnyObjectByType<ItemCheck>();
+        statusCheck = FindAnyObjectByType<StatusCheck>();
         Debug.Log("StageReset : player 오브젝트 취득 완료");
+    }
+
+    private IEnumerator WaitForExitObj()
+    {
+        while (exitManager.exit == null)
+        {
+            yield return null;
+        }
+
+        exitDoor = exitManager.GetExitObj();
+        Debug.Log("StageReset : Exit 오브젝트 취득 완료");
     }
 
     public void ManualStageReset()
@@ -84,6 +98,11 @@ public class StageReset : MonoBehaviour
         player.transform.position = revivePosition;
 
         player.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+    }
+
+    public void SetStartPosition(Vector3 position)
+    {
+        startPosition = position;
     }
 
     public void ResetLock(bool locking)

@@ -39,7 +39,7 @@ public class Lever : MonoBehaviour
 
         player = playerManager.GetPlayerObj();
         playerMovement = FindAnyObjectByType<Movement>();
-        Debug.Log("Companion : player 오브젝트 취득 완료");
+        Debug.Log("Lever : player 오브젝트 취득 완료");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

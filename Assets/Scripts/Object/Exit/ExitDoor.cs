@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class ExitDoor : MonoBehaviour
 {
+    private GameObject player;
+    private PlayerManager playerManager;
     private SpriteRenderer spriteRenderer;
     private StageReset stageReset;
     private Movement playerMovement;
@@ -16,17 +19,29 @@ public class ExitDoor : MonoBehaviour
 
     void Awake()
     {
+        playerManager = FindAnyObjectByType<PlayerManager>();
         timer = FindAnyObjectByType<Timer>();
         stageReset = FindAnyObjectByType<StageReset>();
-        playerMovement = FindAnyObjectByType<Movement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
+        StartCoroutine(WaitForPlayerObj());
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+    }
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+
+        player = playerManager.GetPlayerObj();
+        playerMovement = FindAnyObjectByType<Movement>();
+        Debug.Log("ExitDoor : player 오브젝트 취득 완료");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

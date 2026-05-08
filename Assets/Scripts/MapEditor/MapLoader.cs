@@ -69,6 +69,7 @@ public class MapLoader : MonoBehaviour
     { "41", "EntranceRight" },
     { "42", "ExitLeft" }
 };
+    private StageReset stageReset;
 
     private GameObject playerManager;
     private GameObject platform_Normal;
@@ -86,6 +87,8 @@ public class MapLoader : MonoBehaviour
 
     private void Awake()
     {
+        stageReset = FindAnyObjectByType<StageReset>();
+
         objList.Add(playerManager = FindAnyObjectByType<PlayerManager>().gameObject);
         objList.Add(platform_Normal = FindAnyObjectByType<PlatformNormal>().gameObject);
         objList.Add(platform_Red = FindAnyObjectByType<PlatformRed>().gameObject);
@@ -139,6 +142,7 @@ public class MapLoader : MonoBehaviour
         BuildMap(stageData);
 
         playerManager.GetComponent<PlayerManager>().SetPlayerObj();
+        exitManager.GetComponent<ExitManager>().SetExitObj();
 
         Debug.Log($"맵 로드 완료: {stageName}");
         return true;
@@ -282,6 +286,7 @@ public class MapLoader : MonoBehaviour
             case "Player":
                 {
                     root = playerManager?.transform;
+                    stageReset.SetStartPosition(prefab.transform.position);
                     break;
                 }
             case "Platform_Normal":

@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class CheckPoint : MonoBehaviour
 {
+    private GameObject player;
+    private PlayerManager playerManager;
     public Sprite activeSprite;
     public Sprite deactiveSprite;
     private Movement playerMovement;
@@ -13,16 +16,29 @@ public class CheckPoint : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = FindAnyObjectByType<PlayerManager>();
         checkPointManager = GetComponentInParent<CheckPointManager>();
-        playerMovement = FindAnyObjectByType<Movement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
+        StartCoroutine(WaitForPlayerObj());
         nearCheckPoint = false;
         activateCheckPoint = false;
         spriteRenderer.sprite = deactiveSprite;
+    }
+
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+
+        player = playerManager.GetPlayerObj();
+        playerMovement = FindAnyObjectByType<Movement>();
+        Debug.Log("CheckPoint : player 오브젝트 취득 완료");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Switch : MonoBehaviour
 {
+    private GameObject player;
+    private PlayerManager playerManager;
     private PlatformManager platformManager;
     private Movement playerMovement;
     private StatusCheck statusCheck;
@@ -13,14 +16,26 @@ public class Switch : MonoBehaviour
 
     void Awake()
     {
-        playerMovement = FindAnyObjectByType<Movement>();
+        playerManager = FindAnyObjectByType<PlayerManager>();
         platformManager = FindAnyObjectByType<PlatformManager>();
         statusCheck = FindAnyObjectByType<StatusCheck>();
     }
 
     void Start()
     {
+        StartCoroutine(WaitForPlayerObj());
         nearSwitch = false;
+    }
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+
+        player = playerManager.GetPlayerObj();
+        playerMovement = FindAnyObjectByType<Movement>();
+        Debug.Log("Switch : player 오브젝트 취득 완료");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
