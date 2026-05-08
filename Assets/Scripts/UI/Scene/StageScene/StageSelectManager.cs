@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -122,25 +123,27 @@ public class StageSelectManager : MonoBehaviour
         foreach (var card in cards)
         {
             CanvasGroup cg = card.GetComponent<CanvasGroup>();
-
-            if (cards[idx] != card)
-            {
-                cg.alpha = 0f;
-                cg.interactable = false;
-                cg.blocksRaycasts = false;
-            }
+            cg.interactable = false;
+            cg.blocksRaycasts = false;
         }
 
         cards[idx].PlaySelectAnimation();
-        StartCoroutine(FadeOutButtons());
+        StartCoroutine(FadeOutUI(idx));
         StartCoroutine(LoadAfterAnimation(idx));
     }
 
-    IEnumerator FadeOutButtons()
+    IEnumerator FadeOutUI(int selectedIdx)
     {
         CanvasGroup cgLeft  = btnLeft.GetComponent<CanvasGroup>()  ?? btnLeft.gameObject.AddComponent<CanvasGroup>();
         CanvasGroup cgRight = btnRight.GetComponent<CanvasGroup>() ?? btnRight.gameObject.AddComponent<CanvasGroup>();
         CanvasGroup cgBack  = btnBack.GetComponent<CanvasGroup>()  ?? btnBack.gameObject.AddComponent<CanvasGroup>();
+
+        List<CanvasGroup> sideCards = new List<CanvasGroup>();
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (i != selectedIdx)
+                sideCards.Add(cards[i].GetComponent<CanvasGroup>());
+        }
 
         float duration = 0.3f;
         float elapsed  = 0f;
@@ -149,9 +152,13 @@ public class StageSelectManager : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float alpha = 1f - (elapsed / duration);
+
             cgLeft.alpha  = alpha;
             cgRight.alpha = alpha;
             cgBack.alpha  = alpha;
+
+            foreach (var cg in sideCards) cg.alpha = alpha;
+
             yield return null;
         }
 
