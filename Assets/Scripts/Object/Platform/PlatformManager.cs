@@ -6,7 +6,6 @@ public class PlatformManager : MonoBehaviour
     private PlatformRed redPlatform;
     private PlatformBlue bluePlatform;
     private PlatformNormal normalPlatform;
-    public GameObject revivePlatform;
 
     private void Awake()
     {
@@ -14,11 +13,6 @@ public class PlatformManager : MonoBehaviour
         redPlatform = GetComponentInChildren<PlatformRed>();
         bluePlatform = GetComponentInChildren<PlatformBlue>();
         normalPlatform = GetComponentInChildren<PlatformNormal>();
-
-        if (normalPlatform != null)
-        {
-            revivePlatform = normalPlatform.gameObject;
-        }
     }
 
     private void Start()

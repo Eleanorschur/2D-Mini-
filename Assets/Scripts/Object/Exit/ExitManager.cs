@@ -1,19 +1,37 @@
 using UnityEngine;
+using System.Collections;
 
 public class ExitManager : MonoBehaviour
 {
+    private MapLoader mapLoader;
+
     public ExitDoor exit { get; private set; }
-    public System.Action OnReadyExit;
+    public System.Action OnReady;
 
     void Awake()
     {
-        
+        mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void Start()
 
     {
-        
+        MapLoadCoroutine();
+    }
+
+    private IEnumerator WaitForMapLoadRoutine()
+    {
+        while ( ! mapLoader.isMapLoaded)
+        {
+            yield return null;
+        }
+
+        SetExitObj();
+    }
+
+    public void MapLoadCoroutine()
+    {
+        StartCoroutine(WaitForMapLoadRoutine());
     }
 
     public void SetExitObj()
@@ -21,7 +39,7 @@ public class ExitManager : MonoBehaviour
         exit = FindAnyObjectByType<ExitDoor>();
 
         if (exit != null)
-            OnReadyExit?.Invoke();
+            OnReady?.Invoke();
     }
 
     public ExitDoor GetExitObj()

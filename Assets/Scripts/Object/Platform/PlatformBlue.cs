@@ -1,21 +1,39 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class PlatformBlue : MonoBehaviour
 {
+    private MapLoader mapLoader;
+
     [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
     {
-        
+        mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void Start()
     {
+        MapLoadCoroutine();
+    }
+
+    private IEnumerator WaitForMapLoadRoutine()
+    {
+        while ( ! mapLoader.isMapLoaded)
+        {
+            yield return null;
+        }
+
         platformList.Clear();
         GameObject[] bluePlatforms = GameObject.FindGameObjectsWithTag("Platform_Blue");
         platformList.AddRange(bluePlatforms);
+    }
+
+    public void MapLoadCoroutine()
+    {
+        StartCoroutine(WaitForMapLoadRoutine());
     }
 
     public void PlatformActive(bool active)

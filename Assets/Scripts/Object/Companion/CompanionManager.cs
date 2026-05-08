@@ -1,23 +1,41 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CompanionManager : MonoBehaviour
 {
-    private List<GameObject> companionList = new();
-    [SerializeField]private List<Vector3> transformList = new();
+    private MapLoader mapLoader;
+
+    [SerializeField] private List<GameObject> companionList = new();
+    private List<Vector3> transformList = new();
 
     void Awake()
     {
-
+        mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void Start()
     {
+        MapLoadCoroutine();
+    }
+
+    private IEnumerator WaitForMapLoadRoutine()
+    {
+        while (!mapLoader.isMapLoaded)
+        {
+            yield return null;
+        }
+
         companionList.Clear();
         GameObject[] companions = GameObject.FindGameObjectsWithTag("Companion");
         companionList.AddRange(companions);
 
         GetTransformList();
+    }
+
+    public void MapLoadCoroutine()
+    {
+        StartCoroutine(WaitForMapLoadRoutine());
     }
 
     public int GetIndex(GameObject obj)

@@ -1,21 +1,39 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CheckPointManager : MonoBehaviour
 {
+    private MapLoader mapLoader;
+
     private List<GameObject> checkPointList = new();
     private GameObject fianlCheckPoint;
 
     void Awake()
     {
-
+        mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void Start()
     {
+        MapLoadCoroutine();
+    }
+
+    private IEnumerator WaitForMapLoadRoutine()
+    {
+        while ( ! mapLoader.isMapLoaded)
+        {
+            yield return null;
+        }
+
         checkPointList.Clear();
         GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("Checkpoint");
         checkPointList.AddRange(checkPoints);
+    }
+
+    public void MapLoadCoroutine()
+    {
+        StartCoroutine(WaitForMapLoadRoutine());
     }
 
     public void SetFinalCheckPoint(GameObject obj)

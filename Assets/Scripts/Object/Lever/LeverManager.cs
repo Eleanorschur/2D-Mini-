@@ -4,26 +4,44 @@ using System.Collections.Generic;
 
 public class LeverManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> leverList = new();
+    private MapLoader mapLoader;
     private ExitManager exitManager;
     private ExitDoor exitDoor;
     private BoxCollider2D coll2D;
     private Lever lever;
 
+    [SerializeField] private List<GameObject> leverList = new();
     [SerializeField] private int leverCurrentCount = 0;
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         exitManager = FindAnyObjectByType<ExitManager>();
     }
 
     void Start()
     {
-        StartCoroutine(WaitForExitObj());
+        MapLoadCoroutine();
+    }
+
+    private IEnumerator WaitForMapLoadRoutine()
+    {
+        while ( ! mapLoader.isMapLoaded)
+        {
+            yield return null;
+        }
+
         leverList.Clear();
         GameObject[] levers = GameObject.FindGameObjectsWithTag("Lever");
         leverList.AddRange(levers);
+        StartCoroutine(WaitForExitObj());
     }
+
+    public void MapLoadCoroutine()
+    {
+        StartCoroutine(WaitForMapLoadRoutine());
+    }
+
     private IEnumerator WaitForExitObj()
     {
         while (exitManager.exit == null)

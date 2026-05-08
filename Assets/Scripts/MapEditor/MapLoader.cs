@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class MapLoader : MonoBehaviour
 {
+    public bool isMapLoaded { get; private set; }
+    public System.Action MapLoadComplete;
+
     [Header("프리팹 Resources 경로")]
     [SerializeField] private string tilePrefabFolderPath = "Prefabs";
 
@@ -31,10 +34,6 @@ public class MapLoader : MonoBehaviour
     private Transform root;
     private int currentColumnCount;
     private int currentRowCount;
-
-
-    private bool loadComplete = false;
-    public bool LoadComplete => loadComplete;
 
     private readonly Dictionary<string, string> codeToPrefabName = new Dictionary<string, string>()
 {
@@ -101,14 +100,17 @@ public class MapLoader : MonoBehaviour
 
     private void Start()
     {
-        loadComplete = false;
+        isMapLoaded = false;
 
         if (loadOnStart)
         {
             int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
             stageName = $"Stage{stageIndex}";
-            loadComplete = LoadStage(stageName);
+            isMapLoaded = LoadStage(stageName);
         }
+
+        if (isMapLoaded)
+            MapLoadComplete?.Invoke();
     }
 
     public bool LoadStage(string targetStageName)
@@ -137,9 +139,6 @@ public class MapLoader : MonoBehaviour
 
         ApplyStageSize(stageData);
         BuildMap(stageData);
-
-        playerManager.GetComponent<PlayerManager>().SetPlayerObj();
-        exitManager.GetComponent<ExitManager>().SetExitObj();
 
         Debug.Log($"맵 로드 완료: {stageName}");
         return true;
@@ -275,7 +274,7 @@ public class MapLoader : MonoBehaviour
             return;
         }
 
-        ReadTag(prefab, false);
+        ReadTag(prefab);
 
         GameObject obj = Instantiate(prefab, root);
 
@@ -302,8 +301,6 @@ public class MapLoader : MonoBehaviour
     {
         foreach (GameObject obj in objList)
         {
-            ReadTag(obj, true);
-
             for (int i = obj.transform.childCount - 1; i >= 0; i--)
             {
                 Destroy(obj.transform.GetChild(i).gameObject);
@@ -311,7 +308,7 @@ public class MapLoader : MonoBehaviour
         }
     }
 
-    public void ReadTag(GameObject prefab, bool reset)
+    public void ReadTag(GameObject prefab)
     {
         string readTag = prefab.tag;
 
@@ -319,15 +316,8 @@ public class MapLoader : MonoBehaviour
         {
             case "Player":
                 {
-                    if (reset)
-                    {
-                        prefab.GetComponent<PlayerManager>().DelPlayerObj();
-                    }
-                    else
-                    {
-                        root = playerManager?.transform;
-                        stageReset.SetStartPosition(prefab.transform.position);
-                    }
+                    root = playerManager?.transform;
+                    stageReset.SetStartPosition(prefab.transform.position);
                     break;
                 }
             case "Platform_Normal":
@@ -347,14 +337,7 @@ public class MapLoader : MonoBehaviour
                 }
             case "Exit":
                 {
-                    if (reset)
-                    {
-                        prefab.GetComponent<ExitManager>().DelExitObj();
-                    }
-                    else
-                    {
-                        root = exitManager?.transform;
-                    }
+                    root = exitManager?.transform;
                     break;
                 }
             case "Switch_Red":

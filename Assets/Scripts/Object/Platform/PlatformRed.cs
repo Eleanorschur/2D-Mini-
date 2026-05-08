@@ -4,18 +4,35 @@ using System.Collections.Generic;
 
 public class PlatformRed : MonoBehaviour
 {
+    private MapLoader mapLoader;
+
     [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
     {
-        
+        mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void Start()
     {
+        MapLoadCoroutine();
+    }
+
+    private IEnumerator WaitForMapLoadRoutine()
+    {
+        while ( ! mapLoader.isMapLoaded)
+        {
+            yield return null;
+        }
+
         platformList.Clear();
         GameObject[] redPlatforms = GameObject.FindGameObjectsWithTag("Platform_Red");
         platformList.AddRange(redPlatforms);
+    }
+
+    public void MapLoadCoroutine()
+    {
+        StartCoroutine(WaitForMapLoadRoutine());
     }
 
     public void PlatformActive(bool active)
