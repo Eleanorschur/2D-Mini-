@@ -15,9 +15,6 @@ public class MapLoader : MonoBehaviour
     [Header("맵 시작 위치")]
     [SerializeField] private Vector2 mapOrigin = Vector2.zero;
 
-    [Header("맵 부모")]
-    //[SerializeField] private Transform mapRoot;
-
     [Header("자동 로드")]
     [SerializeField] private bool loadOnStart = true;
 
@@ -73,9 +70,39 @@ public class MapLoader : MonoBehaviour
     { "42", "ExitLeft" }
 };
 
+    private GameObject playerManager;
+    private GameObject platform_Normal;
+    private GameObject platform_Red;
+    private GameObject platform_Blue;
+    private GameObject exitManager;
+    private GameObject switch_Red;
+    private GameObject switch_Blue;
+    private GameObject leverManager;
+    private GameObject checkPointManager;
+    private GameObject companionManager;
+    private GameObject decorationManager;
+
+    [SerializeField] private List<GameObject> objList = new();
+
+    private void Awake()
+    {
+        objList.Add(playerManager = FindAnyObjectByType<PlayerManager>().gameObject);
+        objList.Add(platform_Normal = FindAnyObjectByType<PlatformNormal>().gameObject);
+        objList.Add(platform_Red = FindAnyObjectByType<PlatformRed>().gameObject);
+        objList.Add(platform_Blue = FindAnyObjectByType<PlatformBlue>().gameObject);
+        objList.Add(exitManager = FindAnyObjectByType<ExitManager>().gameObject);
+        objList.Add(switch_Red = FindAnyObjectByType<SwitchRed>().gameObject);
+        objList.Add(switch_Blue = FindAnyObjectByType<SwitchBlue>().gameObject);
+        objList.Add(leverManager = FindAnyObjectByType<LeverManager>().gameObject);
+        objList.Add(checkPointManager = FindAnyObjectByType<CheckPointManager>().gameObject);
+        objList.Add(companionManager = FindAnyObjectByType<CompanionManager>().gameObject);
+        objList.Add(decorationManager = FindAnyObjectByType<DecorationManager>().gameObject);
+    }
+
     private void Start()
     {
         loadComplete = false;
+
 
         if (loadOnStart)
         {
@@ -105,14 +132,6 @@ public class MapLoader : MonoBehaviour
             Debug.LogError($"스테이지 데이터가 잘못되었습니다: {stageName}");
             return false;
         }
-
-        //if (mapRoot == null)
-        //{
-        //    GameObject root = new GameObject("MapRoot");
-        //    mapRoot = root.transform;
-        //}
-
-        //mapRoot.position = new Vector3(mapOrigin.x, mapOrigin.y, 0f);
 
         if (clearBeforeLoad)
             ClearMap();
@@ -262,57 +281,57 @@ public class MapLoader : MonoBehaviour
 
             case "Player":
                 {
-                    root = FindAnyObjectByType<PlayerManager>().transform;
+                    root = playerManager?.transform;
                     break;
                 }
             case "Platform_Normal":
                 {
-                    root = FindAnyObjectByType<PlatformNormal>().transform;
+                    root = platform_Normal?.transform;
                     break;
                 }
             case "Platform_Red":
                 {
-                    root = FindAnyObjectByType<PlatformRed>().transform;
+                    root = platform_Red?.transform;
                     break;
                 }
             case "Platform_Blue":
                 {
-                    root = FindAnyObjectByType<PlatformBlue>().transform;
+                    root = platform_Blue?.transform;
                     break;
                 }
             case "Exit":
                 {
-                    root = FindAnyObjectByType<ExitManager>().transform;
+                    root = exitManager?.transform;
                     break;
                 }
             case "Switch_Red":
                 {
-                    root = FindAnyObjectByType<SwitchRed>().transform;
+                    root = switch_Red?.transform;
                     break;
                 }
             case "Switch_Blue":
                 {
-                    root = FindAnyObjectByType<SwitchBlue>().transform;
+                    root = switch_Blue?.transform;
                     break;
                 }
             case "Lever":
                 {
-                    root = FindAnyObjectByType<LeverManager>().transform;
+                    root = leverManager?.transform;
                     break;
                 }
             case "CheckPoint":
                 {
-                    root = FindAnyObjectByType<CheckPointManager>().transform;
+                    root = checkPointManager?.transform;
                     break;
                 }
             case "Companion":
                 {
-                    root = FindAnyObjectByType<CompanionManager>().transform;
+                    root = companionManager?.transform;
                     break;
                 }
             default:
                 {
-                    root = FindAnyObjectByType<DecorationManager>().transform;
+                    root = decorationManager?.transform;
                     break;
                 }
         }
@@ -340,13 +359,13 @@ public class MapLoader : MonoBehaviour
 
     public void ClearMap()
     {
-        //if (mapRoot == null)
-        //    return;
-
-        //for (int i = mapRoot.childCount - 1; i >= 0; i--)
-        //{
-        //    Destroy(mapRoot.GetChild(i).gameObject);
-        //}
+        foreach (GameObject obj in objList)
+        {
+            for (int i = obj.transform.childCount - 1; i >= 0; i--)
+            {
+                Destroy(obj.transform.GetChild(i).gameObject);
+            }
+        }
     }
 
     private void Update()
