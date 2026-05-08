@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlatformManager : MonoBehaviour
 {
+    private MapLoader mapLoader;
     private PlatformData platformData;
     private PlatformRed redPlatform;
     private PlatformBlue bluePlatform;
@@ -9,6 +10,7 @@ public class PlatformManager : MonoBehaviour
 
     private void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         platformData = GetComponent<PlatformData>();
         redPlatform = GetComponentInChildren<PlatformRed>();
         bluePlatform = GetComponentInChildren<PlatformBlue>();
@@ -16,6 +18,23 @@ public class PlatformManager : MonoBehaviour
     }
 
     private void Start()
+    {
+
+    }
+
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+
+    private void OnMapLoadFinished()
     {
         redPlatform.PlatformHide(true, platformData.platformHideAlpha);
         bluePlatform.PlatformHide(true, platformData.platformHideAlpha);
