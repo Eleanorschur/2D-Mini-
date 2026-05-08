@@ -106,14 +106,11 @@ public class MapLoader : MonoBehaviour
         {
             int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
             stageName = $"Stage{stageIndex}";
-            isMapLoaded = LoadStage(stageName);
+            LoadStage(stageName);
         }
-
-        if (isMapLoaded)
-            MapLoadComplete?.Invoke();
     }
 
-    public bool LoadStage(string targetStageName)
+    public void LoadStage(string targetStageName)
     {
         stageName = targetStageName;
         playerTransform = null;
@@ -123,7 +120,7 @@ public class MapLoader : MonoBehaviour
         if (jsonFile == null)
         {
             Debug.LogError($"JSON 파일을 찾을 수 없습니다: Resources/Maps/{stageName}.json");
-            return false;
+            return;
         }
 
         StageButtonData stageData = JsonUtility.FromJson<StageButtonData>(jsonFile.text);
@@ -131,7 +128,7 @@ public class MapLoader : MonoBehaviour
         if (stageData == null || stageData.rows == null)
         {
             Debug.LogError($"스테이지 데이터가 잘못되었습니다: {stageName}");
-            return false;
+            return;
         }
 
         if (clearBeforeLoad)
@@ -140,8 +137,11 @@ public class MapLoader : MonoBehaviour
         ApplyStageSize(stageData);
         BuildMap(stageData);
 
+        isMapLoaded = true;
+        MapLoadComplete?.Invoke();
+
         Debug.Log($"맵 로드 완료: {stageName}");
-        return true;
+        return;
     }
 
     private void ApplyStageSize(StageButtonData stageData)
@@ -355,7 +355,7 @@ public class MapLoader : MonoBehaviour
                     root = leverManager?.transform;
                     break;
                 }
-            case "CheckPoint":
+            case "Checkpoint":
                 {
                     root = checkPointManager?.transform;
                     break;

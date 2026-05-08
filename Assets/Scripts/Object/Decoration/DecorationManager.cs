@@ -10,23 +10,26 @@ public class DecorationManager : MonoBehaviour
         mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        MapLoadCoroutine();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
     }
 
-    private IEnumerator WaitForMapLoadRoutine()
+    void OnDisable()
     {
-        while ( ! mapLoader.isMapLoaded)
-        {
-            yield return null;
-        }
-
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
-    public void MapLoadCoroutine()
+    private void OnMapLoadFinished()
     {
-        StartCoroutine(WaitForMapLoadRoutine());
+        StopAllCoroutines();
+        StartCoroutine(RefreshListRoutine());
     }
 
+    private IEnumerator RefreshListRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+    }
 }

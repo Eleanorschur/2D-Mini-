@@ -1,11 +1,9 @@
-using System.Collections;
 using UnityEngine;
 
 public class StageReset : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
-    private ExitDoor exitDoor;
     private ExitManager exitManager;
     private StatusCheck statusCheck;
     private ItemCheck itemCheck;
@@ -22,6 +20,7 @@ public class StageReset : MonoBehaviour
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         exitManager = FindAnyObjectByType<ExitManager>();
         platformManager = FindAnyObjectByType<PlatformManager>();
@@ -32,10 +31,43 @@ public class StageReset : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForPlayerObj());
-        StartCoroutine(WaitForExitObj());
         resetLock = false;
     }
+
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+
+        if (exitManager != null)
+            exitManager.ExitLoadComplete += OnExitLoadFinished;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+
+        if (exitManager != null)
+            exitManager.ExitLoadComplete -= OnExitLoadFinished;
+    }
+
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
+    {
+        startPosition = playerManager.GetPlayerObj().transform.position;
+        itemCheck = playerManager.GetPlayerObj().GetComponent<ItemCheck>();
+        statusCheck = playerManager.GetPlayerObj().GetComponent<StatusCheck>();
+    }
+
+    private void OnExitLoadFinished() { }
 
     void Update()
     {
@@ -45,36 +77,11 @@ public class StageReset : MonoBehaviour
         ManualStageReset();
     }
 
-    private IEnumerator WaitForPlayerObj()
-    {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
-
-        player = playerManager.GetPlayerObj();
-        SetStartPosition(player.transform.position);
-        itemCheck = FindAnyObjectByType<ItemCheck>();
-        statusCheck = FindAnyObjectByType<StatusCheck>();
-        Debug.Log("StageReset : player 오브젝트 취득 완료");
-    }
-
-    private IEnumerator WaitForExitObj()
-    {
-        while (exitManager.exit == null)
-        {
-            yield return null;
-        }
-
-        exitDoor = exitManager.GetExitObj();
-        Debug.Log("StageReset : Exit 오브젝트 취득 완료");
-    }
-
     public void ManualStageReset()
     {
         revivePosition = startPosition;
         revivePosition.y += reviveAddY;
-        player.transform.position = revivePosition;
+        playerManager.GetPlayerObj().transform.position = revivePosition;
 
         statusCheck.ChangeForm(0);
         itemCheck.itemReset();
@@ -82,8 +89,8 @@ public class StageReset : MonoBehaviour
         switchManager.AllSwitchReset();
         companionManager.CompanionReset();
         checkPointManager.CheckPointReset();
-        exitDoor.DoorOpen(false);
-        player.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+        exitManager.GetExitObj().DoorOpen(false);
+        playerManager.GetPlayerObj().GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
     }
 
     public void DeadStageReset()
@@ -94,9 +101,9 @@ public class StageReset : MonoBehaviour
             revivePosition = startPosition;
 
         revivePosition.y += reviveAddY;
-        player.transform.position = revivePosition;
+        playerManager.GetPlayerObj().transform.position = revivePosition;
 
-        player.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+        playerManager.GetPlayerObj().GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
     }
 
     public void SetStartPosition(Vector3 position)

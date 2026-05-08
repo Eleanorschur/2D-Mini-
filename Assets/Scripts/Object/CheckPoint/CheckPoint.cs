@@ -1,21 +1,23 @@
+using Unity.Cinemachine;
 using UnityEngine;
-using System.Collections;
 
 public class CheckPoint : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
-    public Sprite activeSprite;
-    public Sprite deactiveSprite;
     private Movement playerMovement;
     private SpriteRenderer spriteRenderer;
     private CheckPointManager checkPointManager;
+
+    public Sprite activeSprite;
+    public Sprite deactiveSprite;
 
     private bool nearCheckPoint = false;
     private bool activateCheckPoint = false;
 
     private void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         checkPointManager = GetComponentInParent<CheckPointManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,22 +25,34 @@ public class CheckPoint : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForPlayerObj());
         nearCheckPoint = false;
         activateCheckPoint = false;
         spriteRenderer.sprite = deactiveSprite;
     }
 
-    private IEnumerator WaitForPlayerObj()
+    void OnEnable()
     {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
 
-        player = playerManager.GetPlayerObj();
-        playerMovement = FindAnyObjectByType<Movement>();
-        Debug.Log("CheckPoint : player 오브젝트 취득 완료");
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+    }
+
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

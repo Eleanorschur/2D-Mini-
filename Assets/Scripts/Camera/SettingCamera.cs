@@ -1,41 +1,45 @@
 using UnityEngine;
-using System.Collections;
 using Unity.Cinemachine;
 
 public class SettingCamera : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
     private CinemachineCamera cinemachineCamera;
     private CinemachineConfiner2D confiner;
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         cinemachineCamera = GetComponent<CinemachineCamera>();
         confiner = GetComponent<CinemachineConfiner2D>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        StartCoroutine(WaitForPlayerObj());
-        RefreshConfiner();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
     }
 
-    private IEnumerator WaitForPlayerObj()
+    void OnDisable()
     {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
-        player = playerManager.GetPlayerObj();
-        cinemachineCamera.Target.TrackingTarget = player.transform;
-        Debug.Log("SettingCamera : player 오브젝트 취득 완료");
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    public void RefreshConfiner()
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
     {
-        // 컨파이너의 경로 캐시를 무효화하여 다시 계산하게 만듭니다.
+        cinemachineCamera.Target.TrackingTarget = playerManager.GetPlayerObj().transform;
+
         if (confiner != null)
             confiner.InvalidateBoundingShapeCache();
     }

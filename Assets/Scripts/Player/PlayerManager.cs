@@ -4,50 +4,47 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour
 {
     private MapLoader mapLoader;
+    private GameObject player;
 
-    public GameObject player { get; private set; }
-    public System.Action OnReady;
+    public bool isPlayerLoaded { get; private set; }
+    public System.Action PlayerLoadComplete;
 
     void Awake()
     {
         mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        MapLoadCoroutine();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
     }
 
-    private IEnumerator WaitForMapLoadRoutine()
+    void OnDisable()
     {
-        while ( ! mapLoader.isMapLoaded)
-        {
-            yield return null;
-        }
-
-        SetPlayerObj();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+    private void OnMapLoadFinished()
+    {
+        StartCoroutine(FindPlayerRoutine());
     }
 
-    public void MapLoadCoroutine()
+    private IEnumerator FindPlayerRoutine()
     {
-        StartCoroutine(WaitForMapLoadRoutine());
-    }
+        yield return new WaitForEndOfFrame();
 
-    public void SetPlayerObj()
-    {
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
-            OnReady?.Invoke();
+        {
+            isPlayerLoaded = true;
+            PlayerLoadComplete?.Invoke();
+        }
     }
 
     public GameObject GetPlayerObj()
     {
         return player;
-    }
-
-    public void DelPlayerObj()
-    {
-        player = null;
     }
 }

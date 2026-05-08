@@ -4,51 +4,49 @@ using System.Collections;
 public class ExitManager : MonoBehaviour
 {
     private MapLoader mapLoader;
+    [SerializeField] private ExitDoor exitDoor;
 
-    public ExitDoor exit { get; private set; }
-    public System.Action OnReady;
+    public bool isExitLoaded { get; private set; }
+    public System.Action ExitLoadComplete;
 
     void Awake()
     {
         mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
-    void Start()
-
+    void OnEnable()
     {
-        MapLoadCoroutine();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
     }
 
-    private IEnumerator WaitForMapLoadRoutine()
+    void OnDisable()
     {
-        while ( ! mapLoader.isMapLoaded)
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+
+
+    private void OnMapLoadFinished()
+    {
+        StartCoroutine(FindExitRoutine());
+    }
+
+    private IEnumerator FindExitRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        exitDoor = GetComponentInChildren<ExitDoor>();
+
+        if (exitDoor != null)
         {
-            yield return null;
+            isExitLoaded = true;
+            ExitLoadComplete?.Invoke();
         }
-
-        SetExitObj();
-    }
-
-    public void MapLoadCoroutine()
-    {
-        StartCoroutine(WaitForMapLoadRoutine());
-    }
-
-    public void SetExitObj()
-    {
-        exit = FindAnyObjectByType<ExitDoor>();
-
-        if (exit != null)
-            OnReady?.Invoke();
     }
 
     public ExitDoor GetExitObj()
     {
-        return exit;
-    }
-
-    public void DelExitObj()
-    {
-        exit = null;
+        return exitDoor;
     }
 }

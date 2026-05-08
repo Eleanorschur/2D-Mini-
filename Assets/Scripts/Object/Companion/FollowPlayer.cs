@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class FollowPlayer : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
     private Companion companion;
     private RecodeMovement recode;
@@ -19,16 +18,41 @@ public class FollowPlayer : MonoBehaviour
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         companion = GetComponent<Companion>();
     }
 
     void Start()
     {
-        StartCoroutine(WaitForPlayerObj());
         originScale = transform.localScale;
         leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
         rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
+    }
+
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+    }
+
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
+    {
+        recode = playerManager.GetPlayerObj().GetComponent<RecodeMovement>();
     }
 
     private void FixedUpdate()
@@ -37,18 +61,6 @@ public class FollowPlayer : MonoBehaviour
 
         Follow();
     }
-
-    private IEnumerator WaitForPlayerObj()
-    {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
-        player = playerManager.GetPlayerObj();
-        recode = player?.GetComponent<RecodeMovement>();
-        Debug.Log("FollowPlayer : player 오브젝트 취득 완료");
-    }
-
 
     private void Follow()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Companion : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
     private CompanionManager companionManager;
     private FollowPlayer followPlayer;
@@ -16,27 +16,35 @@ public class Companion : MonoBehaviour
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         companionManager = GetComponentInParent<CompanionManager>();
         followPlayer = GetComponent<FollowPlayer>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        StartCoroutine(WaitForPlayerObj());
-        nearCompanion = false;
-        activeCompanion = false;
-    }
-    private IEnumerator WaitForPlayerObj()
-    {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
 
-        player = playerManager.GetPlayerObj();
-        playerMovement = FindAnyObjectByType<Movement>();
-        Debug.Log("Companion : player 오브젝트 취득 완료");
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+    }
+
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -14,26 +14,39 @@ public class PlatformBlue : MonoBehaviour
         mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        MapLoadCoroutine();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
     }
 
-    private IEnumerator WaitForMapLoadRoutine()
+    void OnDisable()
     {
-        while ( ! mapLoader.isMapLoaded)
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+
+    private void OnMapLoadFinished()
+    {
+        StopAllCoroutines();
+        StartCoroutine(RefreshListRoutine());
+    }
+
+    private IEnumerator RefreshListRoutine()
+    {
+        platformList.Clear();
+
+        yield return new WaitForEndOfFrame();
+
+        foreach (Transform child in transform)
         {
-            yield return null;
+            if (child.CompareTag("Platform_Blue"))
+            {
+                platformList.Add(child.gameObject);
+            }
         }
 
-        platformList.Clear();
-        GameObject[] bluePlatforms = GameObject.FindGameObjectsWithTag("Platform_Blue");
-        platformList.AddRange(bluePlatforms);
-    }
-
-    public void MapLoadCoroutine()
-    {
-        StartCoroutine(WaitForMapLoadRoutine());
+        platformList.TrimExcess();
     }
 
     public void PlatformActive(bool active)

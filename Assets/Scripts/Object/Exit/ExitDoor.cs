@@ -1,13 +1,12 @@
 using UnityEngine;
-using System.Collections;
 
 public class ExitDoor : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
+    private Movement playerMovement;
     private SpriteRenderer spriteRenderer;
     private StageReset stageReset;
-    private Movement playerMovement;
     private Timer timer;
     public Sprite openDoor;
     public Sprite closeDoor;
@@ -19,6 +18,7 @@ public class ExitDoor : MonoBehaviour
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         timer = FindAnyObjectByType<Timer>();
         stageReset = FindAnyObjectByType<StageReset>();
@@ -27,21 +27,34 @@ public class ExitDoor : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForPlayerObj());
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
     }
-    private IEnumerator WaitForPlayerObj()
-    {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
 
-        player = playerManager.GetPlayerObj();
-        playerMovement = FindAnyObjectByType<Movement>();
-        Debug.Log("ExitDoor : player 오브젝트 취득 완료");
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+    }
+
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

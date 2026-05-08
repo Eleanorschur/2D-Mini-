@@ -6,7 +6,7 @@ public class LeverManager : MonoBehaviour
 {
     private MapLoader mapLoader;
     private ExitManager exitManager;
-    private ExitDoor exitDoor;
+    [SerializeField]private ExitDoor exitDoor;
     private BoxCollider2D coll2D;
     private Lever lever;
 
@@ -19,38 +19,50 @@ public class LeverManager : MonoBehaviour
         exitManager = FindAnyObjectByType<ExitManager>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        MapLoadCoroutine();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+
+        if (exitManager != null)
+            exitManager.ExitLoadComplete += OnExitLoadFinished;
     }
 
-    private IEnumerator WaitForMapLoadRoutine()
+    void OnDisable()
     {
-        while ( ! mapLoader.isMapLoaded)
-        {
-            yield return null;
-        }
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
 
+        if (exitManager != null)
+            exitManager.ExitLoadComplete -= OnExitLoadFinished;
+    }
+
+    private void OnMapLoadFinished()
+    {
+        StopAllCoroutines();
+        StartCoroutine(RefreshListRoutine());
+    }
+
+    private IEnumerator RefreshListRoutine()
+    {
         leverList.Clear();
-        GameObject[] levers = GameObject.FindGameObjectsWithTag("Lever");
-        leverList.AddRange(levers);
-        StartCoroutine(WaitForExitObj());
-    }
 
-    public void MapLoadCoroutine()
-    {
-        StartCoroutine(WaitForMapLoadRoutine());
-    }
+        yield return new WaitForEndOfFrame();
 
-    private IEnumerator WaitForExitObj()
-    {
-        while (exitManager.exit == null)
+        foreach (Transform child in transform)
         {
-            yield return null;
+            if (child.CompareTag("Lever"))
+            {
+                leverList.Add(child.gameObject);
+            }
         }
 
+        leverList.TrimExcess();
+    }
+
+    private void OnExitLoadFinished()
+    {
         exitDoor = exitManager.GetExitObj();
-        Debug.Log("LeverManager : Exit 오브젝트 취득 완료");
     }
 
     public void leverAddCounter()

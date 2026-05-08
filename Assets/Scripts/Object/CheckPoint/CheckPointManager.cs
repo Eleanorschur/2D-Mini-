@@ -6,7 +6,7 @@ public class CheckPointManager : MonoBehaviour
 {
     private MapLoader mapLoader;
 
-    private List<GameObject> checkPointList = new();
+    [SerializeField] private List<GameObject> checkPointList = new();
     private GameObject fianlCheckPoint;
 
     void Awake()
@@ -14,26 +14,39 @@ public class CheckPointManager : MonoBehaviour
         mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
-    void Start()
+    void OnEnable()
     {
-        MapLoadCoroutine();
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
     }
 
-    private IEnumerator WaitForMapLoadRoutine()
+    void OnDisable()
     {
-        while ( ! mapLoader.isMapLoaded)
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+
+    private void OnMapLoadFinished()
+    {
+        StopAllCoroutines();
+        StartCoroutine(RefreshListRoutine());
+    }
+
+    private IEnumerator RefreshListRoutine()
+    {
+        checkPointList.Clear();
+
+        yield return new WaitForEndOfFrame();
+
+        foreach (Transform child in transform)
         {
-            yield return null;
+            if (child.CompareTag("Checkpoint"))
+            {
+                checkPointList.Add(child.gameObject);
+            }
         }
 
-        checkPointList.Clear();
-        GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("Checkpoint");
-        checkPointList.AddRange(checkPoints);
-    }
-
-    public void MapLoadCoroutine()
-    {
-        StartCoroutine(WaitForMapLoadRoutine());
+        checkPointList.TrimExcess();
     }
 
     public void SetFinalCheckPoint(GameObject obj)

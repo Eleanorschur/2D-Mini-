@@ -1,9 +1,10 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Switch : MonoBehaviour
 {
-    private GameObject player;
+    private MapLoader mapLoader;
     private PlayerManager playerManager;
     private PlatformManager platformManager;
     private Movement playerMovement;
@@ -16,6 +17,7 @@ public class Switch : MonoBehaviour
 
     void Awake()
     {
+        mapLoader = FindAnyObjectByType<MapLoader>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         platformManager = FindAnyObjectByType<PlatformManager>();
         statusCheck = FindAnyObjectByType<StatusCheck>();
@@ -23,19 +25,32 @@ public class Switch : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForPlayerObj());
         nearSwitch = false;
     }
-    private IEnumerator WaitForPlayerObj()
-    {
-        while (playerManager.player == null)
-        {
-            yield return null;
-        }
 
-        player = playerManager.GetPlayerObj();
-        playerMovement = FindAnyObjectByType<Movement>();
-        Debug.Log("Switch : player 오브젝트 취득 완료");
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+    }
+
+    private void OnMapLoadFinished() { }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
