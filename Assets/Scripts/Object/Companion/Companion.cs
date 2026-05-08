@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Companion : MonoBehaviour
 {
+    private GameObject player;
+    private PlayerManager playerManager;
     private CompanionManager companionManager;
     private FollowPlayer followPlayer;
     private Movement playerMovement;
@@ -13,15 +16,27 @@ public class Companion : MonoBehaviour
 
     void Awake()
     {
+        playerManager = FindAnyObjectByType<PlayerManager>();
         companionManager = GetComponentInParent<CompanionManager>();
         followPlayer = GetComponent<FollowPlayer>();
-        playerMovement = FindAnyObjectByType<Movement>();
     }
 
     void Start()
     {
+        StartCoroutine(WaitForPlayerObj());
         nearCompanion = false;
         activeCompanion = false;
+    }
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+
+        player = playerManager.GetPlayerObj();
+        playerMovement = FindAnyObjectByType<Movement>();
+        Debug.Log("Companion : player 오브젝트 취득 완료");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
