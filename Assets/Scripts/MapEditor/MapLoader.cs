@@ -82,7 +82,7 @@ public class MapLoader : MonoBehaviour
     private GameObject companionManager;
     private GameObject decorationManager;
 
-    [SerializeField] private List<GameObject> objList = new();
+    private List<GameObject> objList = new();
 
     private void Awake()
     {
@@ -102,7 +102,6 @@ public class MapLoader : MonoBehaviour
     private void Start()
     {
         loadComplete = false;
-
 
         if (loadOnStart)
         {
@@ -139,8 +138,9 @@ public class MapLoader : MonoBehaviour
         ApplyStageSize(stageData);
         BuildMap(stageData);
 
-        Debug.Log($"맵 로드 완료: {stageName}");
+        playerManager.GetComponent<PlayerManager>().SetPlayerObj();
 
+        Debug.Log($"맵 로드 완료: {stageName}");
         return true;
     }
 
