@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
 
-public class FindPlayer : MonoBehaviour
+public class SettingCamera : MonoBehaviour
 {
     private GameObject player;
     private PlayerManager playerManager;
@@ -30,7 +30,7 @@ public class FindPlayer : MonoBehaviour
         }
         player = playerManager.GetPlayerObj();
         cinemachineCamera.Target.TrackingTarget = player.transform;
-        Debug.Log("FindPlayer : player 오브젝트 취득 완료");
+        Debug.Log("SettingCamera : player 오브젝트 취득 완료");
     }
 
     public void RefreshConfiner()
