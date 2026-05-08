@@ -5,32 +5,28 @@ using Unity.Cinemachine;
 public class FindPlayer : MonoBehaviour
 {
     private GameObject player;
+    private PlayerManager playerManager;
     private CinemachineCamera cinemachineCamera;
 
     void Awake()
     {
+        playerManager = FindAnyObjectByType<PlayerManager>();
         cinemachineCamera = GetComponent<CinemachineCamera>();
     }
 
     void Start()
     {
-        StartCoroutine(FindAndAssignPlayer());
+        StartCoroutine(WaitForPlayerObj());
     }
 
-    private IEnumerator FindAndAssignPlayer()
+    private IEnumerator WaitForPlayerObj()
     {
-        GameObject player = null;
-
-        while (player == null)
+        while (playerManager.player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-
-            if (player != null)
-            {
-                cinemachineCamera.Target.TrackingTarget = player.gameObject.transform;
-                yield break;
-            }
-            yield return new WaitForSeconds(0.5f);
+            yield return null;
         }
+        player = playerManager.GetPlayerObj();
+        cinemachineCamera.Target.TrackingTarget = player.transform;
+        Debug.Log("FindPlayer : player 오브젝트 취득 완료");
     }
 }

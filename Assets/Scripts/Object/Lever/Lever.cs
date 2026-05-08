@@ -7,7 +7,6 @@ public class Lever : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite upSprite;
     public Sprite downSprite;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     private bool nearLever;
@@ -18,7 +17,6 @@ public class Lever : MonoBehaviour
     {
         playerMovement = FindAnyObjectByType<Movement>();
         leverManager = GetComponentInParent<LeverManager>();
-        Zkey = FindAnyObjectByType<ZKey>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

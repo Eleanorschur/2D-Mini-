@@ -5,7 +5,6 @@ public class Switch : MonoBehaviour
     private PlatformManager platformManager;
     private Movement playerMovement;
     private StatusCheck statusCheck;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     public int switchNumber;
@@ -17,7 +16,6 @@ public class Switch : MonoBehaviour
         playerMovement = FindAnyObjectByType<Movement>();
         platformManager = FindAnyObjectByType<PlatformManager>();
         statusCheck = FindAnyObjectByType<StatusCheck>();
-        Zkey = FindAnyObjectByType<ZKey>();
     }
 
     void Start()

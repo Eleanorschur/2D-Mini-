@@ -8,7 +8,6 @@ public class ExitDoor : MonoBehaviour
     private Timer timer;
     public Sprite openDoor;
     public Sprite closeDoor;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     private bool nearDoor = false;
@@ -17,7 +16,6 @@ public class ExitDoor : MonoBehaviour
 
     void Awake()
     {
-        Zkey = FindAnyObjectByType<ZKey>();
         timer = FindAnyObjectByType<Timer>();
         stageReset = FindAnyObjectByType<StageReset>();
         playerMovement = FindAnyObjectByType<Movement>();

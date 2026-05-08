@@ -5,7 +5,6 @@ public class Companion : MonoBehaviour
     private CompanionManager companionManager;
     private FollowPlayer followPlayer;
     private Movement playerMovement;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     private bool nearCompanion;
@@ -17,7 +16,6 @@ public class Companion : MonoBehaviour
         companionManager = GetComponentInParent<CompanionManager>();
         followPlayer = GetComponent<FollowPlayer>();
         playerMovement = FindAnyObjectByType<Movement>();
-        Zkey = FindAnyObjectByType<ZKey>();
     }
 
     void Start()

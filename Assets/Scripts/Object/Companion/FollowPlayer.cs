@@ -1,17 +1,17 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class FollowPlayer : MonoBehaviour
 {
-    private Companion companion;
     private GameObject player;
-    private Movement playerMovement;
+    private PlayerManager playerManager;
+    private Companion companion;
     private RecodeMovement recode;
 
     private Vector3 originScale;
     private Vector3 leftScale;
     private Vector3 rightScale;
-    private float moveDir;
 
     private int currentFollowIndex = -1;
     private int delayFrames = 0;
@@ -19,14 +19,13 @@ public class FollowPlayer : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerManager = FindAnyObjectByType<PlayerManager>();
         companion = GetComponent<Companion>();
-        playerMovement = FindAnyObjectByType<Movement>();
-        recode = player?.GetComponent<RecodeMovement>();
     }
 
     void Start()
     {
+        StartCoroutine(WaitForPlayerObj());
         originScale = transform.localScale;
         leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
         rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
@@ -38,6 +37,18 @@ public class FollowPlayer : MonoBehaviour
 
         Follow();
     }
+
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+        player = playerManager.GetPlayerObj();
+        recode = player?.GetComponent<RecodeMovement>();
+        Debug.Log("FollowPlayer : player 오브젝트 취득 완료");
+    }
+
 
     private void Follow()
     {

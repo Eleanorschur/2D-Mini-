@@ -19,7 +19,6 @@ public class StageReset : MonoBehaviour
     private float reviveAddY = 1.5f;
     private bool resetLock = false;
 
-
     void Awake()
     {
         playerManager = FindAnyObjectByType<PlayerManager>();
@@ -55,6 +54,7 @@ public class StageReset : MonoBehaviour
 
         player = playerManager.GetPlayerObj();
         startPosition = player.transform.position;
+        Debug.Log("StageReset : player 오브젝트 취득 완료");
     }
 
     public void ManualStageReset()

@@ -5,11 +5,10 @@ public class CompanionManager : MonoBehaviour
 {
     private List<GameObject> companionList = new();
     [SerializeField]private List<Vector3> transformList = new();
-    private Companion companion;
 
     void Awake()
     {
-        companion = GetComponentInChildren<Companion>();
+
     }
 
     void Start()

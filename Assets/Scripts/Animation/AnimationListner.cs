@@ -13,9 +13,4 @@ public class AnimationListner : MonoBehaviour
     {
 
     }
-
-    void Update()
-    {
-        
-    }
 }
