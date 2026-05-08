@@ -8,6 +8,8 @@ public class TransformCheck : MonoBehaviour
     private bool isFalling = false;
     public bool IsFalling => isFalling;
 
+    private float fallingYPos = -27f;
+
     void Awake()
     {
         stageReset = FindAnyObjectByType<StageReset>();
@@ -21,7 +23,7 @@ public class TransformCheck : MonoBehaviour
 
     void LateUpdate()
     {
-        if (transform.position.y > -15)
+        if (transform.position.y > fallingYPos)
             return;
 
         isFalling = true;
