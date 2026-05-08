@@ -230,7 +230,6 @@ MonoBehaviour:
   tilePrefabFolderPath: Prefabs/Tiles
   stageName: Stage1
   tileSize: 1
-  mapOrigin: {x: 0, y: 0}
   loadOnStart: 1
   clearBeforeLoad: 1
   playerCode: 1
@@ -492,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: -8.4375, z: -10}
+  m_LocalPosition: {x: 15, y: -8.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

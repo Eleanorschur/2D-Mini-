@@ -12,9 +12,6 @@ public class MapLoader : MonoBehaviour
     [Header("타일 크기")]
     [SerializeField] private float tileSize = 1f;
 
-    [Header("맵 시작 위치")]
-    [SerializeField] private Vector2 mapOrigin = Vector2.zero;
-
     [Header("자동 로드")]
     [SerializeField] private bool loadOnStart = true;
 
