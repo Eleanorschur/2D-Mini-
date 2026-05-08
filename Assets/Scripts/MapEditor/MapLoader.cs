@@ -275,15 +275,59 @@ public class MapLoader : MonoBehaviour
             return;
         }
 
+        ReadTag(prefab, false);
+
+        GameObject obj = Instantiate(prefab, root);
+
+        obj.transform.localPosition = GetLocalPosition(col, row);
+        obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
+
+        if (code == playerCode)
+        {
+            playerTransform = obj.transform;
+            obj.name = "Player";
+        }
+    }
+
+    private Vector3 GetLocalPosition(int col, int row)
+    {
+        float x = col * tileSize;
+        float y = -row * tileSize;
+
+        return new Vector3(x, y, 0f);
+    }
+
+    public void ClearMap()
+    {
+        foreach (GameObject obj in objList)
+        {
+            ReadTag(obj, true);
+
+            for (int i = obj.transform.childCount - 1; i >= 0; i--)
+            {
+                Destroy(obj.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
+    public void ReadTag(GameObject prefab, bool reset)
+    {
         string readTag = prefab.tag;
 
         switch (readTag)
         {
-
             case "Player":
                 {
-                    root = playerManager?.transform;
-                    stageReset.SetStartPosition(prefab.transform.position);
+                    if (reset)
+                    {
+                        prefab.GetComponent<PlayerManager>().DelPlayerObj();
+                    }
+                    else
+                    {
+                        root = playerManager?.transform;
+                        stageReset.SetStartPosition(prefab.transform.position);
+                    }
                     break;
                 }
             case "Platform_Normal":
@@ -303,7 +347,14 @@ public class MapLoader : MonoBehaviour
                 }
             case "Exit":
                 {
-                    root = exitManager?.transform;
+                    if (reset)
+                    {
+                        prefab.GetComponent<ExitManager>().DelExitObj();
+                    }
+                    else
+                    {
+                        root = exitManager?.transform;
+                    }
                     break;
                 }
             case "Switch_Red":
@@ -336,37 +387,6 @@ public class MapLoader : MonoBehaviour
                     root = decorationManager?.transform;
                     break;
                 }
-        }
-
-        GameObject obj = Instantiate(prefab, root);
-
-        obj.transform.localPosition = GetLocalPosition(col, row);
-        obj.transform.localRotation = Quaternion.identity;
-        obj.transform.localScale = Vector3.one;
-
-        if (code == playerCode)
-        {
-            playerTransform = obj.transform;
-            obj.name = "Player";
-        }
-    }
-
-    private Vector3 GetLocalPosition(int col, int row)
-    {
-        float x = col * tileSize;
-        float y = -row * tileSize;
-
-        return new Vector3(x, y, 0f);
-    }
-
-    public void ClearMap()
-    {
-        foreach (GameObject obj in objList)
-        {
-            for (int i = obj.transform.childCount - 1; i >= 0; i--)
-            {
-                Destroy(obj.transform.GetChild(i).gameObject);
-            }
         }
     }
 

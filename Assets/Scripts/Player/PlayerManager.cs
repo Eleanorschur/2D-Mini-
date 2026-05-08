@@ -27,4 +27,9 @@ public class PlayerManager : MonoBehaviour
     {
         return player;
     }
+
+    public void DelPlayerObj()
+    {
+        player = null;
+    }
 }

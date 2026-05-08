@@ -28,4 +28,9 @@ public class ExitManager : MonoBehaviour
     {
         return exit;
     }
+
+    public void DelExitObj()
+    {
+        exit = null;
+    }
 }
