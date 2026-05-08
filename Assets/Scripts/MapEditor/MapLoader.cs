@@ -16,7 +16,7 @@ public class MapLoader : MonoBehaviour
     [SerializeField] private Vector2 mapOrigin = Vector2.zero;
 
     [Header("맵 부모")]
-    [SerializeField] private Transform mapRoot;
+    //[SerializeField] private Transform mapRoot;
 
     [Header("자동 로드")]
     [SerializeField] private bool loadOnStart = true;
@@ -73,7 +73,6 @@ public class MapLoader : MonoBehaviour
     { "42", "ExitLeft" }
 };
 
-
     private void Start()
     {
         loadComplete = false;
@@ -82,11 +81,11 @@ public class MapLoader : MonoBehaviour
         {
             int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
             stageName = $"Stage{stageIndex}";
-            LoadStage(stageName);
+            loadComplete = LoadStage(stageName);
         }
     }
 
-    public void LoadStage(string targetStageName)
+    public bool LoadStage(string targetStageName)
     {
         stageName = targetStageName;
         playerTransform = null;
@@ -96,7 +95,7 @@ public class MapLoader : MonoBehaviour
         if (jsonFile == null)
         {
             Debug.LogError($"JSON 파일을 찾을 수 없습니다: Resources/Maps/{stageName}.json");
-            return;
+            return false;
         }
 
         StageButtonData stageData = JsonUtility.FromJson<StageButtonData>(jsonFile.text);
@@ -104,16 +103,16 @@ public class MapLoader : MonoBehaviour
         if (stageData == null || stageData.rows == null)
         {
             Debug.LogError($"스테이지 데이터가 잘못되었습니다: {stageName}");
-            return;
+            return false;
         }
 
-        if (mapRoot == null)
-        {
-            GameObject root = new GameObject("MapRoot");
-            mapRoot = root.transform;
-        }
+        //if (mapRoot == null)
+        //{
+        //    GameObject root = new GameObject("MapRoot");
+        //    mapRoot = root.transform;
+        //}
 
-        mapRoot.position = new Vector3(mapOrigin.x, mapOrigin.y, 0f);
+        //mapRoot.position = new Vector3(mapOrigin.x, mapOrigin.y, 0f);
 
         if (clearBeforeLoad)
             ClearMap();
@@ -122,6 +121,8 @@ public class MapLoader : MonoBehaviour
         BuildMap(stageData);
 
         Debug.Log($"맵 로드 완료: {stageName}");
+
+        return true;
     }
 
     private void ApplyStageSize(StageButtonData stageData)
@@ -258,11 +259,7 @@ public class MapLoader : MonoBehaviour
 
         switch (readTag)
         {
-            default:
-                {
-                    root = FindAnyObjectByType<DecorationManager>().transform;
-                    break;
-                }
+
             case "Player":
                 {
                     root = FindAnyObjectByType<PlayerManager>().transform;
@@ -313,6 +310,11 @@ public class MapLoader : MonoBehaviour
                     root = FindAnyObjectByType<CompanionManager>().transform;
                     break;
                 }
+            default:
+                {
+                    root = FindAnyObjectByType<DecorationManager>().transform;
+                    break;
+                }
         }
 
         GameObject obj = Instantiate(prefab, root);
@@ -338,13 +340,13 @@ public class MapLoader : MonoBehaviour
 
     public void ClearMap()
     {
-        if (mapRoot == null)
-            return;
+        //if (mapRoot == null)
+        //    return;
 
-        for (int i = mapRoot.childCount - 1; i >= 0; i--)
-        {
-            Destroy(mapRoot.GetChild(i).gameObject);
-        }
+        //for (int i = mapRoot.childCount - 1; i >= 0; i--)
+        //{
+        //    Destroy(mapRoot.GetChild(i).gameObject);
+        //}
     }
 
     private void Update()

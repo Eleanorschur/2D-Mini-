@@ -5,7 +5,7 @@
 /UserSettings/
 /.vs/
 /Ignore/
-*.sin
+*.sln
 *.csproj
 *.slnx
 *.unitypackage
