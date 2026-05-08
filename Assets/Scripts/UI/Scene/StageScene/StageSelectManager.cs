@@ -163,19 +163,4 @@ public class StageSelectManager : MonoBehaviour
     }
 
 
-
-
-    //void Start()
-    //{
-    //    // StageSelectScene에서 저장한 번호 읽기
-    //    int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
-
-    //    // 읽은 번호로 JSON 파일 로드
-    //    string jsonPath = $"Stage{stageIndex}";
-    //    // 이후 기존 JSON 로드 코드 그대로 사용
-    //}
-
-
-
-
 }
