@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class StageReset : MonoBehaviour
 {
     private GameObject player;
+    private PlayerManager playerManager;
     private StatusCheck statusCheck;
     private ItemCheck itemCheck;
     private ExitDoor exitDoor;
@@ -20,7 +22,7 @@ public class StageReset : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerManager = FindAnyObjectByType<PlayerManager>();
         exitDoor = FindAnyObjectByType<ExitDoor>();
         itemCheck = FindAnyObjectByType<ItemCheck>();
         statusCheck = FindAnyObjectByType<StatusCheck>();
@@ -32,8 +34,8 @@ public class StageReset : MonoBehaviour
 
     void Start()
     {
-        startPosition = player.transform.position;
         resetLock = false;
+        StartCoroutine(WaitForPlayerObj());
     }
 
     void Update()
@@ -42,6 +44,17 @@ public class StageReset : MonoBehaviour
             return;
 
         ManualStageReset();
+    }
+
+    private IEnumerator WaitForPlayerObj()
+    {
+        while (playerManager.player == null)
+        {
+            yield return null;
+        }
+
+        player = playerManager.GetPlayerObj();
+        startPosition = player.transform.position;
     }
 
     public void ManualStageReset()

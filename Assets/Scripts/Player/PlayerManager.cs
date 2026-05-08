@@ -22,4 +22,9 @@ public class PlayerManager : MonoBehaviour
         if (player != null)
             OnReadyPlayer?.Invoke();
     }
+
+    public GameObject GetPlayerObj()
+    {
+        return player;
+    }
 }
