@@ -235,8 +235,6 @@ MonoBehaviour:
   loadOnStart: 1
   clearBeforeLoad: 1
   playerCode: 1
-  cinemachineCamera: {fileID: 0}
-  cameraBoundsController: {fileID: 0}
   autoCameraSize: 1
   minOrthographicSize: 5
   fitScreenColumns: 30
@@ -506,7 +504,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.2890625
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -865,12 +863,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4658719710729892917, guid: f3a0c866acfdc5547a37897fa0e99c80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fb24949e5af999449d38edd5317288c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.72, y: 9.41}
+  m_Size: {x: 26.125, y: 14.703125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
