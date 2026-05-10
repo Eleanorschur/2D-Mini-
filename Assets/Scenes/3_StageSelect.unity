@@ -218,6 +218,7 @@ MonoBehaviour:
   btnLeft: {fileID: 840162294}
   btnRight: {fileID: 1208696385}
   btnBack: {fileID: 2137400317}
+  WaitTime: 0
 --- !u!1 &840162292
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +347,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1536437960}
     m_Modifications:
+    - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 792150895074150517, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 1669721691923266198, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -426,9 +443,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486217459214006509, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555891141179945805, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 5805030498085924873, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
       propertyPath: m_Name
       value: StageCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805030498085924873, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204934571954608018, guid: d9e4da6a035d78b47854e003f96d874e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

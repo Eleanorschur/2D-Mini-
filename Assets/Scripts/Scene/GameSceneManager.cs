@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
+public class GameSceneManager : MonoBehaviour
 {
     // 외부에서 접근 가능하도록 static 인스턴스 선언
-    public static SceneManager Instance { get; private set; }
+    public static GameSceneManager Instance { get; private set; }
 
     private void Awake()
     {

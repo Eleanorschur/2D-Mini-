@@ -60,7 +60,11 @@ public class MapLoader : MonoBehaviour
     private void Start()
     {
         if (loadOnStart)
+        {
+            int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
+            stageName = $"Stage{stageIndex}";
             LoadStage(stageName);
+        }
     }
 
     public void LoadStage(string targetStageName)
