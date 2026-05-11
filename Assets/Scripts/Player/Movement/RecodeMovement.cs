@@ -17,6 +17,7 @@ public class RecodeMovement : MonoBehaviour
         }
     }
 
+    private PlayerManager playerManager;
     private Rigidbody2D rigid2D;
 
     private Vector2 currentPos;
@@ -27,8 +28,21 @@ public class RecodeMovement : MonoBehaviour
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         rigid2D = GetComponent<Rigidbody2D>();
         pathList.Capacity = maxStorage;
+    }
+
+    void OnEnable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += UpdatePlayerReference;
+    }
+
+    void UpdatePlayerReference()
+    {
+        GameObject newPlayer = playerManager.GetPlayerObj();
+        rigid2D = newPlayer.GetComponent<Rigidbody2D>();
     }
 
     void Start()

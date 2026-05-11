@@ -89,6 +89,7 @@ public class StageReset : MonoBehaviour
         switchManager.AllSwitchReset();
         companionManager.CompanionReset();
         checkPointManager.CheckPointReset();
+        checkPointManager.SetFinalCheckPoint(null);
         exitManager.GetExitObj().DoorOpen(false);
         playerManager.GetPlayerObj().GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
     }

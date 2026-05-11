@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Movement : MonoBehaviour
 {
     private PlayerData playerData;
+    private PlayerManager playerManager;
     private Rigidbody2D rb;
     private CapsuleCollider2D cd;
 
@@ -26,9 +26,23 @@ public class Movement : MonoBehaviour
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<CapsuleCollider2D>();
+    }
+
+    void OnEnable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += UpdatePlayerReference;
+    }
+
+    void UpdatePlayerReference()
+    {
+        GameObject newPlayer = playerManager.GetPlayerObj();
+        rb = newPlayer.GetComponent<Rigidbody2D>();
+        cd = newPlayer.GetComponent<CapsuleCollider2D>();
     }
 
     void Start()

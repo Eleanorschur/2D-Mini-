@@ -52,7 +52,9 @@ public class CheckPointManager : MonoBehaviour
     public void SetFinalCheckPoint(GameObject obj)
     {
         fianlCheckPoint = obj;
-        ReSettingsAllCheckPoint(obj);
+
+        if (obj != null)
+            ReSettingsAllCheckPoint(obj);
     }
 
     public GameObject GetFinalCheckPoint()

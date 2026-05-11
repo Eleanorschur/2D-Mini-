@@ -2,14 +2,28 @@ using UnityEngine;
 
 public class SpriteChange : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    private PlayerManager playerManager;
+    [SerializeField]private SpriteRenderer spriteRenderer;
     public Sprite slimeGreen; 
     public Sprite slimeRed; 
     public Sprite slimeBlue; 
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void OnEnable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += UpdatePlayerReference;
+    }
+
+    void UpdatePlayerReference()
+    {
+        GameObject newPlayer = playerManager.GetPlayerObj();
+        spriteRenderer = newPlayer.GetComponent<SpriteRenderer>();
     }
 
     void Start()

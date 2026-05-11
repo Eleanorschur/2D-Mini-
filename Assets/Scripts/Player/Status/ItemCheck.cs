@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ItemCheck : MonoBehaviour
 {
+    private PlayerManager playerManager;
     private StatusCheck statusCheck;
     private LeverManager leverManager;
     [SerializeField] private List<GameObject> levers;
@@ -17,6 +18,7 @@ public class ItemCheck : MonoBehaviour
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         statusCheck = GetComponent<StatusCheck>();
         leverManager = FindAnyObjectByType<LeverManager>();
     }
@@ -27,6 +29,18 @@ public class ItemCheck : MonoBehaviour
         
         statusCheck.ChangeForm(0);
         GetSwitchList();
+    }
+
+    void OnEnable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += UpdatePlayerReference;
+    }
+
+    void UpdatePlayerReference()
+    {
+        GameObject newPlayer = playerManager.GetPlayerObj();
+        statusCheck = newPlayer.GetComponent<StatusCheck>();
     }
 
     public void AddLeverList(GameObject lever)

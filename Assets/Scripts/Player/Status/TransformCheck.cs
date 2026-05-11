@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TransformCheck : MonoBehaviour
 {
+    private PlayerManager playerManager;
     private StageReset stageReset;
     private CameraShaker cameraShaker;
 
@@ -12,8 +13,21 @@ public class TransformCheck : MonoBehaviour
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         stageReset = FindAnyObjectByType<StageReset>();
         cameraShaker = FindAnyObjectByType<CameraShaker>();
+    }
+
+    void OnEnable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += UpdatePlayerReference;
+    }
+
+    void UpdatePlayerReference()
+    {
+        GameObject newPlayer = playerManager.GetPlayerObj();
+
     }
 
     void Start()

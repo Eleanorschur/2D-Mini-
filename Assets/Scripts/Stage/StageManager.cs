@@ -29,7 +29,7 @@ public class StageManager : MonoBehaviour
         {
             pauseGame = true;
             stageReset.ResetLock(true);
-            timer.PauseTimer();
+            //timer.PauseTimer();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             Debug.Log("ESC 팝업창 열기");
@@ -38,7 +38,7 @@ public class StageManager : MonoBehaviour
         {
             pauseGame = false;
             stageReset.ResetLock(false);
-            timer.ResumeTimer();
+            //timer.ResumeTimer();
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             Debug.Log("ESC 팝업창 닫기");

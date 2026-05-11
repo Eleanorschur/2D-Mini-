@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StatusCheck : MonoBehaviour
 {
+    private PlayerManager playerManager;
     private TransformCheck transformCheck;
     private SpriteChange spriteChange;
 
@@ -12,8 +13,22 @@ public class StatusCheck : MonoBehaviour
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         transformCheck = GetComponent<TransformCheck>();
         spriteChange = GetComponent<SpriteChange>();
+    }
+
+    void OnEnable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += UpdatePlayerReference;
+    }
+
+    void UpdatePlayerReference()
+    {
+        GameObject newPlayer = playerManager.GetPlayerObj();
+        transformCheck = newPlayer.GetComponent<TransformCheck>();
+        spriteChange = newPlayer.GetComponent<SpriteChange>();
     }
 
     void Start()
