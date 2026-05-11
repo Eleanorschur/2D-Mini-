@@ -1,10 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
 public class Companion : MonoBehaviour
 {
     private MapLoader mapLoader;
     private PlayerManager playerManager;
+    private ItemCheck itemCheck;
     private CompanionManager companionManager;
     private FollowPlayer followPlayer;
     private Movement playerMovement;
@@ -45,6 +45,7 @@ public class Companion : MonoBehaviour
     private void PlayerLoadComplete()
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+        itemCheck = playerManager.GetPlayerObj().GetComponent<ItemCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,7 +88,7 @@ public class Companion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearCompanion && playerMovement.IsGrounded)
         {
             activeCompanion = true;
-            followPlayer.SetIndex(companionManager.GetIndex(this.gameObject));
+            followPlayer.SetIndex(itemCheck.AddCompanionList(this.gameObject));
 
             if (currentZKey != null)
             {
