@@ -7,7 +7,10 @@ public class CheckPointManager : MonoBehaviour
     private MapLoader mapLoader;
 
     [SerializeField] private List<GameObject> checkPointList = new();
-    private GameObject fianlCheckPoint;
+    [SerializeField] private GameObject fianlCheckPoint;
+
+    [SerializeField] private int playerStatus = -1;
+    public int PlayerStatus => playerStatus;
 
     void Awake()
     {
@@ -77,5 +80,10 @@ public class CheckPointManager : MonoBehaviour
         {
             checkPoint.GetComponent<CheckPoint>().CheckPointReset();
         }
+    }
+
+    public void SetPlayerStatus(int status)
+    {
+        playerStatus = status;
     }
 }

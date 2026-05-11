@@ -99,7 +99,11 @@ public class StageReset : MonoBehaviour
     public void DeadStageReset()
     {
         if (checkPointManager.GetFinalCheckPoint() != null)
+        {
             revivePosition = checkPointManager.GetFinalCheckPoint().transform.position;
+            statusCheck.ChangeForm(checkPointManager.PlayerStatus);
+            platformManager.SwitchingPlatformHide(checkPointManager.PlayerStatus);
+        }
         else
             revivePosition = startPosition;
 

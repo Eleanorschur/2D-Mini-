@@ -10,9 +10,6 @@ public class MapLoader : MonoBehaviour
     [Header("프리팹 Resources 경로")]
     [SerializeField] private string tilePrefabFolderPath = "Prefabs";
 
-    [Header("현재 Stage 이름")]
-    [SerializeField] private string stageName = "Stage1";
-
     [Header("전체 Stage 리스트")]
     [SerializeField] private List<TextAsset> stageList = new List<TextAsset>();
     [SerializeField] private int stageIndex = 0;
