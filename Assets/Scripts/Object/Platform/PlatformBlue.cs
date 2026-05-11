@@ -14,6 +14,7 @@ public class PlatformBlue : MonoBehaviour
     void Awake()
     {
         mapLoader = FindAnyObjectByType<MapLoader>();
+        platformData = GetComponentInParent<PlatformData>();
     }
 
     void OnEnable()
@@ -49,8 +50,6 @@ public class PlatformBlue : MonoBehaviour
         }
 
         platformList.TrimExcess();
-
-        platformData = GetComponentInParent<PlatformData>();
         PlatformHide(true, platformData.platformHideAlpha);
     }
 

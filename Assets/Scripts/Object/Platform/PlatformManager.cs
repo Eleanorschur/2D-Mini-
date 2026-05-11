@@ -11,7 +11,10 @@ public class PlatformManager : MonoBehaviour
     private void Awake()
     {
         mapLoader = FindAnyObjectByType<MapLoader>();
-
+        platformData = GetComponent<PlatformData>();
+        redPlatform = GetComponentInChildren<PlatformRed>();
+        bluePlatform = GetComponentInChildren<PlatformBlue>();
+        normalPlatform = GetComponentInChildren<PlatformNormal>();
     }
 
     private void Start()
@@ -33,10 +36,7 @@ public class PlatformManager : MonoBehaviour
 
     private void OnMapLoadFinished()
     {
-        platformData = GetComponent<PlatformData>();
-        redPlatform = GetComponentInChildren<PlatformRed>();
-        bluePlatform = GetComponentInChildren<PlatformBlue>();
-        normalPlatform = GetComponentInChildren<PlatformNormal>();
+
     }
 
     public void SwitchingPlatformHide(int status)

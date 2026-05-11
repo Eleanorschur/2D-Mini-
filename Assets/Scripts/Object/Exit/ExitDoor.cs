@@ -4,7 +4,7 @@ public class ExitDoor : MonoBehaviour
 {
     private MapLoader mapLoader;
     private PlayerManager playerManager;
-    private Movement playerMovement;
+    [SerializeField]private Movement playerMovement;
     private SpriteRenderer spriteRenderer;
     private StageReset stageReset;
     private Timer timer;
@@ -50,7 +50,10 @@ public class ExitDoor : MonoBehaviour
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    private void OnMapLoadFinished() { }
+    private void OnMapLoadFinished()
+    {
+
+    }
 
     private void PlayerLoadComplete()
     {
@@ -106,7 +109,7 @@ public class ExitDoor : MonoBehaviour
             activeDoor = true;
             playerMovement.MoveLock(true);
             stageReset.ResetLock(true);
-            timer.StopTimer();
+            //timer.StopTimer();
             Debug.Log("Å»Ãâ ¿Ï·á");
 
             if (currentZKey != null)

@@ -4,7 +4,7 @@ using System.Collections;
 public class ExitManager : MonoBehaviour
 {
     private MapLoader mapLoader;
-    [SerializeField] private ExitDoor exitDoor;
+    private ExitDoor exitDoor;
 
     public bool isExitLoaded { get; private set; }
     public System.Action ExitLoadComplete;
@@ -43,6 +43,8 @@ public class ExitManager : MonoBehaviour
             isExitLoaded = true;
             ExitLoadComplete?.Invoke();
         }
+
+        exitDoor.DoorOpen(false);
     }
 
     public ExitDoor GetExitObj()
