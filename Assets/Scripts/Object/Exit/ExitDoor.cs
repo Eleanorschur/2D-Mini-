@@ -3,14 +3,16 @@ using UnityEngine;
 public class ExitDoor : MonoBehaviour
 {
     private MapLoader mapLoader;
+    private ExitManager exitManager;
     private PlayerManager playerManager;
-    [SerializeField]private Movement playerMovement;
+    private Movement playerMovement;
     private SpriteRenderer spriteRenderer;
     private StageReset stageReset;
     private Timer timer;
+    private ZKey currentZKey;
+
     public Sprite openDoor;
     public Sprite closeDoor;
-    private ZKey currentZKey;
 
     private bool nearDoor = false;
     private bool isDoorOpen = false;
@@ -19,6 +21,7 @@ public class ExitDoor : MonoBehaviour
     void Awake()
     {
         mapLoader = FindAnyObjectByType<MapLoader>();
+        exitManager = GetComponentInParent<ExitManager>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         timer = FindAnyObjectByType<Timer>();
         stageReset = FindAnyObjectByType<StageReset>();
@@ -39,6 +42,9 @@ public class ExitDoor : MonoBehaviour
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
+
+        if (exitManager != null)
+            exitManager.ExitLoadComplete += UpdateExitReference;
     }
 
     void OnDisable()
@@ -48,6 +54,9 @@ public class ExitDoor : MonoBehaviour
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
+
+        if (exitManager != null)
+            exitManager.ExitLoadComplete -= UpdateExitReference;
     }
 
     private void OnMapLoadFinished()
@@ -58,6 +67,11 @@ public class ExitDoor : MonoBehaviour
     private void PlayerLoadComplete()
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+    }
+
+    void UpdateExitReference()
+    {
+        ExitDoor newExit = exitManager.GetExitObj();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -111,6 +125,7 @@ public class ExitDoor : MonoBehaviour
             stageReset.ResetLock(true);
             timer.StopTimer();
             Debug.Log("Å»Ãâ ¿Ï·á");
+            mapLoader.NextStage();
 
             if (currentZKey != null)
             {

@@ -11,6 +11,7 @@ public class StageReset : MonoBehaviour
     private SwitchManager switchManager;
     private CheckPointManager checkPointManager;
     private CompanionManager companionManager;
+    private Timer timer;
 
     private Vector3 startPosition;
     private Vector3 revivePosition;
@@ -27,6 +28,7 @@ public class StageReset : MonoBehaviour
         switchManager = FindAnyObjectByType<SwitchManager>();
         checkPointManager = FindAnyObjectByType<CheckPointManager>();
         companionManager = FindAnyObjectByType<CompanionManager>();
+        timer = FindAnyObjectByType<Timer>();
     }
 
     void Start()
@@ -105,6 +107,12 @@ public class StageReset : MonoBehaviour
         playerManager.GetPlayerObj().transform.position = revivePosition;
 
         playerManager.GetPlayerObj().GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+    }
+
+    public void NextStageReset()
+    {
+        resetLock = false;
+        timer.ResetTimer();
     }
 
     public void SetStartPosition(Vector3 position)

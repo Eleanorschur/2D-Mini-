@@ -4,8 +4,8 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    private TextMeshProUGUI timerText;
     private MapLoader mapLoader;
+    private TextMeshProUGUI timerText;
     private PlayerManager playerManager;
     private StageReset stageReset;
     private Movement playerMovement;
@@ -105,6 +105,13 @@ public class Timer : MonoBehaviour
             countdownCoroutine = null;
             currentTime = 0;
         }
+    }
+
+    public void ResetTimer()
+    {
+        currentTime = defaultTime;
+        UpdateText(currentTime);
+        ResumeTimer();
     }
 
     private void TimeOver()

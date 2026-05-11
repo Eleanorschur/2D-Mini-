@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class MapLoader : MonoBehaviour
@@ -11,6 +12,11 @@ public class MapLoader : MonoBehaviour
 
     [Header("현재 Stage 이름")]
     [SerializeField] private string stageName = "Stage1";
+
+    [Header("전체 Stage 리스트")]
+    [SerializeField] private List<TextAsset> stageList = new List<TextAsset>();
+    [SerializeField] private int stageIndex = 0;
+    [SerializeField] private int currentStageIndex = 0;
 
     [Header("타일 크기")]
     [SerializeField] private float tileSize = 1f;
@@ -32,6 +38,7 @@ public class MapLoader : MonoBehaviour
 
     private Transform playerTransform;
     private Transform root;
+
     private int currentColumnCount;
     private int currentRowCount;
 
@@ -101,25 +108,54 @@ public class MapLoader : MonoBehaviour
     private void Start()
     {
         isMapLoaded = false;
+        StageList();
 
         if (loadOnStart)
         {
-            int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
-            stageName = $"Stage{stageIndex}";
-            LoadStage(stageName);
+            LoadStage(0);
+            currentStageIndex = 0;
         }
     }
 
-    public void LoadStage(string targetStageName)
+    public void StageList()
     {
-        stageName = targetStageName;
+        TextAsset[] loadedStages = Resources.LoadAll<TextAsset>("Maps");
+
+        // LINQ를 사용하여 이름순(Stage1, Stage2...)으로 오름차순 정렬 후 리스트로 변환
+        stageList = loadedStages
+            .OrderBy(stage => stage.name.Length) // 글자 수로 먼저 정렬 (Stage2 < Stage10 방지)
+            .ThenBy(stage => stage.name)         // 그 다음 이름순으로 정렬
+            .ToList();
+
+        foreach (var stage in stageList)
+        {
+            Debug.Log($"로드된 스테이지: {stage.name}");
+        }
+    }
+
+    public void NextStage()
+    {
+        int nextStageIndex = currentStageIndex + 1;
+
+        if (nextStageIndex >= stageList.Count - 1)
+        {
+            Debug.Log("모든 스테이지 종료");
+            return;
+        }
+
+        LoadStage(nextStageIndex);
+        stageReset.NextStageReset();
+    }
+
+    public void LoadStage(int stageIndex)
+    {
         playerTransform = null;
 
-        TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{stageName}");
+        TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{stageList[stageIndex].name}");
 
         if (jsonFile == null)
         {
-            Debug.LogError($"JSON 파일을 찾을 수 없습니다: Resources/Maps/{stageName}.json");
+            Debug.LogError($"JSON 파일을 찾을 수 없습니다: Resources/Maps/{stageList[stageIndex].name}.json");
             return;
         }
 
@@ -127,7 +163,7 @@ public class MapLoader : MonoBehaviour
 
         if (stageData == null || stageData.rows == null)
         {
-            Debug.LogError($"스테이지 데이터가 잘못되었습니다: {stageName}");
+            Debug.LogError($"스테이지 데이터가 잘못되었습니다: {stageList[stageIndex].name}");
             return;
         }
 
@@ -140,7 +176,7 @@ public class MapLoader : MonoBehaviour
         isMapLoaded = true;
         MapLoadComplete?.Invoke();
 
-        Debug.Log($"맵 로드 완료: {stageName}");
+        Debug.Log($"맵 로드 완료: {stageList[stageIndex].name}");
         return;
     }
 
@@ -376,12 +412,12 @@ public class MapLoader : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            LoadStage("Stage1");
+            LoadStage(0);
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            LoadStage("Stage2");
+            LoadStage(1);
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            LoadStage("Stage3");
+            LoadStage(2);
     }
 }
