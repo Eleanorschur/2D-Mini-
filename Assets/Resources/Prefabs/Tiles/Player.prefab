@@ -163,7 +163,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &-9096898067400211524
 MonoBehaviour:
@@ -245,10 +245,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738b7fe2d6d20864397360fd0ab64ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemCheck
-  levers: []
-  switchs_Red: []
-  switchs_Blue: []
+  leversList: []
+  redSwitchList: []
+  blueSwitchList: []
+  companionList: []
   leverCount: 0
+  companionCount: -1
 --- !u!114 &-3533451855791431774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bd33c94e2b1714798edf8ed0f22f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteChange
+  spriteRenderer: {fileID: 0}
   slimeGreen: {fileID: -5252092173937330195, guid: c34145037b6328340a2b7086cdc1a260, type: 3}
   slimeRed: {fileID: 21300000, guid: 875076378e306f74d911aa80a5adaf3a, type: 3}
   slimeBlue: {fileID: 21300000, guid: d862aec7896991848927db02d5f5090d, type: 3}
