@@ -5,6 +5,7 @@ public class FollowPlayer : MonoBehaviour
 {
     private MapLoader mapLoader;
     private PlayerManager playerManager;
+    private Rigidbody2D rigid2D;
     private Companion companion;
     private RecodeMovement recode;
 
@@ -12,9 +13,14 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 leftScale;
     private Vector3 rightScale;
 
+
     private int currentFollowIndex = -1;
     private int delayFrames = 0;
-    [SerializeField]private float followSpeed = 50f;
+    private int stopCount = 0;
+    private int stopCountMax = 12;
+    private float currentOffset = 0f;
+    private float offsetSmoothSpeed = 5f;
+    private float followSpeed = 50f;
 
     void Awake()
     {
@@ -53,6 +59,7 @@ public class FollowPlayer : MonoBehaviour
     private void PlayerLoadComplete()
     {
         recode = playerManager.GetPlayerObj().GetComponent<RecodeMovement>();
+        rigid2D = playerManager.GetPlayerObj().GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -71,15 +78,32 @@ public class FollowPlayer : MonoBehaviour
         if (path.Count > delayFrames)
         {
             int targetIndex = Mathf.Clamp(path.Count - 1 - delayFrames, 0, path.Count - 1);
-
             RecodeMovement.PlayerMove targetData = path[targetIndex];
 
-            transform.position = Vector3.Lerp(transform.position, targetData.Position, followSpeed * Time.fixedDeltaTime);
+            Vector3 targetPos = targetData.Position;
+            targetPos.y -= 0.16f;
+
+            if (Mathf.Abs(rigid2D.linearVelocityX) < 0.01f)
+                stopCount++;
+            else
+                stopCount = 0;
+
+            float desiredOffset = 0f;
+
+            if (stopCount > stopCountMax)
+                desiredOffset = (currentFollowIndex - 1) * 0.5f;
+
+            currentOffset = Mathf.Lerp(currentOffset, desiredOffset, Time.fixedDeltaTime * offsetSmoothSpeed);
+
+            targetPos.x += currentOffset;
+
+            transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.fixedDeltaTime);
 
             if (targetData.Dir.x > 0)
                 transform.localScale = rightScale;
             else if (targetData.Dir.x < 0)
                 transform.localScale = leftScale;
+        
         }
     }
 

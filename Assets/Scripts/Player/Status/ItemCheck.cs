@@ -6,6 +6,7 @@ public class ItemCheck : MonoBehaviour
     private PlayerManager playerManager;
     private StatusCheck statusCheck;
     private LeverManager leverManager;
+
     [SerializeField] private List<GameObject> leversList;
     [SerializeField] private List<GameObject> redSwitchList;
     [SerializeField] private List<GameObject> blueSwitchList;
