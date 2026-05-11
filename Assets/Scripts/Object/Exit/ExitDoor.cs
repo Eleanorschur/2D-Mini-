@@ -109,7 +109,7 @@ public class ExitDoor : MonoBehaviour
             activeDoor = true;
             playerMovement.MoveLock(true);
             stageReset.ResetLock(true);
-            //timer.StopTimer();
+            timer.StopTimer();
             Debug.Log("Å»Ãâ ¿Ï·á");
 
             if (currentZKey != null)
