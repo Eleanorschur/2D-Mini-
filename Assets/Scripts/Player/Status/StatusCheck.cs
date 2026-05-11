@@ -14,8 +14,6 @@ public class StatusCheck : MonoBehaviour
     void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
-        transformCheck = GetComponent<TransformCheck>();
-        spriteChange = GetComponent<SpriteChange>();
     }
 
     void OnEnable()
@@ -38,27 +36,20 @@ public class StatusCheck : MonoBehaviour
 
     public void ChangeForm(int status)
     {
-        switch (status)
+        if (spriteChange == null)
         {
-            case 0:
-                currentStatus = 0;
-                spriteChange.ChangeForm(0);
-                break;
-
-            case 1:
-                currentStatus = 1;
-                spriteChange.ChangeForm(1);
-                break;
-
-            case 2:
-                currentStatus = 2;
-                spriteChange.ChangeForm(2);
-                break;
+            Debug.LogWarning("SpriteChange 참조가 아직 준비되지 않았습니다.");
+            return;
         }
+
+        currentStatus = status;
+        spriteChange.ChangeForm(status);
     }
 
     public void LateUpdate()
     {
+        if (transformCheck == null) return;
+
         isFalling = transformCheck.IsFalling;
     }
 }

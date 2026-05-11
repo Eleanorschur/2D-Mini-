@@ -11,7 +11,6 @@ public class SpriteChange : MonoBehaviour
     void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -33,6 +32,12 @@ public class SpriteChange : MonoBehaviour
     
     public void ChangeForm(int status)
     {
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("SpriteRenderer 참조가 아직 준비되지 않았습니다.");
+            return;
+        }
+
         switch (status)
         {
             case 0:

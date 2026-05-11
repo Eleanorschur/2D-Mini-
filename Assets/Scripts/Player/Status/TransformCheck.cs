@@ -27,7 +27,6 @@ public class TransformCheck : MonoBehaviour
     void UpdatePlayerReference()
     {
         GameObject newPlayer = playerManager.GetPlayerObj();
-
     }
 
     void Start()
