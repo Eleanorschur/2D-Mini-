@@ -135,15 +135,15 @@ public class MapLoader : MonoBehaviour
 
     public void NextStage()
     {
-        int nextStageIndex = currentStageIndex + 1;
+        currentStageIndex += 1;
 
-        if (nextStageIndex >= stageList.Count - 1)
+        if (currentStageIndex >= stageList.Count)
         {
             Debug.Log("모든 스테이지 종료");
             return;
         }
 
-        LoadStage(nextStageIndex);
+        LoadStage(currentStageIndex);
         stageReset.NextStageReset();
     }
 
@@ -412,12 +412,21 @@ public class MapLoader : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             LoadStage(0);
+            currentStageIndex = 0;
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             LoadStage(1);
+            currentStageIndex = 1;
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
             LoadStage(2);
+            currentStageIndex = 2;
+        }
     }
 }
