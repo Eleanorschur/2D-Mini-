@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlatformRed : MonoBehaviour
 {
     private MapLoader mapLoader;
+    private PlatformData platformData;
 
     [SerializeField] List<GameObject> platformList = new();
 
@@ -46,6 +47,9 @@ public class PlatformRed : MonoBehaviour
         }
 
         platformList.TrimExcess();
+
+        platformData = GetComponentInParent<PlatformData>();
+        PlatformHide(true, platformData.platformHideAlpha);
     }
 
     public void PlatformActive(bool active)

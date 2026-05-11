@@ -4,17 +4,14 @@ public class PlatformManager : MonoBehaviour
 {
     private MapLoader mapLoader;
     private PlatformData platformData;
-    private PlatformRed redPlatform;
-    private PlatformBlue bluePlatform;
-    private PlatformNormal normalPlatform;
+    [SerializeField]private PlatformRed redPlatform;
+    [SerializeField]private PlatformBlue bluePlatform;
+    [SerializeField]private PlatformNormal normalPlatform;
 
     private void Awake()
     {
         mapLoader = FindAnyObjectByType<MapLoader>();
-        platformData = GetComponent<PlatformData>();
-        redPlatform = GetComponentInChildren<PlatformRed>();
-        bluePlatform = GetComponentInChildren<PlatformBlue>();
-        normalPlatform = GetComponentInChildren<PlatformNormal>();
+
     }
 
     private void Start()
@@ -36,8 +33,10 @@ public class PlatformManager : MonoBehaviour
 
     private void OnMapLoadFinished()
     {
-        redPlatform.PlatformHide(true, platformData.platformHideAlpha);
-        bluePlatform.PlatformHide(true, platformData.platformHideAlpha);
+        platformData = GetComponent<PlatformData>();
+        redPlatform = GetComponentInChildren<PlatformRed>();
+        bluePlatform = GetComponentInChildren<PlatformBlue>();
+        normalPlatform = GetComponentInChildren<PlatformNormal>();
     }
 
     public void SwitchingPlatformHide(int status)

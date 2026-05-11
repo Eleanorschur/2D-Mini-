@@ -1,11 +1,13 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 
 public class PlatformBlue : MonoBehaviour
 {
     private MapLoader mapLoader;
+    private PlatformData platformData;
 
     [SerializeField] List<GameObject> platformList = new();
 
@@ -47,6 +49,9 @@ public class PlatformBlue : MonoBehaviour
         }
 
         platformList.TrimExcess();
+
+        platformData = GetComponentInParent<PlatformData>();
+        PlatformHide(true, platformData.platformHideAlpha);
     }
 
     public void PlatformActive(bool active)
