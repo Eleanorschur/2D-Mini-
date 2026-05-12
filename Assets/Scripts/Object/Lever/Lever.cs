@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+    public PlayerManager playerManager;
     private Movement playerMovement;
     private LeverManager leverManager;
     private SpriteRenderer spriteRenderer;
     public Sprite upSprite;
     public Sprite downSprite;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     private bool nearLever;
@@ -16,17 +16,35 @@ public class Lever : MonoBehaviour
 
     void Awake()
     {
-        playerMovement = FindAnyObjectByType<Movement>();
-        leverManager = GetComponentInParent<LeverManager>();
-        Zkey = FindAnyObjectByType<ZKey>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void OnEnable()
+    {
+        playerManager = FindAnyObjectByType<PlayerManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
-        spriteRenderer.sprite = upSprite;
+        leverManager = GetComponentInParent<LeverManager>();
+
+        LeverAct(false);
         activeLever = false;
         nearLever = false;
+    }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +68,16 @@ public class Lever : MonoBehaviour
         }
     }
 
+    public void LeverAct(bool open)
+    {
+        if (this == null || spriteRenderer == null) return;
+
+        spriteRenderer.sprite = open ? downSprite : upSprite;
+
+        if (open)
+            leverManager.leverAddCounter();
+    }
+
     private void Update()
     {
         if (activeLever) return;
@@ -69,8 +97,7 @@ public class Lever : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearLever && playerMovement.IsGrounded)
         {
             activeLever = true;
-            spriteRenderer.sprite = downSprite;
-            leverManager.leverAddCounter();
+            LeverAct(true);
 
             if (currentZKey != null)
             {

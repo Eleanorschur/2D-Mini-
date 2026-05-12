@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class ExitDoor : MonoBehaviour
 {
+    public ExitManager exitManager;
+    private PlayerManager playerManager;
+    private Movement playerMovement;
     private SpriteRenderer spriteRenderer;
     private StageReset stageReset;
-    private Movement playerMovement;
     private Timer timer;
+    private ZKey currentZKey;
+
     public Sprite openDoor;
     public Sprite closeDoor;
-    private ZKey Zkey;
-    private ZKey currentZKey;
 
     private bool nearDoor = false;
     private bool isDoorOpen = false;
@@ -17,18 +19,37 @@ public class ExitDoor : MonoBehaviour
 
     void Awake()
     {
-        Zkey = FindAnyObjectByType<ZKey>();
-        timer = FindAnyObjectByType<Timer>();
-        stageReset = FindAnyObjectByType<StageReset>();
-        playerMovement = FindAnyObjectByType<Movement>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // °°Àº °èÃþ
+    }
+
+    void OnEnable()
+    {
+        playerManager = FindAnyObjectByType<PlayerManager>();
+        exitManager = GetComponentInParent<ExitManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
+        timer = FindAnyObjectByType<Timer>();
+        stageReset = FindAnyObjectByType<StageReset>();
+
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+    }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,8 +75,15 @@ public class ExitDoor : MonoBehaviour
 
     public void DoorOpen(bool open)
     {
+        if (this == null || spriteRenderer == null) return;
+
         isDoorOpen = open;
         spriteRenderer.sprite = open ? openDoor : closeDoor;
+    }
+
+    public void ExitStage()
+    {
+        exitManager.NextStage();
     }
 
     private void Update()
@@ -82,6 +110,7 @@ public class ExitDoor : MonoBehaviour
             stageReset.ResetLock(true);
             timer.StopTimer();
             Debug.Log("Å»Ãâ ¿Ï·á");
+            ExitStage();
 
             if (currentZKey != null)
             {

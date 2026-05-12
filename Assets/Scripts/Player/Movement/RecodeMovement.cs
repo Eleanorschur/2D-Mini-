@@ -28,12 +28,12 @@ public class RecodeMovement : MonoBehaviour
     void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
-        pathList.Capacity = maxStorage;
     }
 
     void Start()
     {
         pathList.Clear();
+        pathList.Capacity = maxStorage;
         previousPos = transform.position;
     }
 

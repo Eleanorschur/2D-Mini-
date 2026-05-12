@@ -5,6 +5,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     private TextMeshProUGUI timerText;
+    private PlayerManager playerManager;
     private StageReset stageReset;
     private Movement playerMovement;
     private Coroutine countdownCoroutine;
@@ -15,18 +16,36 @@ public class Timer : MonoBehaviour
 
     void Awake()
     {
-        stageReset = FindAnyObjectByType<StageReset>();
-        playerMovement = FindAnyObjectByType<Movement>();
 
-        if (timerText == null)
-            timerText = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    void OnEnable()
+    {
+        playerManager = FindAnyObjectByType<PlayerManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
+        stageReset = FindAnyObjectByType<StageReset>();
+        timerText = GetComponentInChildren<TextMeshProUGUI>();
+
         currentTime = defaultTime;
         UpdateText(currentTime);
         countdownCoroutine = StartCoroutine(CountDown());
+    }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
     }
 
     private IEnumerator CountDown()
@@ -79,6 +98,13 @@ public class Timer : MonoBehaviour
             countdownCoroutine = null;
             currentTime = 0;
         }
+    }
+
+    public void ResetTimer()
+    {
+        currentTime = defaultTime;
+        UpdateText(currentTime);
+        ResumeTimer();
     }
 
     private void TimeOver()

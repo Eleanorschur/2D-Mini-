@@ -1,22 +1,53 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CompanionManager : MonoBehaviour
 {
-    private List<GameObject> companionList = new();
-    [SerializeField]private List<Vector3> transformList = new();
-    private Companion companion;
+    public MapLoader mapLoader;
+
+    [SerializeField] private List<GameObject> companionList = new();
+    private List<Vector3> transformList = new();
 
     void Awake()
     {
-        companion = GetComponentInChildren<Companion>();
+
+    }
+
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
     void Start()
     {
+        
+    }
+    private void OnMapLoadFinished()
+    {
+        StartCoroutine(CollectCompanionRoutine());
+    }
+
+    private IEnumerator CollectCompanionRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
         companionList.Clear();
-        GameObject[] companions = GameObject.FindGameObjectsWithTag("Companion");
-        companionList.AddRange(companions);
+
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Companion"))
+            {
+                companionList.Add(child.gameObject);
+            }
+        }
 
         GetTransformList();
     }
