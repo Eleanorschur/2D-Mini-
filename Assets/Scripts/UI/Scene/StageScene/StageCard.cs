@@ -5,6 +5,7 @@ using TMPro;
 public class StageCard : MonoBehaviour
 {
     public Image thumbnailImage;
+    public Image thumOutline;
     public TMP_Text stageNameText;
     public Image[] stars;
     public Sprite filledStar;
@@ -21,7 +22,7 @@ public class StageCard : MonoBehaviour
     public void Init(StageData data)
     {
         lockOverlay.SetActive(data.isLocked);
-
+        thumOutline.gameObject.SetActive(!data.isLocked);
         thumbnailImage.gameObject.SetActive(!data.isLocked);
         stageNameText.gameObject.SetActive(!data.isLocked);
         foreach (var star in stars)

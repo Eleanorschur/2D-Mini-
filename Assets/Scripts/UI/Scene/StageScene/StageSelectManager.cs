@@ -9,6 +9,7 @@ public class StageSelectManager : MonoBehaviour
 {
     [Header("카드경로트랙")]
     public GameObject stageCardPrefab;
+    public StageCard stageCard;
     public RectTransform cardTrack;
     public float cardWidth = 1000;
 
@@ -30,6 +31,7 @@ public class StageSelectManager : MonoBehaviour
     {
         InitStageData();
         BuildCards();
+        UpdateCardVisuals();
         UpdateArrows();
 
         btnLeft.onClick.AddListener(() => Move(-1));
@@ -63,7 +65,7 @@ public class StageSelectManager : MonoBehaviour
             StageCard card = obj.GetComponent<StageCard>();
             card.Init(stageDatas[i]);
 
-            obj.AddComponent<CanvasGroup>();
+            //obj.AddComponent<CanvasGroup>();
 
             RectTransform rt = obj.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(i * cardWidth, 0);
@@ -145,7 +147,7 @@ public class StageSelectManager : MonoBehaviour
                 sideCards.Add(cards[i].GetComponent<CanvasGroup>());
         }
 
-        float duration = 0.3f;
+        float duration = 0.2f;
         float elapsed  = 0f;
 
         while (elapsed < duration)
