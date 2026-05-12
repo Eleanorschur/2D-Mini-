@@ -227,21 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f25c69cc56750438a94e16dc369beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapLoader
-  tilePrefabFolderPath: Prefabs/Tiles
-  stageName: Stage1
-  tileSize: 1
-  mapOrigin: {x: 0, y: 0}
-  mapRoot: {fileID: 496979683}
-  loadOnStart: 1
-  clearBeforeLoad: 1
-  playerCode: 1
-  autoCameraSize: 1
-  minOrthographicSize: 5
-  fitScreenColumns: 30
-  fitScreenRows: 18
-  minimumVisibleColumns: 30
-  minimumVisibleRows: 18
-  cameraPadding: 0
 --- !u!4 &300028827
 Transform:
   m_ObjectHideFlags: 0
@@ -504,7 +489,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.65625
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
