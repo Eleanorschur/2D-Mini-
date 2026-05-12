@@ -13,6 +13,6 @@ public class GameStartScene : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.Instance.ChangeScene("1_Logo");
+        GameSceneManager.Instance.ChangeScene("1_Logo");
     }
 }

@@ -6,7 +6,7 @@ public class SceneAutoLoader : MonoBehaviour
 {
     [SerializeField] private float totalDelay = 5f;     // 전체 시간
     [SerializeField] private float fadeOutDuration = 1f; // 페이드아웃 시간
-    [SerializeField] private string nextSceneName = "NEOWILogo 2";
+    [SerializeField] private string nextSceneName = "3_StageSelect";
 
     [SerializeField] private SpriteRenderer logo; // TeamLogo 연결
 

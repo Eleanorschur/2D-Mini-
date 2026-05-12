@@ -235,8 +235,6 @@ MonoBehaviour:
   loadOnStart: 1
   clearBeforeLoad: 1
   playerCode: 1
-  cinemachineCamera: {fileID: 0}
-  cameraBoundsController: {fileID: 0}
   autoCameraSize: 1
   minOrthographicSize: 5
   fitScreenColumns: 30
@@ -506,7 +504,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.2890625
+  orthographic size: 3.65625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
