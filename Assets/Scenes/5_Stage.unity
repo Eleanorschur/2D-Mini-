@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: -8.5, z: -10}
+  m_LocalPosition: {x: 15, y: -8.4375, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeverManager
   mapLoader: {fileID: 1599397513}
+  exitDoor: {fileID: 0}
   leverList: []
   leverCurrentCount: 0
 --- !u!4 &599399562
@@ -1151,7 +1152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4658719710729892917, guid: f3a0c866acfdc5547a37897fa0e99c80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fb24949e5af999449d38edd5317288c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1200,7 +1201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapLoader
   tilePrefabFolderPath: Prefabs/Tiles
   stageList: []
-  stageIndex: 0
   currentStageIndex: 0
   tileSize: 1
   loadOnStart: 1
@@ -1542,6 +1542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitManager
   mapLoader: {fileID: 1599397513}
+  exitDoor: {fileID: 0}
 --- !u!114 &158823134168487535
 MonoBehaviour:
   m_ObjectHideFlags: 0

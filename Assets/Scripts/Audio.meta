@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Audio.meta
 guid: cd5727f715c730c41966ef8befaf81e2
 folderAsset: yes
+========
+guid: f365a48f946ed4e49a6018eadf392a93
+>>>>>>>> feature/Yiyeonsue:Assets/Scenes/ResourcesTest/CharacterTest.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

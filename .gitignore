@@ -8,6 +8,7 @@
 *.sln
 *.csproj
 *.slnx
+*.sln
 *.unitypackage
 *.vsconfig
 *.zip
