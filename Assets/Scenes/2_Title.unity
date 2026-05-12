@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458afd7a287048b4ea2c03d8a836d6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TitleUI
-  settingsPanel: {fileID: 415107504}
+  settingPanelAnimator: {fileID: 415107510}
   blurOverlay: {fileID: 1719840776}
 --- !u!4 &53862933
 Transform:
@@ -2156,6 +2156,8 @@ GameObject:
   - component: {fileID: 415107507}
   - component: {fileID: 415107506}
   - component: {fileID: 415107508}
+  - component: {fileID: 415107510}
+  - component: {fileID: 415107509}
   m_Layer: 5
   m_Name: SettingPanel
   m_TagString: Untagged
@@ -2243,6 +2245,38 @@ MonoBehaviour:
   fullScreenToggle: {fileID: 1233302297}
   windowScreenToggle: {fileID: 1193852669}
   resolutionDropdown: {fileID: 774445303}
+--- !u!225 &415107509
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415107504}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &415107510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415107504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b6cc8b6c43aa24fbc125b8bdb0c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingPanelAnimator
+  panelRect: {fileID: 415107505}
+  panelCanvasGroup: {fileID: 415107509}
+  openDuration: 0.35
+  startScale: {x: 0.75, y: 0.75, z: 1}
+  overshootScale: {x: 1.08, y: 1.08, z: 1}
+  normalScale: {x: 1, y: 1, z: 1}
+  closeDuration: 0.2
+  closeScale: {x: 0.85, y: 0.85, z: 1}
 --- !u!1 &489280639
 GameObject:
   m_ObjectHideFlags: 0
