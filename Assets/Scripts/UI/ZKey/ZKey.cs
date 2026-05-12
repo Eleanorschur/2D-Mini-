@@ -5,7 +5,7 @@ public class ZKey : MonoBehaviour
     private Transform targetTransform;
 
     private float popupAddY = 1.5f;
-
+    
     // 풀에서 꺼낼 때 타겟을 지정해줌
     public void Setup(Transform target)
     {
