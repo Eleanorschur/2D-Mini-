@@ -104,7 +104,10 @@ public class StageReset : MonoBehaviour
             platformManager.SwitchingPlatformHide(checkPointManager.PlayerStatus);
         }
         else
+        {
             revivePosition = startPosition;
+            statusCheck.ChangeForm(0);
+        }
 
         revivePosition.y += reviveAddY;
         playerManager.GetPlayerObj().transform.position = revivePosition;

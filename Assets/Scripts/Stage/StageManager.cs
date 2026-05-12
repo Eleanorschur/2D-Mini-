@@ -9,12 +9,13 @@ public class StageManager : MonoBehaviour
 
     void Awake()
     {
-        timer = FindAnyObjectByType<Timer>();
         stageReset = GetComponent<StageReset>();
     }
 
     void Start()
     {
+        timer = FindAnyObjectByType<Timer>();
+
         pauseGame = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

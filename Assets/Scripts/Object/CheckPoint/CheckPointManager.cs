@@ -36,6 +36,8 @@ public class CheckPointManager : MonoBehaviour
 
     private void OnMapLoadFinished()
     {
+        fianlCheckPoint = null;
+        playerStatus = -1;
         StartCoroutine(CollectCheckpointRoutine());
     }
 
