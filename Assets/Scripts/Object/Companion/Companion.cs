@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Companion : MonoBehaviour
 {
+    public PlayerManager playerManager;
+    private ItemCheck itemCheck;
     private CompanionManager companionManager;
     private FollowPlayer followPlayer;
     private Movement playerMovement;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     private bool nearCompanion;
@@ -14,16 +15,32 @@ public class Companion : MonoBehaviour
 
     void Awake()
     {
-        companionManager = GetComponentInParent<CompanionManager>();
-        followPlayer = GetComponent<FollowPlayer>();
-        playerMovement = FindAnyObjectByType<Movement>();
-        Zkey = FindAnyObjectByType<ZKey>();
+        followPlayer = GetComponent<FollowPlayer>(); // 같은 계층
+    }
+
+    void OnEnable()
+    {
+        playerManager = FindAnyObjectByType<PlayerManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
-        nearCompanion = false;
-        activeCompanion = false;
+        companionManager = GetComponentInParent<CompanionManager>();
+    }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+        itemCheck = playerManager.GetPlayerObj().GetComponent<ItemCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -66,7 +83,7 @@ public class Companion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearCompanion && playerMovement.IsGrounded)
         {
             activeCompanion = true;
-            followPlayer.SetIndex(companionManager.GetIndex(this.gameObject));
+            followPlayer.SetIndex(itemCheck.AddCompanionList(this.gameObject));
 
             if (currentZKey != null)
             {

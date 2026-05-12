@@ -3,28 +3,20 @@ using UnityEngine;
 public class PlatformManager : MonoBehaviour
 {
     private PlatformData platformData;
-    private PlatformRed redPlatform;
-    private PlatformBlue bluePlatform;
-    private PlatformNormal normalPlatform;
-    public GameObject revivePlatform;
+    [SerializeField]private PlatformRed redPlatform;
+    [SerializeField]private PlatformBlue bluePlatform;
+    [SerializeField]private PlatformNormal normalPlatform;
 
     private void Awake()
     {
         platformData = GetComponent<PlatformData>();
-        redPlatform = GetComponentInChildren<PlatformRed>();
-        bluePlatform = GetComponentInChildren<PlatformBlue>();
-        normalPlatform = GetComponentInChildren<PlatformNormal>();
-
-        if (normalPlatform != null)
-        {
-            revivePlatform = normalPlatform.gameObject;
-        }
     }
 
     private void Start()
     {
-        redPlatform.PlatformHide(true, platformData.platformHideAlpha);
-        bluePlatform.PlatformHide(true, platformData.platformHideAlpha);
+        redPlatform = GetComponentInChildren<PlatformRed>();
+        bluePlatform = GetComponentInChildren<PlatformBlue>();
+        normalPlatform = GetComponentInChildren<PlatformNormal>();
     }
 
     public void SwitchingPlatformHide(int status)

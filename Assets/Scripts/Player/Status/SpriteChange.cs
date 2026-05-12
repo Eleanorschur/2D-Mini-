@@ -9,14 +9,14 @@ public class SpriteChange : MonoBehaviour
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // 같은 계층
     }
 
     void Start()
     {
-        
+        ChangeForm(0);
     }
-    
+
     public void ChangeForm(int status)
     {
         switch (status)

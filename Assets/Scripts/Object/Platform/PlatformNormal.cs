@@ -1,8 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlatformNormal : MonoBehaviour
 {
+    public MapLoader mapLoader;
+
     [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
@@ -10,10 +13,39 @@ public class PlatformNormal : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+
     void Start()
     {
+
+    }
+
+    private void OnMapLoadFinished()
+    {
+        StartCoroutine(CollectPlatformsRoutine());
+    }
+
+    private IEnumerator CollectPlatformsRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
         platformList.Clear();
-        GameObject[] normalPlatforms = GameObject.FindGameObjectsWithTag("Platform_Normal");
-        platformList.AddRange(normalPlatforms);
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Platform_Normal"))
+            {
+                platformList.Add(child.gameObject);
+            }
+        }
     }
 }

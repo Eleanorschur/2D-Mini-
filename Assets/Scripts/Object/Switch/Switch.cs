@@ -2,27 +2,45 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    private PlatformManager platformManager;
+    private PlayerManager playerManager;
+    private SwitchRed switchRed;
+    private SwitchBlue switchBlue;
     private Movement playerMovement;
     private StatusCheck statusCheck;
-    private ZKey Zkey;
     private ZKey currentZKey;
 
     public int switchNumber;
-
     private bool nearSwitch;
 
     void Awake()
     {
-        playerMovement = FindAnyObjectByType<Movement>();
-        platformManager = FindAnyObjectByType<PlatformManager>();
-        statusCheck = FindAnyObjectByType<StatusCheck>();
-        Zkey = FindAnyObjectByType<ZKey>();
+    }
+
+    void OnEnable()
+    {
+        playerManager = FindAnyObjectByType<PlayerManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
+        switchRed = GetComponentInParent<SwitchRed>();
+        switchBlue = GetComponentInParent<SwitchBlue>();
         nearSwitch = false;
+    }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+        statusCheck = playerManager.GetPlayerObj().GetComponent<StatusCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,7 +81,11 @@ public class Switch : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearSwitch && playerMovement.IsGrounded)
         {
             statusCheck.ChangeForm(switchNumber);
-            platformManager.SwitchingPlatformHide(switchNumber);
+
+            if (switchNumber == 1)
+                switchRed.Switching();
+            else if (switchNumber == 2)
+                switchBlue.Switching();
 
             if (currentZKey != null)
             {

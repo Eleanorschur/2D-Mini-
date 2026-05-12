@@ -23,27 +23,14 @@ public class StatusCheck : MonoBehaviour
 
     public void ChangeForm(int status)
     {
-        switch (status)
-        {
-            case 0:
-                currentStatus = 0;
-                spriteChange.ChangeForm(0);
-                break;
-
-            case 1:
-                currentStatus = 1;
-                spriteChange.ChangeForm(1);
-                break;
-
-            case 2:
-                currentStatus = 2;
-                spriteChange.ChangeForm(2);
-                break;
-        }
+        currentStatus = status;
+        spriteChange.ChangeForm(status);
     }
 
     public void LateUpdate()
     {
+        if (transformCheck == null) return;
+
         isFalling = transformCheck.IsFalling;
     }
 }

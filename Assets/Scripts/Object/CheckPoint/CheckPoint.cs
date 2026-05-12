@@ -2,27 +2,53 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    public Sprite activeSprite;
-    public Sprite deactiveSprite;
+    private PlayerManager playerManager;
     private Movement playerMovement;
+    private StatusCheck statusCheck;
     private SpriteRenderer spriteRenderer;
     private CheckPointManager checkPointManager;
+
+    public Sprite activeSprite;
+    public Sprite deactiveSprite;
 
     private bool nearCheckPoint = false;
     private bool activateCheckPoint = false;
 
+    [SerializeField]private int saveStatus = 0;
+    public int SaveStatus => saveStatus;
+
     private void Awake()
     {
-        checkPointManager = GetComponentInParent<CheckPointManager>();
-        playerMovement = FindAnyObjectByType<Movement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void OnEnable()
+    {
+        playerManager = FindAnyObjectByType<PlayerManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
+        checkPointManager = GetComponentInParent<CheckPointManager>();
+
         nearCheckPoint = false;
         activateCheckPoint = false;
         spriteRenderer.sprite = deactiveSprite;
+    }
+
+    private void PlayerLoadComplete()
+    {
+        playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+        statusCheck = playerManager.GetPlayerObj().GetComponent<StatusCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,6 +78,11 @@ public class CheckPoint : MonoBehaviour
     {
         activateCheckPoint = active;
         spriteRenderer.sprite = active ? activeSprite : deactiveSprite;
+
+        if (active && statusCheck != null)
+        {
+            checkPointManager.SetPlayerStatus(statusCheck.CurrentStatus);
+        }
     }
 
     public void CheckPointReset()

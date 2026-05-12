@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class PlatformRed : MonoBehaviour
 {
+    public MapLoader mapLoader;
+    private PlatformData platformData;
+
     [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
@@ -11,11 +14,43 @@ public class PlatformRed : MonoBehaviour
         
     }
 
+    void OnEnable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete += OnMapLoadFinished;
+    }
+
+    void OnDisable()
+    {
+        if (mapLoader != null)
+            mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
+
     void Start()
     {
+
+    }
+
+    private void OnMapLoadFinished()
+    {
+        StartCoroutine(CollectPlatformsRoutine());
+    }
+
+    private IEnumerator CollectPlatformsRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
         platformList.Clear();
-        GameObject[] redPlatforms = GameObject.FindGameObjectsWithTag("Platform_Red");
-        platformList.AddRange(redPlatforms);
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Platform_Red"))
+            {
+                platformList.Add(child.gameObject);
+            }
+        }
+
+        platformData = GetComponentInParent<PlatformData>();
+        PlatformHide(true, platformData.platformHideAlpha);
     }
 
     public void PlatformActive(bool active)
@@ -25,6 +60,7 @@ public class PlatformRed : MonoBehaviour
             obj.SetActive(active);
         }
     }
+
     public void PlatformHide(bool hide, float alphaValue)
     {
         foreach (GameObject obj in platformList)

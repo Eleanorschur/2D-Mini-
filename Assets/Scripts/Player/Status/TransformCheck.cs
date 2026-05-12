@@ -8,20 +8,25 @@ public class TransformCheck : MonoBehaviour
     private bool isFalling = false;
     public bool IsFalling => isFalling;
 
+    private float fallingYPos = -27f;
+
     void Awake()
+    {
+
+    }
+
+    void Start()
     {
         stageReset = FindAnyObjectByType<StageReset>();
         cameraShaker = FindAnyObjectByType<CameraShaker>();
     }
 
-    void Start()
-    {
-
-    }
-
     void LateUpdate()
     {
-        if (transform.position.y > -15)
+        if (stageReset == null || cameraShaker == null)
+            return;
+
+        if (transform.position.y > fallingYPos)
             return;
 
         isFalling = true;
