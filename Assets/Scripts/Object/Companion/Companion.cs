@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Companion : MonoBehaviour
 {
-    private MapLoader mapLoader;
-    private PlayerManager playerManager;
+    public PlayerManager playerManager;
     private ItemCheck itemCheck;
     private CompanionManager companionManager;
     private FollowPlayer followPlayer;
@@ -16,16 +15,12 @@ public class Companion : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        playerManager = FindAnyObjectByType<PlayerManager>();
-        companionManager = GetComponentInParent<CompanionManager>();
-        followPlayer = GetComponent<FollowPlayer>();
+        followPlayer = GetComponent<FollowPlayer>(); // 같은 계층
     }
 
     void OnEnable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -33,14 +28,14 @@ public class Companion : MonoBehaviour
 
     void OnDisable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
         if (playerManager != null)
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    private void OnMapLoadFinished() { }
+    void Start()
+    {
+        companionManager = GetComponentInParent<CompanionManager>();
+    }
 
     private void PlayerLoadComplete()
     {

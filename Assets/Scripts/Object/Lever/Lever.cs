@@ -1,10 +1,8 @@
 using UnityEngine;
-using System.Collections;
 
 public class Lever : MonoBehaviour
 {
-    private MapLoader mapLoader;
-    private PlayerManager playerManager;
+    public PlayerManager playerManager;
     private Movement playerMovement;
     private LeverManager leverManager;
     private SpriteRenderer spriteRenderer;
@@ -18,23 +16,12 @@ public class Lever : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        playerManager = FindAnyObjectByType<PlayerManager>();
-        leverManager = GetComponentInParent<LeverManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Start()
-    {
-        spriteRenderer.sprite = upSprite;
-        activeLever = false;
-        nearLever = false;
     }
 
     void OnEnable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -42,14 +29,18 @@ public class Lever : MonoBehaviour
 
     void OnDisable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
         if (playerManager != null)
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    private void OnMapLoadFinished() { }
+    void Start()
+    {
+        leverManager = GetComponentInParent<LeverManager>();
+
+        LeverAct(false);
+        activeLever = false;
+        nearLever = false;
+    }
 
     private void PlayerLoadComplete()
     {
@@ -77,6 +68,16 @@ public class Lever : MonoBehaviour
         }
     }
 
+    public void LeverAct(bool open)
+    {
+        if (this == null || spriteRenderer == null) return;
+
+        spriteRenderer.sprite = open ? downSprite : upSprite;
+
+        if (open)
+            leverManager.leverAddCounter();
+    }
+
     private void Update()
     {
         if (activeLever) return;
@@ -96,8 +97,7 @@ public class Lever : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearLever && playerMovement.IsGrounded)
         {
             activeLever = true;
-            spriteRenderer.sprite = downSprite;
-            leverManager.leverAddCounter();
+            LeverAct(true);
 
             if (currentZKey != null)
             {

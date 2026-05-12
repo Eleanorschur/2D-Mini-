@@ -21,29 +21,15 @@ public class ItemCheck : MonoBehaviour
 
     void Awake()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
-        statusCheck = GetComponent<StatusCheck>();
-        leverManager = FindAnyObjectByType<LeverManager>();
+        statusCheck = GetComponent<StatusCheck>(); // 같은 계층
     }
 
     void Start()
     {
-        itemLayer = LayerMask.NameToLayer("Item");
-        
-        statusCheck.ChangeForm(0);
+        playerManager = GetComponentInParent<PlayerManager>();
+        leverManager = FindAnyObjectByType<LeverManager>();
+
         GetSwitchList();
-    }
-
-    void OnEnable()
-    {
-        if (playerManager != null)
-            playerManager.PlayerLoadComplete += UpdatePlayerReference;
-    }
-
-    void UpdatePlayerReference()
-    {
-        GameObject newPlayer = playerManager.GetPlayerObj();
-        statusCheck = newPlayer.GetComponent<StatusCheck>();
     }
 
     public void AddLeverList(GameObject lever)

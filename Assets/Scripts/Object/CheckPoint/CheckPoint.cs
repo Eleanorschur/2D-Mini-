@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    private MapLoader mapLoader;
     private PlayerManager playerManager;
     private Movement playerMovement;
     private StatusCheck statusCheck;
@@ -20,23 +19,12 @@ public class CheckPoint : MonoBehaviour
 
     private void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        playerManager = FindAnyObjectByType<PlayerManager>();
-        checkPointManager = GetComponentInParent<CheckPointManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Start()
-    {
-        nearCheckPoint = false;
-        activateCheckPoint = false;
-        spriteRenderer.sprite = deactiveSprite;
     }
 
     void OnEnable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -44,14 +32,18 @@ public class CheckPoint : MonoBehaviour
 
     void OnDisable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
         if (playerManager != null)
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    private void OnMapLoadFinished() { }
+    void Start()
+    {
+        checkPointManager = GetComponentInParent<CheckPointManager>();
+
+        nearCheckPoint = false;
+        activateCheckPoint = false;
+        spriteRenderer.sprite = deactiveSprite;
+    }
 
     private void PlayerLoadComplete()
     {

@@ -1,37 +1,24 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Switch : MonoBehaviour
 {
-    private MapLoader mapLoader;
     private PlayerManager playerManager;
-    private PlatformManager platformManager;
+    private SwitchRed switchRed;
+    private SwitchBlue switchBlue;
     private Movement playerMovement;
     private StatusCheck statusCheck;
     private ZKey currentZKey;
 
     public int switchNumber;
-
     private bool nearSwitch;
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        playerManager = FindAnyObjectByType<PlayerManager>();
-        platformManager = FindAnyObjectByType<PlatformManager>();
-        statusCheck = FindAnyObjectByType<StatusCheck>();
-    }
-
-    void Start()
-    {
-        nearSwitch = false;
     }
 
     void OnEnable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -39,18 +26,21 @@ public class Switch : MonoBehaviour
 
     void OnDisable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
         if (playerManager != null)
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    private void OnMapLoadFinished() { }
+    void Start()
+    {
+        switchRed = GetComponentInParent<SwitchRed>();
+        switchBlue = GetComponentInParent<SwitchBlue>();
+        nearSwitch = false;
+    }
 
     private void PlayerLoadComplete()
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+        statusCheck = playerManager.GetPlayerObj().GetComponent<StatusCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -91,7 +81,11 @@ public class Switch : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearSwitch && playerMovement.IsGrounded)
         {
             statusCheck.ChangeForm(switchNumber);
-            platformManager.SwitchingPlatformHide(switchNumber);
+
+            if (switchNumber == 1)
+                switchRed.Switching();
+            else if (switchNumber == 2)
+                switchBlue.Switching();
 
             if (currentZKey != null)
             {

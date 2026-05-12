@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f18ef6fe1fcf542aab51fbaa98beec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeverManager
-  exitDoor: {fileID: 0}
+  mapLoader: {fileID: 1599397513}
   leverList: []
   leverCurrentCount: 0
 --- !u!4 &599399562
@@ -652,6 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c8be79f5679b84d9c05f62b1d63274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformRed
+  mapLoader: {fileID: 1599397513}
   platformList: []
 --- !u!1 &844872263
 GameObject:
@@ -665,7 +666,6 @@ GameObject:
   - component: {fileID: 844872264}
   - component: {fileID: 844872267}
   - component: {fileID: 844872266}
-  - component: {fileID: 844872268}
   m_Layer: 0
   m_Name: StageScene
   m_TagString: Untagged
@@ -712,6 +712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f61f787cf8f46438c9b3ff0e98390c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageReset
+  mapLoader: {fileID: 1599397513}
+  playerManager: {fileID: 6612976110569582795}
+  exitManager: {fileID: 2070536537}
 --- !u!114 &844872267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,28 +727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22a7974e3cfebd418852922729e7f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
---- !u!114 &844872268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844872263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f25c69cc56750438a94e16dc369beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapLoader
-  tilePrefabFolderPath: Prefabs/Tiles
-  stageList: []
-  stageIndex: 0
-  currentStageIndex: 0
-  tileSize: 1
-  loadOnStart: 1
-  clearBeforeLoad: 1
-  playerCode: 1
-  minimumVisibleColumns: 30
-  minimumVisibleRows: 18
 --- !u!1 &887614364
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a480b69b0ddc94c9013fd2aa604648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckPointManager
+  mapLoader: {fileID: 1599397513}
   checkPointList: []
   fianlCheckPoint: {fileID: 0}
   playerStatus: -1
@@ -1019,51 +1001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b0ad4f1d42ef345a6593613170b783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwitchBlue
+  mapLoader: {fileID: 1599397513}
   switchBlueList: []
---- !u!1 &1326416039
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1326416040}
-  - component: {fileID: 1326416041}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1326416040
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326416039}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1326416041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326416039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c5167eae6732f46981a8cec89ca953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
 --- !u!1 &1345825023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18070bfdae0132844a8541426ed33005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecorationManager
+  mapLoader: {fileID: 1599397513}
 --- !u!4 &1371664621
 Transform:
   m_ObjectHideFlags: 0
@@ -1229,6 +1169,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496145300}
   m_CullTransparentMesh: 1
+--- !u!1 &1599397512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599397514}
+  - component: {fileID: 1599397513}
+  m_Layer: 0
+  m_Name: MapLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1599397513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599397512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f25c69cc56750438a94e16dc369beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapLoader
+  tilePrefabFolderPath: Prefabs/Tiles
+  stageList: []
+  stageIndex: 0
+  currentStageIndex: 0
+  tileSize: 1
+  loadOnStart: 1
+  clearBeforeLoad: 1
+  playerCode: 1
+  minimumVisibleColumns: 30
+  minimumVisibleRows: 18
+--- !u!4 &1599397514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599397512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1620150553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41aa4957cb32b71418e2fac49ef7f35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformBlue
+  mapLoader: {fileID: 1599397513}
   platformList: []
 --- !u!1 &1648064482
 GameObject:
@@ -1318,6 +1313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0d9ae8c7bfa1942956b7acec1ec309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CompanionManager
+  mapLoader: {fileID: 1599397513}
   companionList: []
 --- !u!1 &1904550347
 GameObject:
@@ -1363,6 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f3cd604d2bd0a4f82ac7fd77daaa5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformNormal
+  mapLoader: {fileID: 1599397513}
   platformList: []
 --- !u!1 &1910948191
 GameObject:
@@ -1408,6 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127ccabea2f73f4d90d48206ea6f2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwitchRed
+  mapLoader: {fileID: 1599397513}
   switchRedList: []
 --- !u!1 &1920491156
 GameObject:
@@ -1543,6 +1541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94be85068219284a9818f8a5f54018d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitManager
+  mapLoader: {fileID: 1599397513}
 --- !u!114 &158823134168487535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,6 +1737,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5463936404243609306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5709086410524368067}
+  - component: {fileID: 6612976110569582795}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5709086410524368067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463936404243609306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6612976110569582795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463936404243609306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c5167eae6732f46981a8cec89ca953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  mapLoader: {fileID: 1599397513}
 --- !u!114 &8274979569622669756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1872,11 +1916,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 844872265}
+  - {fileID: 1599397514}
   - {fileID: 519420032}
   - {fileID: 4940665317604041876}
   - {fileID: 9044027034862364463}
   - {fileID: 949899588}
-  - {fileID: 1326416040}
+  - {fileID: 5709086410524368067}
   - {fileID: 599399562}
   - {fileID: 2070536536}
   - {fileID: 471339754}

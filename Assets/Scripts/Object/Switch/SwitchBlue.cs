@@ -1,16 +1,17 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class SwitchBlue : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
+    private PlatformManager platformManager;
 
     [SerializeField] private List<GameObject> switchBlueList = new();
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+
     }
 
     void OnEnable()
@@ -25,17 +26,21 @@ public class SwitchBlue : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
-    private void OnMapLoadFinished()
+    void Start()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+
     }
 
-    private IEnumerator RefreshListRoutine()
+    private void OnMapLoadFinished()
     {
-        switchBlueList.Clear();
+        StartCoroutine(CollectSwitchRoutine());
+    }
 
-        yield return new WaitForEndOfFrame();
+    private IEnumerator CollectSwitchRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
+        switchBlueList.Clear();
 
         foreach (Transform child in transform)
         {
@@ -45,7 +50,12 @@ public class SwitchBlue : MonoBehaviour
             }
         }
 
-        switchBlueList.TrimExcess();
+        platformManager = FindAnyObjectByType<PlatformManager>();
+    }
+
+    public void Switching()
+    {
+        platformManager.SwitchingPlatformHide(2);
     }
 
     public void SwitchReset()

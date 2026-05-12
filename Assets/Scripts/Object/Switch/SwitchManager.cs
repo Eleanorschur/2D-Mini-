@@ -7,13 +7,13 @@ public class SwitchManager : MonoBehaviour
 
     void Awake()
     {
-        switchRed = GetComponentInChildren<SwitchRed>();
-        switchBlue = GetComponentInChildren<SwitchBlue>();
+
     }
 
     void Start()
     {
-        
+        switchRed = GetComponentInChildren<SwitchRed>();
+        switchBlue = GetComponentInChildren<SwitchBlue>();
     }
 
     public void AllSwitchReset()

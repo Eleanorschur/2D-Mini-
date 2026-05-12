@@ -4,7 +4,6 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    private MapLoader mapLoader;
     private TextMeshProUGUI timerText;
     private PlayerManager playerManager;
     private StageReset stageReset;
@@ -17,16 +16,12 @@ public class Timer : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        playerManager = FindAnyObjectByType<PlayerManager>();
-        stageReset = FindAnyObjectByType<StageReset>();
-        timerText = GetComponentInChildren<TextMeshProUGUI>();
+
     }
 
     void OnEnable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -34,25 +29,23 @@ public class Timer : MonoBehaviour
 
     void OnDisable()
     {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
         if (playerManager != null)
             playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
-    private void OnMapLoadFinished() { }
+    void Start()
+    {
+        stageReset = FindAnyObjectByType<StageReset>();
+        timerText = GetComponentInChildren<TextMeshProUGUI>();
+
+        currentTime = defaultTime;
+        UpdateText(currentTime);
+        countdownCoroutine = StartCoroutine(CountDown());
+    }
 
     private void PlayerLoadComplete()
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
-    }
-
-    void Start()
-    {
-        currentTime = defaultTime;
-        UpdateText(currentTime);
-        countdownCoroutine = StartCoroutine(CountDown());
     }
 
     private IEnumerator CountDown()

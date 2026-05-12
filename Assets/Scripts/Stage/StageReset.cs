@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class StageReset : MonoBehaviour
 {
-    private MapLoader mapLoader;
-    private PlayerManager playerManager;
-    private ExitManager exitManager;
+    public MapLoader mapLoader;
+    public PlayerManager playerManager;
+    public ExitManager exitManager;
     private StatusCheck statusCheck;
     private ItemCheck itemCheck;
     private PlatformManager platformManager;
@@ -21,18 +21,17 @@ public class StageReset : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        playerManager = FindAnyObjectByType<PlayerManager>();
-        exitManager = FindAnyObjectByType<ExitManager>();
+
+    }
+
+    void Start()
+    {
         platformManager = FindAnyObjectByType<PlatformManager>();
         switchManager = FindAnyObjectByType<SwitchManager>();
         checkPointManager = FindAnyObjectByType<CheckPointManager>();
         companionManager = FindAnyObjectByType<CompanionManager>();
         timer = FindAnyObjectByType<Timer>();
-    }
 
-    void Start()
-    {
         resetLock = false;
     }
 

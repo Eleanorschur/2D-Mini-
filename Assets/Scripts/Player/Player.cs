@@ -1,17 +1,19 @@
 using UnityEngine;
 
-public class AnimationListner : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private PlayerManager playerManager;
-    private Animator animator;
 
     void Awake()
     {
-        //animator = GetComponent<Animator>();
+        
     }
-
     void Start()
     {
         playerManager = GetComponentInParent<PlayerManager>();
+
+        if (playerManager != null)
+            playerManager.RegisterPlayer(this.gameObject);
     }
+
 }

@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 public class LeverManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
-    private ExitManager exitManager;
-    [SerializeField]private ExitDoor exitDoor;
+    public MapLoader mapLoader;
+    [SerializeField] private ExitDoor exitDoor;
     private BoxCollider2D coll2D;
     private Lever lever;
 
@@ -15,39 +14,38 @@ public class LeverManager : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        exitManager = FindAnyObjectByType<ExitManager>();
+
     }
 
     void OnEnable()
     {
         if (mapLoader != null)
             mapLoader.MapLoadComplete += OnMapLoadFinished;
-
-        if (exitManager != null)
-            exitManager.ExitLoadComplete += OnExitLoadFinished;
     }
 
     void OnDisable()
     {
         if (mapLoader != null)
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
+    }
 
-        if (exitManager != null)
-            exitManager.ExitLoadComplete -= OnExitLoadFinished;
+    void Start()
+    {
+
     }
 
     private void OnMapLoadFinished()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+        leverCurrentCount = 0;
+        StartCoroutine(CollectLeverRoutine());
     }
 
-    private IEnumerator RefreshListRoutine()
+    private IEnumerator CollectLeverRoutine()
     {
-        leverList.Clear();
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
 
-        yield return new WaitForEndOfFrame();
+        leverList.Clear();
+        leverCurrentCount = 0;
 
         foreach (Transform child in transform)
         {
@@ -57,12 +55,7 @@ public class LeverManager : MonoBehaviour
             }
         }
 
-        leverList.TrimExcess();
-    }
-
-    private void OnExitLoadFinished()
-    {
-        exitDoor = exitManager.GetExitObj();
+        exitDoor = FindAnyObjectByType<ExitDoor>();
     }
 
     public void leverAddCounter()

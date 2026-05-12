@@ -1,17 +1,17 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CompanionManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
 
     [SerializeField] private List<GameObject> companionList = new();
     private List<Vector3> transformList = new();
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+
     }
 
     void OnEnable()
@@ -26,17 +26,20 @@ public class CompanionManager : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
+    void Start()
+    {
+        
+    }
     private void OnMapLoadFinished()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+        StartCoroutine(CollectCompanionRoutine());
     }
 
-    private IEnumerator RefreshListRoutine()
+    private IEnumerator CollectCompanionRoutine()
     {
-        companionList.Clear();
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
 
-        yield return new WaitForEndOfFrame();
+        companionList.Clear();
 
         foreach (Transform child in transform)
         {
@@ -46,7 +49,6 @@ public class CompanionManager : MonoBehaviour
             }
         }
 
-        companionList.TrimExcess();
         GetTransformList();
     }
 

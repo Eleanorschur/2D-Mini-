@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class FollowPlayer : MonoBehaviour
 {
-    private MapLoader mapLoader;
     private PlayerManager playerManager;
     private Rigidbody2D rigid2D;
     private Companion companion;
@@ -24,9 +23,21 @@ public class FollowPlayer : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+        companion = GetComponent<Companion>(); // 같은 계층
+    }
+
+    void OnEnable()
+    {
         playerManager = FindAnyObjectByType<PlayerManager>();
-        companion = GetComponent<Companion>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
@@ -35,26 +46,6 @@ public class FollowPlayer : MonoBehaviour
         leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
         rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
     }
-
-    void OnEnable()
-    {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
-
-        if (playerManager != null)
-            playerManager.PlayerLoadComplete += PlayerLoadComplete;
-    }
-
-    void OnDisable()
-    {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
-        if (playerManager != null)
-            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
-    }
-
-    private void OnMapLoadFinished() { }
 
     private void PlayerLoadComplete()
     {

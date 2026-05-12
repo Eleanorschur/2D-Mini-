@@ -3,15 +3,15 @@ using System.Collections;
 
 public class ExitManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
-    private ExitDoor exitDoor;
+    public MapLoader mapLoader;
+    [SerializeField]private ExitDoor exitDoor;
 
     public bool isExitLoaded { get; private set; }
     public System.Action ExitLoadComplete;
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+
     }
 
     void OnEnable()
@@ -26,15 +26,19 @@ public class ExitManager : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
+    private void Start()
+    {
+        
+    }
 
     private void OnMapLoadFinished()
     {
-        StartCoroutine(FindExitRoutine());
+        StartCoroutine(ExitDoorRoutine());
     }
 
-    private IEnumerator FindExitRoutine()
+    private IEnumerator ExitDoorRoutine()
     {
-        yield return new WaitForEndOfFrame();
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
 
         exitDoor = GetComponentInChildren<ExitDoor>();
 
@@ -50,5 +54,10 @@ public class ExitManager : MonoBehaviour
     public ExitDoor GetExitObj()
     {
         return exitDoor;
+    }
+
+    public void NextStage()
+    {
+        mapLoader.NextStage();
     }
 }

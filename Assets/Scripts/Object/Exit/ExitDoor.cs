@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ExitDoor : MonoBehaviour
 {
-    private MapLoader mapLoader;
-    private ExitManager exitManager;
+    public ExitManager exitManager;
     private PlayerManager playerManager;
     private Movement playerMovement;
     private SpriteRenderer spriteRenderer;
@@ -20,58 +19,37 @@ public class ExitDoor : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        exitManager = GetComponentInParent<ExitManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // °°Àº °èÃþ
+    }
+
+    void OnEnable()
+    {
         playerManager = FindAnyObjectByType<PlayerManager>();
-        timer = FindAnyObjectByType<Timer>();
-        stageReset = FindAnyObjectByType<StageReset>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        exitManager = GetComponentInParent<ExitManager>();
+
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete += PlayerLoadComplete;
+    }
+
+    void OnDisable()
+    {
+        if (playerManager != null)
+            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
     }
 
     void Start()
     {
+        timer = FindAnyObjectByType<Timer>();
+        stageReset = FindAnyObjectByType<StageReset>();
+
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
     }
 
-    void OnEnable()
-    {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
-
-        if (playerManager != null)
-            playerManager.PlayerLoadComplete += PlayerLoadComplete;
-
-        if (exitManager != null)
-            exitManager.ExitLoadComplete += UpdateExitReference;
-    }
-
-    void OnDisable()
-    {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-
-        if (playerManager != null)
-            playerManager.PlayerLoadComplete -= PlayerLoadComplete;
-
-        if (exitManager != null)
-            exitManager.ExitLoadComplete -= UpdateExitReference;
-    }
-
-    private void OnMapLoadFinished()
-    {
-
-    }
-
     private void PlayerLoadComplete()
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
-    }
-
-    void UpdateExitReference()
-    {
-        ExitDoor newExit = exitManager.GetExitObj();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -97,8 +75,15 @@ public class ExitDoor : MonoBehaviour
 
     public void DoorOpen(bool open)
     {
+        if (this == null || spriteRenderer == null) return;
+
         isDoorOpen = open;
         spriteRenderer.sprite = open ? openDoor : closeDoor;
+    }
+
+    public void ExitStage()
+    {
+        exitManager.NextStage();
     }
 
     private void Update()
@@ -125,7 +110,7 @@ public class ExitDoor : MonoBehaviour
             stageReset.ResetLock(true);
             timer.StopTimer();
             Debug.Log("Å»Ãâ ¿Ï·á");
-            mapLoader.NextStage();
+            ExitStage();
 
             if (currentZKey != null)
             {

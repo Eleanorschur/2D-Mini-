@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CheckPointManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
 
     [SerializeField] private List<GameObject> checkPointList = new();
     [SerializeField] private GameObject fianlCheckPoint;
@@ -14,10 +14,10 @@ public class CheckPointManager : MonoBehaviour
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (mapLoader != null)
             mapLoader.MapLoadComplete += OnMapLoadFinished;
@@ -29,17 +29,21 @@ public class CheckPointManager : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
-    private void OnMapLoadFinished()
+    void Start()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+
     }
 
-    private IEnumerator RefreshListRoutine()
+    private void OnMapLoadFinished()
     {
-        checkPointList.Clear();
+        StartCoroutine(CollectCheckpointRoutine());
+    }
 
-        yield return new WaitForEndOfFrame();
+    private IEnumerator CollectCheckpointRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
+        checkPointList.Clear();
 
         foreach (Transform child in transform)
         {
@@ -48,8 +52,6 @@ public class CheckPointManager : MonoBehaviour
                 checkPointList.Add(child.gameObject);
             }
         }
-
-        checkPointList.TrimExcess();
     }
 
     public void SetFinalCheckPoint(GameObject obj)

@@ -1,20 +1,20 @@
 using UnityEngine;
-using System.Collections;
 
 public class PlayerManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
     private GameObject player;
+    private SettingCamera settingCamera;
 
     public bool isPlayerLoaded { get; private set; }
     public System.Action PlayerLoadComplete;
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (mapLoader != null)
             mapLoader.MapLoadComplete += OnMapLoadFinished;
@@ -25,26 +25,35 @@ public class PlayerManager : MonoBehaviour
         if (mapLoader != null)
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
-    private void OnMapLoadFinished()
+
+    void Start()
     {
-        StartCoroutine(FindPlayerRoutine());
+
     }
 
-    private IEnumerator FindPlayerRoutine()
+    private void OnMapLoadFinished()
     {
-        yield return new WaitForEndOfFrame();
+        RegisterPlayer(GetComponentInChildren<Player>().gameObject);
+    }
 
-        player = GameObject.FindGameObjectWithTag("Player");
+    public void RegisterPlayer(GameObject playerObj)
+    {
+        player = playerObj;
+        isPlayerLoaded = true;
+        PlayerLoadComplete?.Invoke();
 
-        if (player != null)
-        {
-            isPlayerLoaded = true;
-            PlayerLoadComplete?.Invoke();
-        }
+        settingCamera = FindAnyObjectByType<SettingCamera>();
+        settingCamera.PlayerLoadComplete(playerObj);
     }
 
     public GameObject GetPlayerObj()
     {
+        if (player == null)
+        {
+            Debug.LogError("PlayerManager: 플레이어가 등록되지 않았습니다.");
+            return null;
+        }
+
         return player;
     }
 }

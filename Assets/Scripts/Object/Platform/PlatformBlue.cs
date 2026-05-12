@@ -1,20 +1,17 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem.HID;
-
 
 public class PlatformBlue : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
     private PlatformData platformData;
 
     [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
-        platformData = GetComponentInParent<PlatformData>();
+        
     }
 
     void OnEnable()
@@ -29,18 +26,21 @@ public class PlatformBlue : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
-    private void OnMapLoadFinished()
+    void Start()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+
     }
 
-    private IEnumerator RefreshListRoutine()
+    private void OnMapLoadFinished()
     {
+        StartCoroutine(CollectPlatformsRoutine());
+    }
+
+    private IEnumerator CollectPlatformsRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
         platformList.Clear();
-
-        yield return new WaitForEndOfFrame();
-
         foreach (Transform child in transform)
         {
             if (child.CompareTag("Platform_Blue"))
@@ -49,7 +49,7 @@ public class PlatformBlue : MonoBehaviour
             }
         }
 
-        platformList.TrimExcess();
+        platformData = GetComponentInParent<PlatformData>();
         PlatformHide(true, platformData.platformHideAlpha);
     }
 

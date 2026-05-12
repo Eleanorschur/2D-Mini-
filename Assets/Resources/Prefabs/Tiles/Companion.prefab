@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0f84e53cdd360449263ce4eb34f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Companion
+  playerManager: {fileID: 6393475904473470589, guid: c1eac933844e8e249bae7c7ab3d19532, type: 3}
 --- !u!114 &1997984376456799287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,4 +156,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9579baa57c3344ca6766b738f38f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
-  followSpeed: 50

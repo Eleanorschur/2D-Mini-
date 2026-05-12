@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlatformManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
     private PlatformData platformData;
     [SerializeField]private PlatformRed redPlatform;
     [SerializeField]private PlatformBlue bluePlatform;
@@ -10,33 +9,14 @@ public class PlatformManager : MonoBehaviour
 
     private void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
         platformData = GetComponent<PlatformData>();
-        redPlatform = GetComponentInChildren<PlatformRed>();
-        bluePlatform = GetComponentInChildren<PlatformBlue>();
-        normalPlatform = GetComponentInChildren<PlatformNormal>();
     }
 
     private void Start()
     {
-
-    }
-
-    void OnEnable()
-    {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete += OnMapLoadFinished;
-    }
-
-    void OnDisable()
-    {
-        if (mapLoader != null)
-            mapLoader.MapLoadComplete -= OnMapLoadFinished;
-    }
-
-    private void OnMapLoadFinished()
-    {
-
+        redPlatform = GetComponentInChildren<PlatformRed>();
+        bluePlatform = GetComponentInChildren<PlatformBlue>();
+        normalPlatform = GetComponentInChildren<PlatformNormal>();
     }
 
     public void SwitchingPlatformHide(int status)

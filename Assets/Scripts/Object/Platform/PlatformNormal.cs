@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class PlatformNormal : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
 
     [SerializeField] List<GameObject> platformList = new();
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
+
     }
 
     void OnEnable()
@@ -25,18 +25,21 @@ public class PlatformNormal : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
-    private void OnMapLoadFinished()
+    void Start()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+
     }
 
-    private IEnumerator RefreshListRoutine()
+    private void OnMapLoadFinished()
     {
+        StartCoroutine(CollectPlatformsRoutine());
+    }
+
+    private IEnumerator CollectPlatformsRoutine()
+    {
+        yield return null; // Destroy가 완료될 때까지 한 프레임 대기
+
         platformList.Clear();
-
-        yield return new WaitForEndOfFrame();
-
         foreach (Transform child in transform)
         {
             if (child.CompareTag("Platform_Normal"))
@@ -44,7 +47,5 @@ public class PlatformNormal : MonoBehaviour
                 platformList.Add(child.gameObject);
             }
         }
-
-        platformList.TrimExcess();
     }
 }

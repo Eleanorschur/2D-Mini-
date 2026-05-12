@@ -1,13 +1,11 @@
 using UnityEngine;
-using System.Collections;
 
 public class DecorationManager : MonoBehaviour
 {
-    private MapLoader mapLoader;
+    public MapLoader mapLoader;
 
     void Awake()
     {
-        mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void OnEnable()
@@ -22,14 +20,13 @@ public class DecorationManager : MonoBehaviour
             mapLoader.MapLoadComplete -= OnMapLoadFinished;
     }
 
-    private void OnMapLoadFinished()
+    void Start()
     {
-        StopAllCoroutines();
-        StartCoroutine(RefreshListRoutine());
+        
     }
 
-    private IEnumerator RefreshListRoutine()
+    private void OnMapLoadFinished()
     {
-        yield return new WaitForEndOfFrame();
+
     }
 }

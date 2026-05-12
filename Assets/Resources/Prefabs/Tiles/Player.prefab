@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -998758380020935832}
   - component: {fileID: 6733714719055265679}
   - component: {fileID: -6212234532134273495}
+  - component: {fileID: 9056669435091567005}
   - component: {fileID: -9096898067400211524}
   - component: {fileID: 8860514868635247829}
   - component: {fileID: 6253000214911094560}
@@ -165,6 +166,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &9056669435091567005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874637387949162125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80297508fcf35e04a90d4329f9893fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!114 &-9096898067400211524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bd33c94e2b1714798edf8ed0f22f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteChange
-  spriteRenderer: {fileID: 0}
   slimeGreen: {fileID: -5252092173937330195, guid: c34145037b6328340a2b7086cdc1a260, type: 3}
   slimeRed: {fileID: 21300000, guid: 875076378e306f74d911aa80a5adaf3a, type: 3}
   slimeBlue: {fileID: 21300000, guid: d862aec7896991848927db02d5f5090d, type: 3}

@@ -4,8 +4,8 @@ public class Movement : MonoBehaviour
 {
     private PlayerData playerData;
     private PlayerManager playerManager;
-    private Rigidbody2D rb;
-    private CapsuleCollider2D cd;
+    private Rigidbody2D rigid2D;
+    private CapsuleCollider2D col2D;
 
     public LayerMask groundLayer;
     private Vector3 originScale;
@@ -26,29 +26,17 @@ public class Movement : MonoBehaviour
 
     void Awake()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
         playerData = GetComponent<PlayerData>();
-        rb = GetComponent<Rigidbody2D>();
-        cd = GetComponent<CapsuleCollider2D>();
-    }
-
-    void OnEnable()
-    {
-        if (playerManager != null)
-            playerManager.PlayerLoadComplete += UpdatePlayerReference;
-    }
-
-    void UpdatePlayerReference()
-    {
-        GameObject newPlayer = playerManager.GetPlayerObj();
-        rb = newPlayer.GetComponent<Rigidbody2D>();
-        cd = newPlayer.GetComponent<CapsuleCollider2D>();
+        rigid2D = GetComponent<Rigidbody2D>();
+        col2D = GetComponent<CapsuleCollider2D>();
     }
 
     void Start()
     {
-        rb.freezeRotation = true;
-        rb.gravityScale = 4;
+        playerManager = GetComponentInParent<PlayerManager>();
+
+        rigid2D.freezeRotation = true;
+        rigid2D.gravityScale = 4;
         moveLock = false;
 
         originScale = transform.localScale;
@@ -74,8 +62,8 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (rb.linearVelocity.y > 0)
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y);
+            if (rigid2D.linearVelocity.y > 0)
+                rigid2D.linearVelocity = new Vector2(rigid2D.linearVelocity.x, rigid2D.linearVelocity.y);
         }
     }
 
@@ -83,8 +71,8 @@ public class Movement : MonoBehaviour
     {
         if (moveLock)
         {
-            if (rb.linearVelocity != Vector2.zero)
-                rb.linearVelocity = Vector2.zero;
+            if (rigid2D.linearVelocity != Vector2.zero)
+                rigid2D.linearVelocity = Vector2.zero;
             return;
         }
 
@@ -94,7 +82,7 @@ public class Movement : MonoBehaviour
 
     private void CheckGrounded()
     {
-        Bounds bounds = cd.bounds;
+        Bounds bounds = col2D.bounds;
 
         RaycastHit2D hit = Physics2D.BoxCast(bounds.center, new Vector2(bounds.size.x * 0.9f, bounds.size.y), 0f, Vector2.down, rayDistance, groundLayer);
 
@@ -108,12 +96,12 @@ public class Movement : MonoBehaviour
         else if (moveDir < 0)
             transform.localScale = leftScale;
 
-        rb.linearVelocity = new Vector2(moveDir * playerData.playerMoveSpeed, rb.linearVelocity.y);
+        rigid2D.linearVelocity = new Vector2(moveDir * playerData.playerMoveSpeed, rigid2D.linearVelocity.y);
     }
 
     private void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, playerData.playerJumpForce);
+        rigid2D.linearVelocity = new Vector2(rigid2D.linearVelocity.x, playerData.playerJumpForce);
     }
 
     public void MoveLock(bool locking)
