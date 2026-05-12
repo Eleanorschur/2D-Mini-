@@ -12,7 +12,6 @@ public class MapLoader : MonoBehaviour
 
     [Header("전체 Stage 리스트")]
     [SerializeField] private List<TextAsset> stageList = new List<TextAsset>();
-    [SerializeField] private int stageIndex = 0;
     [SerializeField] private int currentStageIndex = 0;
 
     [Header("타일 크기")]
