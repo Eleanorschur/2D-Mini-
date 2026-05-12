@@ -86,7 +86,6 @@ public class MapLoader : MonoBehaviour
 
     private void Awake()
     {
-<<<<<<< HEAD
         stageReset = FindAnyObjectByType<StageReset>();
 
         objList.Add(playerManager = FindAnyObjectByType<PlayerManager>().gameObject);
@@ -100,14 +99,6 @@ public class MapLoader : MonoBehaviour
         objList.Add(checkPointManager = FindAnyObjectByType<CheckPointManager>().gameObject);
         objList.Add(companionManager = FindAnyObjectByType<CompanionManager>().gameObject);
         objList.Add(decorationManager = FindAnyObjectByType<DecorationManager>().gameObject);
-=======
-        if (loadOnStart)
-        {
-            int stageIndex = PlayerPrefs.GetInt("SelectedStage", 1);
-            stageName = $"Stage{stageIndex}";
-            LoadStage(stageName);
-        }
->>>>>>> feature/TTH
     }
 
     private void Start()

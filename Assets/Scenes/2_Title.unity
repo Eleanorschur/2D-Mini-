@@ -119,11 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &9007396
-=======
---- !u!1 &54720894
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,34 +127,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 9007397}
   - component: {fileID: 9007398}
   m_Layer: 5
   m_Name: SFXMuteToggle
-=======
-  - component: {fileID: 54720895}
-  - component: {fileID: 54720897}
-  - component: {fileID: 54720896}
-  m_Layer: 5
-  m_Name: Menu_Base (1)
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &9007397
-=======
---- !u!224 &54720895
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 9007396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -494,15 +477,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53862931}
   serializedVersion: 2
-=======
-  m_GameObject: {fileID: 54720894}
->>>>>>> feature/Yiyeonsue
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-<<<<<<< HEAD
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &67752758
@@ -2714,26 +2693,12 @@ RectTransform:
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &553866429
-=======
-  m_Father: {fileID: 1926187027}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 118}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &54720896
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 553866427}
-=======
-  m_GameObject: {fileID: 54720894}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -2747,11 +2712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_Sprite: {fileID: 202206044087686351, guid: 75e78f17a655a3140be3ce4bc5ad7c15, type: 3}
-=======
-  m_Sprite: {fileID: 21300000, guid: b60842795106c5e41a7d087d72aa38c6, type: 3}
->>>>>>> feature/Yiyeonsue
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2761,25 +2722,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &553866430
-=======
---- !u!222 &54720897
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 553866427}
   m_CullTransparentMesh: 1
 --- !u!1 &555868294
-=======
-  m_GameObject: {fileID: 54720894}
-  m_CullTransparentMesh: 1
---- !u!1 &253412051
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2787,33 +2738,20 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 555868295}
   m_Layer: 5
   m_Name: Fill Area
-=======
-  - component: {fileID: 253412052}
-  - component: {fileID: 253412054}
-  - component: {fileID: 253412053}
-  m_Layer: 5
-  m_Name: GreenSlime
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &555868295
-=======
---- !u!224 &253412052
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 555868294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3422,14 +3360,10 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622676878}
-=======
-  m_GameObject: {fileID: 253412051}
->>>>>>> feature/Yiyeonsue
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-<<<<<<< HEAD
   m_Children:
   - {fileID: 2100446355}
   - {fileID: 555868295}
@@ -3607,8 +3541,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-=======
->>>>>>> feature/Yiyeonsue
   m_Children: []
   m_Father: {fileID: 1926187027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3617,21 +3549,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
 --- !u!114 &633600858
-=======
---- !u!114 &253412053
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 633600856}
-=======
-  m_GameObject: {fileID: 253412051}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -3645,11 +3569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: 0cb091f4a538fe04b94cc0b649621e26, type: 3}
-=======
-  m_Sprite: {fileID: 21300000, guid: 2ec2b7832916b764b9c9ad258c092f5f, type: 3}
->>>>>>> feature/Yiyeonsue
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3659,17 +3579,12 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &633600859
-=======
---- !u!222 &253412054
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 633600856}
   m_CullTransparentMesh: 1
 --- !u!1 &634568017
@@ -3956,9 +3871,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651929633}
-=======
-  m_GameObject: {fileID: 253412051}
->>>>>>> feature/Yiyeonsue
   m_CullTransparentMesh: 1
 --- !u!1 &719660670
 GameObject:
@@ -5638,7 +5550,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 390595712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!82 &1137487198
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5737,9 +5648,6 @@ AudioSource:
     m_PostInfinity: 2
     m_RotationOrder: 4
 --- !u!1 &1193852667
-=======
---- !u!1 &859397367
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5747,43 +5655,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 1193852668}
   - component: {fileID: 1193852669}
   m_Layer: 5
   m_Name: WindowScreenToggle
-=======
-  - component: {fileID: 859397368}
-  - component: {fileID: 859397370}
-  - component: {fileID: 859397369}
-  m_Layer: 5
-  m_Name: Menu_Base
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &1193852668
-=======
---- !u!224 &859397368
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1193852667}
-=======
-  m_GameObject: {fileID: 859397367}
->>>>>>> feature/Yiyeonsue
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-<<<<<<< HEAD
   m_Children:
   - {fileID: 1626127209}
   - {fileID: 1345571229}
@@ -6341,27 +6232,12 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1309297846
-=======
-  m_Children: []
-  m_Father: {fileID: 1926187027}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &859397369
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1309297844}
-=======
-  m_GameObject: {fileID: 859397367}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -6375,11 +6251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_Sprite: {fileID: -561752380042879597, guid: 75e78f17a655a3140be3ce4bc5ad7c15, type: 3}
-=======
-  m_Sprite: {fileID: 21300000, guid: b60842795106c5e41a7d087d72aa38c6, type: 3}
->>>>>>> feature/Yiyeonsue
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6389,25 +6261,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &1309297847
-=======
---- !u!222 &859397370
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1309297844}
   m_CullTransparentMesh: 1
 --- !u!1 &1315731522
-=======
-  m_GameObject: {fileID: 859397367}
-  m_CullTransparentMesh: 1
---- !u!1 &907807565
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6415,35 +6277,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 1315731523}
   - component: {fileID: 1315731525}
   - component: {fileID: 1315731524}
   m_Layer: 5
   m_Name: AudioSection
-=======
-  - component: {fileID: 907807566}
-  - component: {fileID: 907807568}
-  - component: {fileID: 907807567}
-  m_Layer: 5
-  m_Name: Menu_Select
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &1315731523
-=======
---- !u!224 &907807566
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1315731522}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -6470,28 +6319,11 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315731524
-=======
-  m_GameObject: {fileID: 907807565}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1926187027}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &907807567
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1315731522}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -6569,9 +6401,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345571228}
-=======
-  m_GameObject: {fileID: 907807565}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -6585,11 +6414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_Sprite: {fileID: 5151637862319576785, guid: 75e78f17a655a3140be3ce4bc5ad7c15, type: 3}
-=======
-  m_Sprite: {fileID: 21300000, guid: 2bcf0e3f1c4725541a3a2527e925a740, type: 3}
->>>>>>> feature/Yiyeonsue
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6599,96 +6424,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &1345571231
-=======
---- !u!222 &907807568
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1345571228}
-=======
-  m_GameObject: {fileID: 907807565}
-  m_CullTransparentMesh: 1
---- !u!1 &1185908244
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1185908245}
-  - component: {fileID: 1185908247}
-  - component: {fileID: 1185908246}
-  m_Layer: 5
-  m_Name: RedSlime
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1185908245
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185908244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1926187027}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137.2, y: -52.8}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1185908246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185908244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 610f1a3ad5069814e8045c0a3371514b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1185908247
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185908244}
->>>>>>> feature/Yiyeonsue
   m_CullTransparentMesh: 1
 --- !u!1 &1350083725
 GameObject:
@@ -6765,11 +6507,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350083725}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
 --- !u!1 &1397802854
-=======
---- !u!1 &1476167673
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6777,36 +6515,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 1397802855}
   - component: {fileID: 1397802858}
   - component: {fileID: 1397802857}
   - component: {fileID: 1397802856}
   m_Layer: 5
   m_Name: Label
-=======
-  - component: {fileID: 1476167674}
-  - component: {fileID: 1476167676}
-  - component: {fileID: 1476167675}
-  m_Layer: 5
-  m_Name: BlueSlime
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &1397802855
-=======
---- !u!224 &1476167674
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1397802854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -7250,14 +6975,10 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472899694}
-=======
-  m_GameObject: {fileID: 1476167673}
->>>>>>> feature/Yiyeonsue
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-<<<<<<< HEAD
   m_Children:
   - {fileID: 957433248}
   - {fileID: 256964253}
@@ -8169,8 +7890,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-=======
->>>>>>> feature/Yiyeonsue
   m_Children: []
   m_Father: {fileID: 1926187027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8179,21 +7898,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
 --- !u!114 &1670433158
-=======
---- !u!114 &1476167675
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1670433156}
-=======
-  m_GameObject: {fileID: 1476167673}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -8207,11 +7918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: 2ec2b7832916b764b9c9ad258c092f5f, type: 3}
-=======
-  m_Sprite: {fileID: 21300000, guid: 0cb091f4a538fe04b94cc0b649621e26, type: 3}
->>>>>>> feature/Yiyeonsue
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8221,25 +7928,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &1670433159
-=======
---- !u!222 &1476167676
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1670433156}
   m_CullTransparentMesh: 1
 --- !u!1 &1699892794
-=======
-  m_GameObject: {fileID: 1476167673}
-  m_CullTransparentMesh: 1
---- !u!1 &1779780420
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8247,35 +7944,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 1699892795}
   - component: {fileID: 1699892796}
   - component: {fileID: 1699892797}
   m_Layer: 5
   m_Name: Item
-=======
-  - component: {fileID: 1779780421}
-  - component: {fileID: 1779780423}
-  - component: {fileID: 1779780422}
-  m_Layer: 5
-  m_Name: Title
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &1699892795
-=======
---- !u!224 &1779780421
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1699892794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -8387,10 +8071,6 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719840776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-=======
-  m_GameObject: {fileID: 1779780420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
->>>>>>> feature/Yiyeonsue
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8402,17 +8082,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
 --- !u!114 &1719840778
-=======
---- !u!114 &1779780422
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1719840776}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -8489,9 +8164,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735332566}
-=======
-  m_GameObject: {fileID: 1779780420}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -8515,17 +8187,12 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &1735332569
-=======
---- !u!222 &1779780423
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1735332566}
   m_CullTransparentMesh: 1
 --- !u!1 &1753529756
@@ -9340,9 +9007,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886754655}
-=======
-  m_GameObject: {fileID: 1779780420}
->>>>>>> feature/Yiyeonsue
   m_CullTransparentMesh: 1
 --- !u!1 &1926187022
 GameObject:
@@ -9439,7 +9103,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1350083726}
-<<<<<<< HEAD
   - {fileID: 2088144515}
   - {fileID: 1670433157}
   - {fileID: 1757869500}
@@ -9449,16 +9112,6 @@ RectTransform:
   - {fileID: 1719840777}
   - {fileID: 415107505}
   - {fileID: 1450947788}
-=======
-  - {fileID: 2120916440}
-  - {fileID: 1185908245}
-  - {fileID: 1476167674}
-  - {fileID: 253412052}
-  - {fileID: 1779780421}
-  - {fileID: 907807566}
-  - {fileID: 859397368}
-  - {fileID: 54720895}
->>>>>>> feature/Yiyeonsue
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10075,11 +9728,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &2025755602
-=======
---- !u!1 &2120916439
->>>>>>> feature/Yiyeonsue
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10087,35 +9736,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 2025755603}
   - component: {fileID: 2025755605}
   - component: {fileID: 2025755604}
   m_Layer: 5
   m_Name: Fill
-=======
-  - component: {fileID: 2120916440}
-  - component: {fileID: 2120916442}
-  - component: {fileID: 2120916441}
-  m_Layer: 5
-  m_Name: Scientist
->>>>>>> feature/Yiyeonsue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &2025755603
-=======
---- !u!224 &2120916440
->>>>>>> feature/Yiyeonsue
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 2025755602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -10195,39 +9831,22 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-=======
-  m_GameObject: {fileID: 2120916439}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
->>>>>>> feature/Yiyeonsue
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1926187027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088144516
-=======
-  m_AnchoredPosition: {x: 148.74, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2120916441
->>>>>>> feature/Yiyeonsue
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 2088144514}
-=======
-  m_GameObject: {fileID: 2120916439}
->>>>>>> feature/Yiyeonsue
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -10251,17 +9870,12 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!222 &2088144517
-=======
---- !u!222 &2120916442
->>>>>>> feature/Yiyeonsue
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 2088144514}
   m_CullTransparentMesh: 1
 --- !u!1 &2100446354
@@ -10503,9 +10117,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128920709}
-=======
-  m_GameObject: {fileID: 2120916439}
->>>>>>> feature/Yiyeonsue
   m_CullTransparentMesh: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
