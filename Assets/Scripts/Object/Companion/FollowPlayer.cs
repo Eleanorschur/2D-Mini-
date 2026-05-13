@@ -20,6 +20,7 @@ public class FollowPlayer : MonoBehaviour
     private float currentOffset = 0f;
     private float offsetSmoothSpeed = 5f;
     private float followSpeed = 50f;
+    private float offsetYpos = 0.32f;
 
     void Awake()
     {
@@ -72,7 +73,7 @@ public class FollowPlayer : MonoBehaviour
             RecodeMovement.PlayerMove targetData = path[targetIndex];
 
             Vector3 targetPos = targetData.Position;
-            targetPos.y -= 0.16f;
+            targetPos.y += offsetYpos;
 
             if (Mathf.Abs(rigid2D.linearVelocityX) < 0.01f)
                 stopCount++;

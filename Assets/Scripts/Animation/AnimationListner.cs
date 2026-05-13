@@ -20,7 +20,7 @@ public class AnimationListner : MonoBehaviour
     {
         animator.SetFloat("X", Mathf.Abs(movement.MoveDir));
         animator.SetFloat("Y", Mathf.Abs(movement.MoveJump));
-        animator.SetBool("Grounded", movement.IsGrounded);
+        animator.SetBool("Ground", movement.IsGrounded);
     }
 
     public void Jump()
