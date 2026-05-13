@@ -62,7 +62,7 @@ public class SwitchRed : MonoBehaviour
     {
         foreach (GameObject redSwitch in switchRedList)
         {
-            redSwitch.GetComponent<Switch>().SwitchReset();
+            redSwitch.GetComponent<Switch>().SwitchActive(true);
         }
     }
 }

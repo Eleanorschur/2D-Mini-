@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LeverManager : MonoBehaviour
 {
     public MapLoader mapLoader;
-    [SerializeField] private ExitDoor exitDoor;
+    private ExitDoor exitDoor;
     private BoxCollider2D coll2D;
     private Lever lever;
 
