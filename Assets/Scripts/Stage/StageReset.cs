@@ -102,14 +102,14 @@ public class StageReset : MonoBehaviour
             revivePosition = checkPointManager.GetFinalCheckPoint().transform.position;
             statusCheck.ChangeForm(checkPointManager.PlayerStatus);
             platformManager.SwitchingPlatformHide(checkPointManager.PlayerStatus);
-            switchManager.AllSwitchReset();
+            itemCheck.CheckpointReset();
         }
         else
         {
             revivePosition = startPosition;
             statusCheck.ChangeForm(0);
             platformManager.SwitchingPlatformHide(0);
-            itemCheck.CheckpointReset();
+            switchManager.AllSwitchReset();
         }
 
         revivePosition.y += reviveAddY;

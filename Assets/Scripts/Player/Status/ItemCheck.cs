@@ -67,6 +67,11 @@ public class ItemCheck : MonoBehaviour
         SwitchList.Clear();
     }
 
+    public void CheckpointListClear()
+    {
+        SwitchList.Clear();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer != itemLayer) return;

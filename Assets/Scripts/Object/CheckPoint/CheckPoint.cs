@@ -5,6 +5,7 @@ public class CheckPoint : MonoBehaviour
     private PlayerManager playerManager;
     private Movement playerMovement;
     private StatusCheck statusCheck;
+    private ItemCheck itemCheck;
     private SpriteRenderer spriteRenderer;
     private CheckPointManager checkPointManager;
 
@@ -49,6 +50,7 @@ public class CheckPoint : MonoBehaviour
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
         statusCheck = playerManager.GetPlayerObj().GetComponent<StatusCheck>();
+        itemCheck = playerManager.GetPlayerObj().GetComponent<ItemCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,6 +73,7 @@ public class CheckPoint : MonoBehaviour
             activateCheckPoint = true;
             spriteRenderer.sprite = activeSprite;
             checkPointManager.SetFinalCheckPoint(this.gameObject);
+            itemCheck.CheckpointListClear();
         }
     }
 
