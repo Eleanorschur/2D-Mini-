@@ -4,6 +4,7 @@ public class Movement : MonoBehaviour
 {
     private PlayerData playerData;
     private PlayerManager playerManager;
+    private AnimationListner animationListner;
     private Rigidbody2D rigid2D;
     private CapsuleCollider2D col2D;
 
@@ -15,8 +16,11 @@ public class Movement : MonoBehaviour
     private bool moveLock = false;
     private float rayDistance = 0.1f;
 
-    private float moveDir;
+    [SerializeField]private float moveDir;
     public float MoveDir => moveDir;
+
+    [SerializeField] private float moveJump;
+    public float MoveJump => moveJump;
 
     private bool isGrounded = false;
     public bool IsGrounded => isGrounded;
@@ -27,6 +31,7 @@ public class Movement : MonoBehaviour
     void Awake()
     {
         playerData = GetComponent<PlayerData>();
+        animationListner = GetComponent<AnimationListner>();
         rigid2D = GetComponent<Rigidbody2D>();
         col2D = GetComponent<CapsuleCollider2D>();
     }
@@ -76,6 +81,8 @@ public class Movement : MonoBehaviour
             return;
         }
 
+        moveJump = rigid2D.linearVelocity.y;
+
         if ( ! isLanding)
             Move();
     }
@@ -101,6 +108,7 @@ public class Movement : MonoBehaviour
 
     private void Jump()
     {
+        animationListner.Jump();
         rigid2D.linearVelocity = new Vector2(rigid2D.linearVelocity.x, playerData.playerJumpForce);
     }
 
