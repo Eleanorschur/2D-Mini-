@@ -107,6 +107,7 @@ public class StageReset : MonoBehaviour
         {
             revivePosition = startPosition;
             statusCheck.ChangeForm(0);
+            platformManager.SwitchingPlatformHide(0);
         }
 
         revivePosition.y += reviveAddY;
