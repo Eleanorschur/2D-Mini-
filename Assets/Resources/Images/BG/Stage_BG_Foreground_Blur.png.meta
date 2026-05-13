@@ -1,28 +1,31 @@
 fileFormatVersion: 2
-guid: 99d567ea728a5c74fb7a2fe592a85d1e
+guid: 6bd719ff3460dbe41ab8c85f81f6833a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3583968328424080232
-    second: Stage_BG_Foreground_Blur_0
+      213: 616172349736769774
+    second: Stage_BG_Foreground_Blur 1_0
   - first:
-      213: 2627698061583229473
-    second: Stage_BG_Foreground_Blur_1
+      213: -8122012330621375080
+    second: Stage_BG_Foreground_Blur 1_1
   - first:
-      213: 1863319078068919579
-    second: Stage_BG_Foreground_Blur_2
+      213: -8039281796155534038
+    second: Stage_BG_Foreground_Blur 1_2
   - first:
-      213: 8698430743740078554
-    second: Stage_BG_Foreground_Blur_3
+      213: 4691715848667497234
+    second: Stage_BG_Foreground_Blur 1_3
   - first:
-      213: -526123748320766401
-    second: Stage_BG_Foreground_Blur_4
+      213: 3539149829942913441
+    second: Stage_BG_Foreground_Blur 1_4
   - first:
-      213: 408323315507036989
-    second: Stage_BG_Foreground_Blur_5
+      213: -8332999577026926080
+    second: Stage_BG_Foreground_Blur 1_5
   - first:
-      213: -6799778519619770648
-    second: Stage_BG_Foreground_Blur_6
+      213: -1189360966330294789
+    second: Stage_BG_Foreground_Blur 1_6
+  - first:
+      213: 9020184039945719135
+    second: Stage_BG_Foreground_Blur 1_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,9 +61,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -69,7 +72,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 85
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +93,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -114,30 +117,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_0
+      name: Stage_BG_Foreground_Blur 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1227
-        width: 242
-        height: 213
+        x: 136
+        y: 1256
+        width: 379
+        height: 184
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,42 +136,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 863c7fdb430dcb130800000000000000
-      internalID: 3583968328424080232
+      spriteID: ee85a7acc751d8800800000000000000
+      internalID: 616172349736769774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_1
+      name: Stage_BG_Foreground_Blur 1_1
       rect:
         serializedVersion: 2
-        x: 511
-        y: 1049
-        width: 212
-        height: 391
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 122a6a10775777420800000000000000
-      internalID: 2627698061583229473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_2
-      rect:
-        serializedVersion: 2
-        x: 2757
-        y: 1227
+        x: 2171
+        y: 1230
         width: 210
-        height: 213
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1d918744d6dbd910800000000000000
-      internalID: 1863319078068919579
+      spriteID: 89d68fb41d0d84f80800000000000000
+      internalID: -8122012330621375080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_3
+      name: Stage_BG_Foreground_Blur 1_2
       rect:
         serializedVersion: 2
-        x: 3350
-        y: 1159
-        width: 490
-        height: 281
+        x: 2811
+        y: 1282
+        width: 209
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,20 +180,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ad9d6f7dca807b870800000000000000
-      internalID: 8698430743740078554
+      spriteID: a2592e2eccbbe6090800000000000000
+      internalID: -8039281796155534038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_4
+      name: Stage_BG_Foreground_Blur 1_3
+      rect:
+        serializedVersion: 2
+        x: 3431
+        y: 1218
+        width: 409
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21385e2e4b25c1140800000000000000
+      internalID: 4691715848667497234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Blur 1_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 195
-        height: 201
+        width: 181
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3691790d35d2b8f0800000000000000
-      internalID: -526123748320766401
+      spriteID: 1a9a1a4e4069d1130800000000000000
+      internalID: 3539149829942913441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_5
+      name: Stage_BG_Foreground_Blur 1_5
       rect:
         serializedVersion: 2
-        x: 1779
+        x: 1760
         y: 0
-        width: 682
-        height: 413
+        width: 681
+        height: 534
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +246,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d338e4e54e7aaa500800000000000000
-      internalID: 408323315507036989
+      spriteID: 00a64d9e80d3b5c80800000000000000
+      internalID: -8332999577026926080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stage_BG_Foreground_Blur_6
+      name: Stage_BG_Foreground_Blur 1_6
       rect:
         serializedVersion: 2
-        x: 3105
+        x: 2560
         y: 0
-        width: 735
-        height: 212
+        width: 866
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,8 +268,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e66bb2967552a1a0800000000000000
-      internalID: -6799778519619770648
+      spriteID: bfdda2ca08a8e7fe0800000000000000
+      internalID: -1189360966330294789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Blur 1_7
+      rect:
+        serializedVersion: 2
+        x: 3660
+        y: 0
+        width: 180
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5dcc95e7912e2d70800000000000000
+      internalID: 9020184039945719135
       vertices: []
       indices: 
       edges: []
@@ -298,13 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Stage_BG_Foreground_Blur_0: 3583968328424080232
-      Stage_BG_Foreground_Blur_1: 2627698061583229473
-      Stage_BG_Foreground_Blur_2: 1863319078068919579
-      Stage_BG_Foreground_Blur_3: 8698430743740078554
-      Stage_BG_Foreground_Blur_4: -526123748320766401
-      Stage_BG_Foreground_Blur_5: 408323315507036989
-      Stage_BG_Foreground_Blur_6: -6799778519619770648
+      Stage_BG_Foreground_Blur 1_0: 616172349736769774
+      Stage_BG_Foreground_Blur 1_1: -8122012330621375080
+      Stage_BG_Foreground_Blur 1_2: -8039281796155534038
+      Stage_BG_Foreground_Blur 1_3: 4691715848667497234
+      Stage_BG_Foreground_Blur 1_4: 3539149829942913441
+      Stage_BG_Foreground_Blur 1_5: -8332999577026926080
+      Stage_BG_Foreground_Blur 1_6: -1189360966330294789
+      Stage_BG_Foreground_Blur 1_7: 9020184039945719135
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
