@@ -13,6 +13,11 @@ public class Companion : MonoBehaviour
     private bool activeCompanion;
     public bool ActiveCompanion => activeCompanion;
 
+    private Vector3 pos = Vector3.zero;
+    private Vector3 scale = new Vector3(-1, 1, 1);
+
+    private float offsetYpos = -0.5f;
+
     void Awake()
     {
         followPlayer = GetComponent<FollowPlayer>(); // 같은 계층
@@ -34,7 +39,12 @@ public class Companion : MonoBehaviour
 
     void Start()
     {
+        pos = this.gameObject.transform.position;
+        pos.y += offsetYpos;
+        this.gameObject.transform.position = pos;
+
         companionManager = GetComponentInParent<CompanionManager>();
+        this.gameObject.transform.localScale = scale; // 시작 시 컴패니언 뒤돌기
     }
 
     private void PlayerLoadComplete()

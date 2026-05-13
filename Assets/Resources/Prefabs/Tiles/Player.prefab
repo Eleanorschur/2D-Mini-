@@ -190,6 +190,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7649247d5ded2a04d9e3662e5774b282, type: 3}
       insertIndex: -1
+      addedObject: {fileID: -1132304193744021444}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7649247d5ded2a04d9e3662e5774b282, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3302965919542780698}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7649247d5ded2a04d9e3662e5774b282, type: 3}
       insertIndex: -1
@@ -230,6 +233,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7649247d5ded2a04d9e3662e5774b282, type: 3}
   m_PrefabInstance: {fileID: 3351527599542152097}
   m_PrefabAsset: {fileID: 0}
+--- !u!210 &-1132304193744021444
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982732363110156828}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 12
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!95 &3302965919542780698
 Animator:
   serializedVersion: 7
@@ -411,8 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemCheck
   leversList: []
-  redSwitchList: []
-  blueSwitchList: []
+  SwitchList: []
   companionList: []
   leverCount: 0
   companionCount: -1

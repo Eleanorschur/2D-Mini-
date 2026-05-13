@@ -698,7 +698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeverManager
   mapLoader: {fileID: 1599397513}
-  exitDoor: {fileID: 0}
   leverList: []
   leverCurrentCount: 0
 --- !u!4 &599399562
@@ -2310,13 +2309,13 @@ SceneRoots:
   - {fileID: 9044027034862364463}
   - {fileID: 1964056893}
   - {fileID: 949899588}
+  - {fileID: 1648064483}
   - {fileID: 5709086410524368067}
   - {fileID: 599399562}
   - {fileID: 2070536536}
   - {fileID: 471339754}
   - {fileID: 1345825024}
   - {fileID: 1105563355}
-  - {fileID: 1648064483}
   - {fileID: 1371664621}
   - {fileID: 368674206}
   - {fileID: 887614367}
