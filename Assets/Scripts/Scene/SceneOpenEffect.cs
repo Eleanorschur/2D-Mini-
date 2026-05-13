@@ -20,6 +20,7 @@ public class SceneOpenEffect : MonoBehaviour
         target = newTarget;
     }
 
+
     // 씬 시작 — 페이드 인
     public void PlayIrisIn()
     {
