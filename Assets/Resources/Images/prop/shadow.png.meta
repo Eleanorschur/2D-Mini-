@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c34145037b6328340a2b7086cdc1a260
+guid: 7dcadc98689cb7b49b6d7d3e50da5a83
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5252092173937330195
-    second: Slime_green_0
+      213: -4756028443593143600
+    second: shadow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.4879643, y: 0.4770228}
   spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slime_green_0
+      name: shadow_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 13
+        y: 1
+        width: 1514
+        height: 1023
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de73bdc9ef1dc17b0800000000000000
-      internalID: -5252092173937330195
+      spriteID: 0da0afd34513ffdb0800000000000000
+      internalID: -4756028443593143600
       vertices: []
       indices: 
       edges: []
@@ -152,7 +152,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Slime_green_0: -5252092173937330195
+      shadow_0: -4756028443593143600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

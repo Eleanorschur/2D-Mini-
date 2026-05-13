@@ -17,9 +17,12 @@ public class ExitDoor : MonoBehaviour
     private bool isDoorOpen = false;
     private bool activeDoor = false;
 
+    private SceneOpenEffect sceneOpenEffect; //2026.05.13 페이드 아웃 동작을 위해 추가 
+
+
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // ���� ����
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -45,6 +48,9 @@ public class ExitDoor : MonoBehaviour
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+
+        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();  //2026.05.13 페이드 아웃 동작을 위해 추가 
+
     }
 
     private void PlayerLoadComplete()
@@ -109,14 +115,26 @@ public class ExitDoor : MonoBehaviour
             playerMovement.MoveLock(true);
             stageReset.ResetLock(true);
             timer.StopTimer();
-            Debug.Log("Ż�� �Ϸ�");
-            ExitStage();
 
             if (currentZKey != null)
             {
                 currentZKey.Hide();
                 currentZKey = null;
             }
+
+            if (sceneOpenEffect != null)  //2026.05.13 페이드 아웃 동작을 위해 추가 
+            {
+                sceneOpenEffect.OnEffectComplete = null;
+                sceneOpenEffect.OnEffectComplete += ExitStage;
+                sceneOpenEffect.SetTarget(playerMovement.transform);
+                sceneOpenEffect.PlayIrisOut();
+            }
+            else
+            {
+                ExitStage();
+            }
+
+
         }
     }
 }

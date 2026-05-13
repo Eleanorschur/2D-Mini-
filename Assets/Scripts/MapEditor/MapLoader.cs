@@ -81,6 +81,7 @@ public class MapLoader : MonoBehaviour
     private GameObject checkPointManager;
     private GameObject companionManager;
     private GameObject decorationManager;
+    private SceneOpenEffect sceneOpenEffect;//2026.05.13 페이드 인 동작을 위해 추가 
 
     private List<GameObject> objList = new();
 
@@ -99,6 +100,8 @@ public class MapLoader : MonoBehaviour
         objList.Add(checkPointManager = FindAnyObjectByType<CheckPointManager>().gameObject);
         objList.Add(companionManager = FindAnyObjectByType<CompanionManager>().gameObject);
         objList.Add(decorationManager = FindAnyObjectByType<DecorationManager>().gameObject);
+
+        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();//2026.05.13 페이드 인 동작을 위해 추가 
     }
 
     private void Start()
@@ -168,6 +171,13 @@ public class MapLoader : MonoBehaviour
 
         ApplyStageSize(stageData);
         BuildMap(stageData);
+
+        if (sceneOpenEffect != null) //2026.05.13 페이드 인 동작을 위해 추가 
+        {
+            sceneOpenEffect.OnEffectComplete = null;
+            sceneOpenEffect.SetTarget(playerTransform);
+            sceneOpenEffect.PlayIrisIn();
+        }
 
         isMapLoaded = true;
         MapLoadComplete?.Invoke();
