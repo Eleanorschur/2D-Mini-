@@ -3,8 +3,8 @@ guid: 5b0288409faeda34ab87e04c73b0f3c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6305447075937427006
-    second: Pipe_Left_0
+      213: 3308047347198673468
+    second: ExitLeft_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pipe_Left_0
+      name: ExitLeft_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 12
-        width: 124
-        height: 101
+        x: 11
+        y: 11
+        width: 117
+        height: 104
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c169b8ca4d8e78a0800000000000000
-      internalID: -6305447075937427006
+      spriteID: c3243f5198b88ed20800000000000000
+      internalID: 3308047347198673468
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6da77fa394f7adb419fd9326b3c3f715
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pipe_Left_0: -6305447075937427006
+      ExitLeft_0: 3308047347198673468
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

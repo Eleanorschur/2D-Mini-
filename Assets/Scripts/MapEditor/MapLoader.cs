@@ -177,7 +177,7 @@ public class MapLoader : MonoBehaviour
             sceneOpenEffect.OnEffectComplete = null;
             sceneOpenEffect.SetTarget(playerTransform);
             sceneOpenEffect.PlayIrisIn();
-        }
+        }                            //2026.05.13 페이드 인 동작을 위해 추가 
 
         isMapLoaded = true;
         MapLoadComplete?.Invoke();

@@ -3,20 +3,26 @@ guid: d7c869fbcf9c4a548b174af7f5d37f44
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2857163375962375099
-    second: pie_out_Line_0
+      213: 9187028438017750851
+    second: ExitMove_0
   - first:
-      213: 8903536997262876934
-    second: pie_out_Line_1
+      213: -8339704935261651632
+    second: ExitMove_1
   - first:
-      213: 3066988877411145123
-    second: pie_out_Line_2
+      213: -8766147706354171290
+    second: ExitMove_2
   - first:
-      213: 5656067957383611117
-    second: pie_out_Line_3
+      213: -1805040231528867764
+    second: ExitMove_3
   - first:
-      213: 1385252892895902322
-    second: pie_out_Line_4
+      213: 111741279388126983
+    second: ExitMove_4
+  - first:
+      213: -9011596575640777509
+    second: ExitMove_5
+  - first:
+      213: -3679354175671579266
+    second: ExitMove_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,9 +64,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -121,17 +127,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pie_out_Line_0
+      name: ExitMove_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 0
-        width: 30
-        height: 128
+        x: 25
+        y: 23
+        width: 10
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb34e79d3fea6a720800000000000000
-      internalID: 2857163375962375099
+      spriteID: 347b57d70b1ee7f70800000000000000
+      internalID: 9187028438017750851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pie_out_Line_1
+      name: ExitMove_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 0
-        width: 19
-        height: 128
+        x: 36
+        y: 17
+        width: 9
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 601e66ed9b7bf8b70800000000000000
-      internalID: 8903536997262876934
+      spriteID: 05d382a0c8a634c80800000000000000
+      internalID: -8339704935261651632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pie_out_Line_2
+      name: ExitMove_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 18
-        height: 128
+        x: 49
+        y: 14
+        width: 9
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a55a286222209a20800000000000000
-      internalID: 3066988877411145123
+      spriteID: 662872a2b13685680800000000000000
+      internalID: -8766147706354171290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pie_out_Line_3
+      name: ExitMove_3
       rect:
         serializedVersion: 2
-        x: 83
-        y: 0
-        width: 38
-        height: 128
+        x: 61
+        y: 14
+        width: 9
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +225,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de2c15117d36e7e40800000000000000
-      internalID: 5656067957383611117
+      spriteID: c48de62197533f6e0800000000000000
+      internalID: -1805040231528867764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pie_out_Line_4
+      name: ExitMove_4
       rect:
         serializedVersion: 2
-        x: 118
-        y: 36
-        width: 8
-        height: 7
+        x: 72
+        y: 15
+        width: 9
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,8 +247,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 27a742daa28693310800000000000000
-      internalID: 1385252892895902322
+      spriteID: 70f4da00a1cfc8100800000000000000
+      internalID: 111741279388126983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitMove_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 18
+        width: 9
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdc0ec1f8a060f280800000000000000
+      internalID: -9011596575640777509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitMove_6
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 24
+        width: 9
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dce3c0fde40fcc0800000000000000
+      internalID: -3679354175671579266
       vertices: []
       indices: 
       edges: []
@@ -238,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +311,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pie_out_Line_0: 2857163375962375099
-      pie_out_Line_1: 8903536997262876934
-      pie_out_Line_2: 3066988877411145123
-      pie_out_Line_3: 5656067957383611117
-      pie_out_Line_4: 1385252892895902322
+      ExitMove_0: 9187028438017750851
+      ExitMove_1: -8339704935261651632
+      ExitMove_2: -8766147706354171290
+      ExitMove_3: -1805040231528867764
+      ExitMove_4: 111741279388126983
+      ExitMove_5: -9011596575640777509
+      ExitMove_6: -3679354175671579266
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

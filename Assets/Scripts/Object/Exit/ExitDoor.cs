@@ -132,7 +132,7 @@ public class ExitDoor : MonoBehaviour
             else
             {
                 ExitStage();
-            }
+            }                             //2026.05.13 페이드 아웃 동작을 위해 추가 
 
 
         }

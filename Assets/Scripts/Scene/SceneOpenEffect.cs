@@ -20,7 +20,7 @@ public class SceneOpenEffect : MonoBehaviour
         target = newTarget;
     }
 
-    // 씬 시작 — 구멍이 열림
+    // 씬 시작 — 페이드 인
     public void PlayIrisIn()
     {
         gameObject.SetActive(true);
@@ -28,7 +28,7 @@ public class SceneOpenEffect : MonoBehaviour
         StartCoroutine(IrisRoutine(open: true));
     }
 
-    // 출구 진입 — 구멍이 닫힘
+    // 출구 진입 — 페이드 아웃
     public void PlayIrisOut()
     {
         gameObject.SetActive(true);
@@ -50,18 +50,19 @@ public class SceneOpenEffect : MonoBehaviour
         if (delayBeforeStart > 0)
             yield return new WaitForSeconds(delayBeforeStart);
 
-        float elapsed = 0f;
+        float startTime = Time.unscaledTime;
 
-        while (elapsed < duration)
+        while (true)
         {
-            elapsed += Time.deltaTime;
-            float t = easeCurve.Evaluate(Mathf.Clamp01(elapsed / duration));
+            float elapsed = Time.unscaledTime - startTime;
+            if (elapsed >= duration) break;
+
+            float t = easeCurve.Evaluate(elapsed / duration);
             slimeMask.transform.localScale = Vector3.one * Mathf.Lerp(startScale, endScale, t);
             yield return null;
         }
 
         slimeMask.transform.localScale = Vector3.one * endScale;
-
         OnEffectComplete?.Invoke();
 
         if (open)
@@ -71,10 +72,24 @@ public class SceneOpenEffect : MonoBehaviour
     private float GetTargetScale()
     {
         Camera cam = Camera.main;
-        float camHeight = cam.orthographicSize * 2f;
-        float camWidth  = camHeight * cam.aspect;
-        float diagonal  = Mathf.Sqrt(camWidth * camWidth + camHeight * camHeight);
+        float halfH = cam.orthographicSize;
+        float halfW = halfH * cam.aspect;
+
+        Vector2 maskPos = slimeMask.transform.position;
+        Vector2 camPos = cam.transform.position;
+
+        Vector2[] corners = {
+        camPos + new Vector2(-halfW, -halfH),
+        camPos + new Vector2( halfW, -halfH),
+        camPos + new Vector2(-halfW,  halfH),
+        camPos + new Vector2( halfW,  halfH),
+    };
+
+        float maxDist = 0f;
+        foreach (var c in corners)
+            maxDist = Mathf.Max(maxDist, Vector2.Distance(maskPos, c));
+
         float spriteSize = slimeMask.sprite != null ? slimeMask.sprite.bounds.size.x : 1f;
-        return (diagonal / spriteSize) * 1.1f;
+        return (maxDist * 3f / spriteSize) * 1.1f;
     }
 }
