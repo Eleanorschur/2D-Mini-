@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: 2719fad6a454cad4a9f97d03f686e3bc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4796296491951669218
+    second: Stage_BG_Mid_Pipe_Blur_0
+  - first:
+      213: 4964036767403549289
+    second: Stage_BG_Mid_Pipe_Blur_1
+  - first:
+      213: -818590904875305793
+    second: Stage_BG_Mid_Pipe_Blur_2
+  - first:
+      213: 615028428448010273
+    second: Stage_BG_Mid_Pipe_Blur_3
+  - first:
+      213: 3533009025345301693
+    second: Stage_BG_Mid_Pipe_Blur_4
+  - first:
+      213: -8009983258372399800
+    second: Stage_BG_Mid_Pipe_Blur_5
+  - first:
+      213: -6650210418062466913
+    second: Stage_BG_Mid_Pipe_Blur_6
+  - first:
+      213: -8611928803207531344
+    second: Stage_BG_Mid_Pipe_Blur_7
+  - first:
+      213: 2214604106767546933
+    second: Stage_BG_Mid_Pipe_Blur_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_0
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 577
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e10c4cf90c1207db0800000000000000
+      internalID: -4796296491951669218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_1
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 0
+        width: 193
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 962211da32dc3e440800000000000000
+      internalID: 4964036767403549289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_2
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 0
+        width: 185
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb4ba8ab8e7c3a4f0800000000000000
+      internalID: -818590904875305793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_3
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 98
+        width: 644
+        height: 982
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120196cd815098800800000000000000
+      internalID: 615028428448010273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_4
+      rect:
+        serializedVersion: 2
+        x: 2648
+        y: 966
+        width: 143
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbca4f76df4c70130800000000000000
+      internalID: 3533009025345301693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_5
+      rect:
+        serializedVersion: 2
+        x: 2796
+        y: 852
+        width: 137
+        height: 228
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d13eb4aa2d6d090800000000000000
+      internalID: -8009983258372399800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_6
+      rect:
+        serializedVersion: 2
+        x: 2926
+        y: 0
+        width: 833
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f90e8cdebd4b5b3a0800000000000000
+      internalID: -6650210418062466913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 326
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b43cd5a1684c7880800000000000000
+      internalID: -8611928803207531344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Mid_Pipe_Blur_8
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 0
+        width: 166
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a300e93badbbe10800000000000000
+      internalID: 2214604106767546933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stage_BG_Mid_Pipe_Blur_0: -4796296491951669218
+      Stage_BG_Mid_Pipe_Blur_1: 4964036767403549289
+      Stage_BG_Mid_Pipe_Blur_2: -818590904875305793
+      Stage_BG_Mid_Pipe_Blur_3: 615028428448010273
+      Stage_BG_Mid_Pipe_Blur_4: 3533009025345301693
+      Stage_BG_Mid_Pipe_Blur_5: -8009983258372399800
+      Stage_BG_Mid_Pipe_Blur_6: -6650210418062466913
+      Stage_BG_Mid_Pipe_Blur_7: -8611928803207531344
+      Stage_BG_Mid_Pipe_Blur_8: 2214604106767546933
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
