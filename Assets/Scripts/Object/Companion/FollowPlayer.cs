@@ -111,5 +111,6 @@ public class FollowPlayer : MonoBehaviour
     public void animatorStop()
     {
         animator.SetFloat("X", 0);
+        animator.SetFloat("Y", 0);
     }
 }
