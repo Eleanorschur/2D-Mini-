@@ -56,6 +56,7 @@ public class ItemCheck : MonoBehaviour
 
         companionList.Clear();
         companionCount = -1;
+        CCCountPool.UpdateCCImage(companionCount + 1);
 
         SwitchList.Clear();
     }
@@ -66,13 +67,23 @@ public class ItemCheck : MonoBehaviour
         {
             sw.gameObject.GetComponent<Switch>().SwitchActive(true);
         }
-
         SwitchList.Clear();
+
+        int ccCount = 0;
+        foreach (GameObject cc in companionList)
+        {
+            ++ccCount;
+            cc.gameObject.GetComponent<Companion>().CompanionReset(Vector3.zero);
+        }
+        companionCount = companionCount - ccCount;
+        CCCountPool.UpdateCCImage(companionCount + 1);
+        companionList.Clear();
     }
 
-    public void CheckpointListClear()
+    public void ListClear()
     {
         SwitchList.Clear();
+        companionList.Clear();
     }
 
     void OnTriggerEnter2D(Collider2D other)

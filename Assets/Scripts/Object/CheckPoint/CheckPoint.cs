@@ -73,7 +73,7 @@ public class CheckPoint : MonoBehaviour
             activateCheckPoint = true;
             spriteRenderer.sprite = activeSprite;
             checkPointManager.SetFinalCheckPoint(this.gameObject);
-            itemCheck.CheckpointListClear();
+            itemCheck.ListClear();
         }
     }
 

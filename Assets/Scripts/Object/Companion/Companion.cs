@@ -125,6 +125,10 @@ public class Companion : MonoBehaviour
     {
         nearCompanion = false;
         activeCompanion = false;
-        transform.position = position;
+
+        if (position == Vector3.zero)
+            transform.position = originPos;
+        else
+            transform.position = position;
     }
 }

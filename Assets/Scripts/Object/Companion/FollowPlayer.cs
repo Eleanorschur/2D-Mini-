@@ -99,7 +99,6 @@ public class FollowPlayer : MonoBehaviour
                 transform.localScale = leftScale;
 
             animator.SetFloat("X", Mathf.Abs(targetData.Dir.x));
-        
         }
     }
 
