@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<<< HEAD:Assets/Resources/Images/Title.meta
 guid: e0f91aba34acac84fa7c9e302e8f6f91
-========
-guid: 35fdf74ac6862ae4ead9308e0aabf14a
->>>>>>>> feature/JYJ1:Assets/Resources/Images/Object/Companion.meta
-=======
-guid: e0f91aba34acac84fa7c9e302e8f6f91
->>>>>>> feature/Yiyeonsue
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
