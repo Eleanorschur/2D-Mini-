@@ -107,4 +107,9 @@ public class FollowPlayer : MonoBehaviour
         currentFollowIndex = index;
         delayFrames = (currentFollowIndex + 1) * 10;
     }
+
+    public void animatorStop()
+    {
+        animator.SetFloat("X", 0);
+    }
 }

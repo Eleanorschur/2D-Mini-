@@ -58,12 +58,28 @@ public class LeverManager : MonoBehaviour
         exitDoor = FindAnyObjectByType<ExitDoor>();
     }
 
-    public void leverAddCounter()
+    public void LeverAddCounter()
     {
         ++leverCurrentCount;
 
         if (leverCurrentCount >= leverList.Count)
             exitDoor.DoorOpen(true);
+    }
+
+    public void UpdateCurrentLever()
+    {
+        leverCurrentCount = 0;
+
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Lever"))
+            {
+                if (child.gameObject.GetComponent<Lever>().ActiveLever)
+                    ++leverCurrentCount;
+            }
+        }
+
+        exitDoor.DoorOpen(leverCurrentCount >= leverList.Count);
     }
 
     public void LeverColliderActive(bool active)
@@ -77,6 +93,8 @@ public class LeverManager : MonoBehaviour
 
     public void AllLeverReset()
     {
+        leverCurrentCount = 0;
+
         foreach (GameObject obj in leverList)
         {
             lever = obj.GetComponent<Lever>();

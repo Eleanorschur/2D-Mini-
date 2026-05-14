@@ -78,6 +78,8 @@ public class ExitDoor : MonoBehaviour
 
         if (open)
             animator.SetTrigger("Open");
+        else
+            animator.SetTrigger("Close");
     }
 
     public void ExitStage()

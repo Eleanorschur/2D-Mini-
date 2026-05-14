@@ -69,6 +69,13 @@ public class ItemCheck : MonoBehaviour
         }
         SwitchList.Clear();
 
+        foreach (GameObject lv in leversList)
+        {
+            lv.gameObject.GetComponent<Lever>().LeverReset();
+        }
+        leversList.Clear();
+        leverManager.UpdateCurrentLever();
+
         int ccCount = 0;
         foreach (GameObject cc in companionList)
         {
@@ -83,6 +90,7 @@ public class ItemCheck : MonoBehaviour
     public void ListClear()
     {
         SwitchList.Clear();
+        leversList.Clear();
         companionList.Clear();
     }
 

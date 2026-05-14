@@ -110,6 +110,7 @@ public class StageReset : MonoBehaviour
             statusCheck.ChangeForm(0);
             platformManager.SwitchingPlatformHide(0);
             switchManager.AllSwitchReset();
+            itemCheck.CheckpointReset();
         }
 
         revivePosition.y += reviveAddY;

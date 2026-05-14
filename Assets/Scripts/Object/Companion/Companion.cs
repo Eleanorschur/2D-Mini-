@@ -125,6 +125,7 @@ public class Companion : MonoBehaviour
     {
         nearCompanion = false;
         activeCompanion = false;
+        followPlayer.animatorStop();
 
         if (position == Vector3.zero)
             transform.position = originPos;
