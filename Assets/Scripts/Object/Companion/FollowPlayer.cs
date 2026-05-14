@@ -98,7 +98,7 @@ public class FollowPlayer : MonoBehaviour
             else if (targetData.Dir.x < 0)
                 transform.localScale = leftScale;
 
-            animator.SetFloat("X", targetData.Dir.x);
+            animator.SetFloat("X", Mathf.Abs(targetData.Dir.x));
         
         }
     }
