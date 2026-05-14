@@ -125,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChWalkDust_0
+      name: ChRunDust_0
       rect:
         serializedVersion: 2
         x: 0
@@ -138,16 +138,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89a4624b593cee5a0800000000000000
-      internalID: -6490034965254354280
+      spriteID: 045b9515c1af46741a631477b28a084c
+      internalID: 970774018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChWalkDust_1
+      name: ChRunDust_1
       rect:
         serializedVersion: 2
         x: 64
@@ -160,16 +160,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6ee4896eb0551ab0800000000000000
-      internalID: -5038031829399703954
+      spriteID: 9210eec5b44782047a37699688c74cb8
+      internalID: 848215909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChWalkDust_2
+      name: ChRunDust_2
       rect:
         serializedVersion: 2
         x: 128
@@ -182,16 +182,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7c93afefc94d0da0800000000000000
-      internalID: -5977039973023245185
+      spriteID: d097a34c6389012468ea8ab3f4b3efae
+      internalID: -817826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChWalkDust_3
+      name: ChRunDust_3
       rect:
         serializedVersion: 2
         x: 192
@@ -204,16 +204,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb9d9a4c9e0f9b5c0800000000000000
-      internalID: -4199060290728764997
+      spriteID: bf5a3f258e8fafb4abf821ddc9ad6781
+      internalID: -2065257855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChWalkDust_4
+      name: ChRunDust_4
       rect:
         serializedVersion: 2
         x: 256
@@ -226,16 +226,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b65ffc7b30d4c230800000000000000
-      internalID: 3658277751250441910
+      spriteID: 2e0ed9bc0a35b8843a4617f63729ebfc
+      internalID: 402315022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChWalkDust_5
+      name: ChRunDust_5
       rect:
         serializedVersion: 2
         x: 320
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12944d220f39fdd44b66a6ed95fe36ce
-      internalID: 2096170096
+      spriteID: 95e6b3d8eefe151408f16382b9a43dce
+      internalID: 757688376
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ChWalkDust_0: -6490034965254354280
-      ChWalkDust_1: -5038031829399703954
-      ChWalkDust_2: -5977039973023245185
-      ChWalkDust_3: -4199060290728764997
-      ChWalkDust_4: 3658277751250441910
-      ChWalkDust_5: 2096170096
+      ChRunDust_0: 970774018
+      ChRunDust_1: 848215909
+      ChRunDust_2: -817826
+      ChRunDust_3: -2065257855
+      ChRunDust_4: 402315022
+      ChRunDust_5: 757688376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
