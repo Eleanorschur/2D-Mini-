@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class ItemCheck : MonoBehaviour
 {
     private LeverManager leverManager;
+    private CompanionCountPool CCCountPool;
 
     [SerializeField] private List<GameObject> leversList;
     [SerializeField] private List<GameObject> SwitchList;
@@ -24,6 +25,7 @@ public class ItemCheck : MonoBehaviour
     void Start()
     {
         leverManager = FindAnyObjectByType<LeverManager>();
+        CCCountPool = FindAnyObjectByType<CompanionCountPool>();
     }
 
     public void AddLeverList(GameObject lever)
@@ -40,6 +42,7 @@ public class ItemCheck : MonoBehaviour
     {
         ++companionCount;
         companionList.Add(companion);
+        CCCountPool.UpdateCCImage(companionCount + 1);
 
         return companionCount;
     }

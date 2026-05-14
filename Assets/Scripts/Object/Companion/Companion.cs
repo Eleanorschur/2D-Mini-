@@ -110,7 +110,7 @@ public class Companion : MonoBehaviour
         }
     }
 
-    public void CompanionStandDir()
+    private void CompanionStandDir()
     {
         float playerX =  playerManager.GetPlayerObj().transform.position.x;
         float companionX = this.gameObject.transform.position.x;
