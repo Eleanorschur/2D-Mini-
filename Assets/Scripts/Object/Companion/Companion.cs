@@ -13,9 +13,10 @@ public class Companion : MonoBehaviour
     private bool activeCompanion;
     public bool ActiveCompanion => activeCompanion;
 
-    private Vector3 pos = Vector3.zero;
-    private Vector3 originScale = new Vector3(1, 1, 1);
-    private Vector3 reverseScale = new Vector3(-1, 1, 1);
+    private Vector3 originPos = Vector3.zero;
+    private Vector3 originScale;
+    private Vector3 leftScale;
+    private Vector3 rightScale;
 
     private float offsetYpos = -0.5f;
 
@@ -40,12 +41,15 @@ public class Companion : MonoBehaviour
 
     void Start()
     {
-        pos = this.gameObject.transform.position;
-        pos.y += offsetYpos;
-        this.gameObject.transform.position = pos;
-
         companionManager = GetComponentInParent<CompanionManager>();
-        this.gameObject.transform.localScale = reverseScale; // 시작 시 컴패니언 뒤돌기
+
+        originPos = this.gameObject.transform.position;
+        originPos.y += offsetYpos;
+        this.gameObject.transform.position = originPos;
+
+        originScale = new Vector3(1, 1, 1);
+        leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
+        rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
     }
 
     private void PlayerLoadComplete()
@@ -79,6 +83,8 @@ public class Companion : MonoBehaviour
     {
         if (activeCompanion) return;
 
+        CompanionStandDir();
+
         if (nearCompanion && playerMovement.IsGrounded && currentZKey == null)
         {
             currentZKey = ZKeyPool.Instance.GetZKey();
@@ -95,7 +101,6 @@ public class Companion : MonoBehaviour
         {
             activeCompanion = true;
             followPlayer.SetIndex(itemCheck.AddCompanionList(this.gameObject));
-            this.gameObject.transform.localScale = originScale; // 구출 시 다시 원상태로 스케일값 복귀
 
             if (currentZKey != null)
             {
@@ -103,6 +108,17 @@ public class Companion : MonoBehaviour
                 currentZKey = null;
             }
         }
+    }
+
+    public void CompanionStandDir()
+    {
+        float playerX =  playerManager.GetPlayerObj().transform.position.x;
+        float companionX = this.gameObject.transform.position.x;
+
+        if (playerX - companionX > 0)
+            this.transform.localScale = rightScale;
+        else if (playerX - companionX < 0)
+            this.transform.localScale = leftScale;
     }
 
     public void CompanionReset(Vector3 position)

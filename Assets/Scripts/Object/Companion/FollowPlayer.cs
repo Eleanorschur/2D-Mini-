@@ -45,7 +45,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-        originScale = transform.localScale;
+        originScale = new Vector3(1, 1, 1);
         leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
         rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
     }
