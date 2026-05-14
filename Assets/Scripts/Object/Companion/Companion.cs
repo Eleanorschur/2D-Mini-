@@ -14,7 +14,8 @@ public class Companion : MonoBehaviour
     public bool ActiveCompanion => activeCompanion;
 
     private Vector3 pos = Vector3.zero;
-    private Vector3 scale = new Vector3(-1, 1, 1);
+    private Vector3 originScale = new Vector3(1, 1, 1);
+    private Vector3 reverseScale = new Vector3(-1, 1, 1);
 
     private float offsetYpos = -0.5f;
 
@@ -44,7 +45,7 @@ public class Companion : MonoBehaviour
         this.gameObject.transform.position = pos;
 
         companionManager = GetComponentInParent<CompanionManager>();
-        this.gameObject.transform.localScale = scale; // 시작 시 컴패니언 뒤돌기
+        this.gameObject.transform.localScale = reverseScale; // 시작 시 컴패니언 뒤돌기
     }
 
     private void PlayerLoadComplete()
@@ -94,6 +95,7 @@ public class Companion : MonoBehaviour
         {
             activeCompanion = true;
             followPlayer.SetIndex(itemCheck.AddCompanionList(this.gameObject));
+            this.gameObject.transform.localScale = originScale; // 구출 시 다시 원상태로 스케일값 복귀
 
             if (currentZKey != null)
             {
