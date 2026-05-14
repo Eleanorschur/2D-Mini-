@@ -9,7 +9,6 @@ public class StageSelectManager : MonoBehaviour
 {
     [Header("카드경로트랙")]
     public GameObject stageCardPrefab;
-    public StageCard stageCard;
     public RectTransform cardTrack;
     public float cardWidth = 1000;
 
@@ -26,6 +25,7 @@ public class StageSelectManager : MonoBehaviour
     private StageCard[] cards;
     private int currentIndex = 0;
     private bool isMoving = false;
+    private Coroutine[] animCoroutines;
 
     void Start()
     {
@@ -65,7 +65,7 @@ public class StageSelectManager : MonoBehaviour
             StageCard card = obj.GetComponent<StageCard>();
             card.Init(stageDatas[i]);
 
-            //obj.AddComponent<CanvasGroup>();
+            if (obj.GetComponent<CanvasGroup>() == null) obj.AddComponent<CanvasGroup>();
 
             RectTransform rt = obj.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(i * cardWidth, 0);
@@ -124,7 +124,7 @@ public class StageSelectManager : MonoBehaviour
     {
         foreach (var card in cards)
         {
-            CanvasGroup cg = card.GetComponent<CanvasGroup>();
+            CanvasGroup cg = card.GetComponent<CanvasGroup>() ?? card.gameObject.AddComponent<CanvasGroup>();
             cg.interactable = false;
             cg.blocksRaycasts = false;
         }
@@ -176,21 +176,43 @@ public class StageSelectManager : MonoBehaviour
 
     void UpdateCardVisuals()
     {
+        if (animCoroutines == null)
+            animCoroutines = new Coroutine[cards.Length];
+
         for (int i = 0; i < cards.Length; i++)
         {
-            CanvasGroup cg = cards[i].GetComponent<CanvasGroup>();
+            float targetScale = (i == currentIndex) ? 1f : 0.85f;
+            float targetAlpha = (i == currentIndex) ? 1f : 0.5f;
 
-            if (i == currentIndex)
-            {
-                cards[i].transform.localScale = Vector3.one;
-                cg.alpha = 1f;
-            }
-            else
-            {
-                cards[i].transform.localScale = Vector3.one * 0.85f;
-                cg.alpha = 0.5f;
-            }
+            if (animCoroutines[i] != null)
+                StopCoroutine(animCoroutines[i]);
+
+            animCoroutines[i] = StartCoroutine(AnimateCard(cards[i].gameObject, targetScale, targetAlpha));
         }
+    }
+
+    IEnumerator AnimateCard(GameObject card, float targetScale, float targetAlpha)
+    {
+        CanvasGroup cg = card.GetComponent<CanvasGroup>();
+        float duration = 0.3f;
+        float elapsed = 0f;
+
+        float startScale = card.transform.localScale.x;
+        float startAlpha = cg.alpha;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+
+            card.transform.localScale = Vector3.one * Mathf.Lerp(startScale, targetScale, t);
+            cg.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+
+            yield return null;
+        }
+
+        card.transform.localScale = Vector3.one * targetScale;
+        cg.alpha = targetAlpha;
     }
 
     IEnumerator LoadAfterAnimation(int idx)
