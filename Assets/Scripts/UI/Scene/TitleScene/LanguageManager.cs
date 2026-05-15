@@ -3,6 +3,7 @@ using UnityEngine;
 public class LanguageManager : MonoBehaviour
 {
     public static LanguageManager Instance;
+    public Language CurrentLanguage => currentLanguage;
 
     public enum Language
     {
@@ -33,8 +34,6 @@ public class LanguageManager : MonoBehaviour
 
     public void SetKorean()
     {
-        Debug.Log("한국어 버튼 눌림");
-
         currentLanguage = Language.Korean;
         PlayerPrefs.SetInt("Language", 0);
         PlayerPrefs.Save();
@@ -44,8 +43,6 @@ public class LanguageManager : MonoBehaviour
 
     public void SetEnglish()
     {
-        Debug.Log("영어 버튼 눌림");
-
         currentLanguage = Language.English;
         PlayerPrefs.SetInt("Language", 1);
         PlayerPrefs.Save();

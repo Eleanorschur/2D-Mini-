@@ -390,7 +390,7 @@ MonoBehaviour:
         m_CallState: 1
       - m_Target: {fileID: 991847658}
         m_TargetAssemblyTypeName: LanguageButtonUI, Assembly-CSharp
-        m_MethodName: onClickEnglish
+        m_MethodName: OnClickEnglish
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1106,6 +1106,7 @@ GameObject:
   - component: {fileID: 256964256}
   - component: {fileID: 256964255}
   - component: {fileID: 256964254}
+  - component: {fileID: 256964257}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -1239,6 +1240,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256964252}
   m_CullTransparentMesh: 1
+--- !u!114 &256964257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256964252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6cbe251c656e84e94d0b2583cc5c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverTextColor
+  buttonText: {fileID: 593083808}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 0, b: 0, a: 1}
+  hoverScale: 1.05
 --- !u!1 &260753384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4829,6 +4846,7 @@ GameObject:
   - component: {fileID: 957433251}
   - component: {fileID: 957433250}
   - component: {fileID: 957433249}
+  - component: {fileID: 957433252}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -4962,6 +4980,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957433247}
   m_CullTransparentMesh: 1
+--- !u!114 &957433252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957433247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6cbe251c656e84e94d0b2583cc5c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverTextColor
+  buttonText: {fileID: 977456917}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 0, b: 0, a: 1}
+  hoverScale: 1.05
 --- !u!1 &977456915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,6 +5814,7 @@ GameObject:
   - component: {fileID: 1199080717}
   - component: {fileID: 1199080716}
   - component: {fileID: 1199080715}
+  - component: {fileID: 1199080718}
   m_Layer: 5
   m_Name: QuitGameButton
   m_TagString: Untagged
@@ -5901,6 +5936,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199080713}
   m_CullTransparentMesh: 1
+--- !u!114 &1199080718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199080713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6cbe251c656e84e94d0b2583cc5c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverTextColor
+  buttonText: {fileID: 1474060140}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 0, b: 0, a: 1}
+  hoverScale: 1.05
 --- !u!1 &1233302295
 GameObject:
   m_ObjectHideFlags: 0

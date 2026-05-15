@@ -11,26 +11,33 @@ public class LanguageButtonUI : MonoBehaviour
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite selectedSprite;
 
+    private void Start()
+    {
+        if (LanguageManager.Instance == null)
+        {
+            Debug.LogWarning("LanguageManager.Instance가 없습니다.");
+            return;
+        }
+
+        SetButtonVisual(LanguageManager.Instance.CurrentLanguage);
+    }
+
     public void OnClickKorean()
     {
-        SetButtonVisual(LanguageManager.Language.Korean);
+        if (LanguageManager.Instance == null)
+            return;
+
         LanguageManager.Instance.SetKorean();
+        SetButtonVisual(LanguageManager.Language.Korean);
     }
 
     public void OnClickEnglish()
     {
-        SetButtonVisual(LanguageManager.Language.English);
+        if (LanguageManager.Instance == null)
+            return;
+
         LanguageManager.Instance.SetEnglish();
-    }
-
-    private void Start()
-    {
-        int savedLanguage = PlayerPrefs.GetInt("Language", 0);
-
-        if (savedLanguage == 0)
-            SetButtonVisual(LanguageManager.Language.Korean);
-        else
-            SetButtonVisual(LanguageManager.Language.English);
+        SetButtonVisual(LanguageManager.Language.English);
     }
 
     private void SetButtonVisual(LanguageManager.Language language)

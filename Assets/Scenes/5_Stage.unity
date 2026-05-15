@@ -668,8 +668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.6121826}
-  m_SizeDelta: {x: 0, y: -3.2244}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92286693
 MonoBehaviour:
@@ -794,8 +794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.534912}
-  m_SizeDelta: {x: 0, y: -5.0698}
+  m_AnchoredPosition: {x: 0, y: -10.667114}
+  m_SizeDelta: {x: 0, y: 21.3341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &191738567
 GameObject:
@@ -4030,7 +4030,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 4.2890625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
