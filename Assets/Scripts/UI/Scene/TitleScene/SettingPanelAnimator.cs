@@ -27,16 +27,18 @@ public class SettingPanelAnimator : MonoBehaviour
         if (panelCanvasGroup == null)
             panelCanvasGroup = GetComponent<CanvasGroup>();
 
-        panelRect.localScale = normalScale;
-        panelCanvasGroup.alpha = 0f;
-        panelCanvasGroup.interactable = false;
-        panelCanvasGroup.blocksRaycasts = false;
+        HideImmediately();
     }
 
     public void HideImmediately()
     {
         if (currentCoroutine != null)
+        {
             StopCoroutine(currentCoroutine);
+            currentCoroutine = null;
+        }
+
+        gameObject.SetActive(true);
 
         panelRect.localScale = normalScale;
         panelCanvasGroup.alpha = 0f;
@@ -50,15 +52,12 @@ public class SettingPanelAnimator : MonoBehaviour
 
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
-        
+
         currentCoroutine = StartCoroutine(OpenAnimation());
     }
 
     public void Close()
     {
-        if (!gameObject.activeSelf)
-            return;
-
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 
@@ -69,7 +68,6 @@ public class SettingPanelAnimator : MonoBehaviour
     {
         panelRect.localScale = startScale;
         panelCanvasGroup.alpha = 0f;
-
         panelCanvasGroup.interactable = false;
         panelCanvasGroup.blocksRaycasts = false;
 
@@ -78,7 +76,8 @@ public class SettingPanelAnimator : MonoBehaviour
         while (timer < openDuration)
         {
             timer += Time.unscaledDeltaTime;
-            float t = timer / openDuration;
+
+            float t = Mathf.Clamp01(timer / openDuration);
             float eased = EaseOutBack(t);
 
             panelRect.localScale = Vector3.LerpUnclamped(startScale, overshootScale, eased);
@@ -88,12 +87,13 @@ public class SettingPanelAnimator : MonoBehaviour
         }
 
         timer = 0f;
+        float settleDuration = 0.12f;
 
-        while (timer < 0.12f)
+        while (timer < settleDuration)
         {
             timer += Time.unscaledDeltaTime;
-            float t = timer / 0.12f;
 
+            float t = Mathf.Clamp01(timer / settleDuration);
             panelRect.localScale = Vector3.Lerp(overshootScale, normalScale, t);
 
             yield return null;
@@ -101,9 +101,10 @@ public class SettingPanelAnimator : MonoBehaviour
 
         panelRect.localScale = normalScale;
         panelCanvasGroup.alpha = 1f;
-
         panelCanvasGroup.interactable = true;
         panelCanvasGroup.blocksRaycasts = true;
+
+        currentCoroutine = null;
     }
 
     private IEnumerator CloseAnimation()
@@ -118,7 +119,8 @@ public class SettingPanelAnimator : MonoBehaviour
         while (timer < closeDuration)
         {
             timer += Time.unscaledDeltaTime;
-            float t = timer / closeDuration;
+
+            float t = Mathf.Clamp01(timer / closeDuration);
 
             panelRect.localScale = Vector3.Lerp(currentScale, closeScale, t);
             panelCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
@@ -128,12 +130,11 @@ public class SettingPanelAnimator : MonoBehaviour
 
         panelCanvasGroup.alpha = 0f;
         panelRect.localScale = normalScale;
-
         panelCanvasGroup.interactable = false;
         panelCanvasGroup.blocksRaycasts = false;
 
+        currentCoroutine = null;
     }
-
 
     private float EaseOutBack(float t)
     {
@@ -142,6 +143,4 @@ public class SettingPanelAnimator : MonoBehaviour
 
         return 1f + c3 * Mathf.Pow(t - 1f, 3f) + c1 * Mathf.Pow(t - 1f, 2f);
     }
-
-
 }

@@ -143,8 +143,22 @@ public class MapLoader : MonoBehaviour
         stageReset.NextStageReset();
     }
 
+    public void RetryCurrentStage()
+    {
+        LoadStage(currentStageIndex);
+
+        if (stageReset != null)
+            stageReset.NextStageReset();
+    }
+    public bool IsLastStage()
+    {
+        return currentStageIndex >= stageList.Count - 1;
+    }
+
     public void LoadStage(int stageIndex)
     {
+        currentStageIndex = stageIndex;
+
         playerTransform = null;
 
         TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{stageList[stageIndex].name}");
@@ -175,6 +189,7 @@ public class MapLoader : MonoBehaviour
         Debug.Log($"맵 로드 완료: {stageList[stageIndex].name}");
         return;
     }
+
 
     private void ApplyStageSize(StageButtonData stageData)
     {

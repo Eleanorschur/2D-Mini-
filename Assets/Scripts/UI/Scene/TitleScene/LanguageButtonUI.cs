@@ -13,27 +13,37 @@ public class LanguageButtonUI : MonoBehaviour
 
     public void OnClickKorean()
     {
-        koreanButtonImage.sprite = selectedSprite;
-        englishButtonImage.sprite = normalSprite;
-
+        SetButtonVisual(LanguageManager.Language.Korean);
         LanguageManager.Instance.SetKorean();
     }
 
-    public void onClickEnglish()
+    public void OnClickEnglish()
     {
-        koreanButtonImage.sprite = normalSprite;
-        englishButtonImage.sprite = selectedSprite;
-
+        SetButtonVisual(LanguageManager.Language.English);
         LanguageManager.Instance.SetEnglish();
     }
-    
+
     private void Start()
     {
-        int savedLanguage = PlayerPrefs.GetInt("Language", 0); // Language 라는 이름의 정수가 없다면 그냥 0 이라 치고 가져와. 
+        int savedLanguage = PlayerPrefs.GetInt("Language", 0);
 
         if (savedLanguage == 0)
-            OnClickKorean();
+            SetButtonVisual(LanguageManager.Language.Korean);
         else
-            onClickEnglish();
+            SetButtonVisual(LanguageManager.Language.English);
+    }
+
+    private void SetButtonVisual(LanguageManager.Language language)
+    {
+        if (language == LanguageManager.Language.Korean)
+        {
+            koreanButtonImage.sprite = selectedSprite;
+            englishButtonImage.sprite = normalSprite;
+        }
+        else
+        {
+            koreanButtonImage.sprite = normalSprite;
+            englishButtonImage.sprite = selectedSprite;
+        }
     }
 }
