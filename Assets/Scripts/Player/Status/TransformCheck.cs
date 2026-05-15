@@ -30,6 +30,7 @@ public class TransformCheck : MonoBehaviour
             return;
 
         isFalling = true;
+        AudioManager.Instance.PlayDeath(); // audioManager를 위한 코드 추가
         stageReset.DeadStageReset();
         cameraShaker.Shake();
     }

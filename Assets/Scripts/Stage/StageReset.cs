@@ -118,7 +118,10 @@ public class StageReset : MonoBehaviour
     public void NextStageReset()
     {
         resetLock = false;
+        // audioManager를 위한 코드 추가
+        AudioManager.Instance.StopTimerTracking();
         timer.ResetTimer();
+        AudioManager.Instance.StartTimerTracking(timer.defaultTime, 10);
     }
 
     public void SetStartPosition(Vector3 position)

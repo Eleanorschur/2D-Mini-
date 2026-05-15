@@ -8,6 +8,7 @@ public class TitleScene : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance.PlayTitleBGM(); // audioManager를 위한 코드 추가
         Invoke("NextScene", 1.5f);
     }
 

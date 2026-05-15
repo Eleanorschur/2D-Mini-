@@ -63,7 +63,7 @@ public class Lever : MonoBehaviour
 
         if (currentZKey != null)
         {
-            currentZKey.Hide(); // »ç¿ë ¿Ï·á ÈÄ ¹Ý³³
+            currentZKey.Hide(); // ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ ï¿½Ý³ï¿½
             currentZKey = null;
         }
     }
@@ -75,7 +75,10 @@ public class Lever : MonoBehaviour
         spriteRenderer.sprite = open ? downSprite : upSprite;
 
         if (open)
+        {
+            AudioManager.Instance.PlayLever(); // audioManagerë¥¼ ìœ„í•œ ì½”ë“œ ì¶”ê°€
             leverManager.leverAddCounter();
+        }
     }
 
     private void Update()

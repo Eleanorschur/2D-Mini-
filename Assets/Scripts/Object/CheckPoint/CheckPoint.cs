@@ -71,6 +71,7 @@ public class CheckPoint : MonoBehaviour
             activateCheckPoint = true;
             spriteRenderer.sprite = activeSprite;
             checkPointManager.SetFinalCheckPoint(this.gameObject);
+            AudioManager.Instance.PlayCheckpoint(); // audioManager를 위한 코드 추가
         }
     }
 

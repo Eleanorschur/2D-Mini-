@@ -181,6 +181,7 @@ public class MapLoader : MonoBehaviour
 
         isMapLoaded = true;
         MapLoadComplete?.Invoke();
+        AudioManager.Instance.PlayStageBGM(stageIndex); // audioManager를 위한 코드 추가
 
         Debug.Log($"맵 로드 완료: {stageList[stageIndex].name}");
         return;

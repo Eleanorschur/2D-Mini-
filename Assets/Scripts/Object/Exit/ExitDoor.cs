@@ -112,6 +112,7 @@ public class ExitDoor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearDoor && playerMovement.IsGrounded && isDoorOpen)
         {
             activeDoor = true;
+            AudioManager.Instance.PlayExitEnter(); // audioManager를 위한 코드 추가
             playerMovement.MoveLock(true);
             stageReset.ResetLock(true);
             timer.StopTimer();

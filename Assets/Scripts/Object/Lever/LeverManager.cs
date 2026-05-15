@@ -63,7 +63,10 @@ public class LeverManager : MonoBehaviour
         ++leverCurrentCount;
 
         if (leverCurrentCount >= leverList.Count)
+        {
+            AudioManager.Instance.PlayExitOpen(); // audioManager를 위한 코드 추가
             exitDoor.DoorOpen(true);
+        }
     }
 
     public void LeverColliderActive(bool active)

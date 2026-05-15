@@ -10,6 +10,12 @@ public class OptionUI : MonoBehaviour
     [SerializeField] private Toggle bgmMuteToggle;
     [SerializeField] private Toggle sfxMuteToggle;
 
+    // audioManager를 위한 코드 추가
+    [Header("Volume Sliders")]
+    [SerializeField] private ImageSlider masterSlider;
+    [SerializeField] private ImageSlider bgmSlider;
+    [SerializeField] private ImageSlider sfxSlider;
+
     [Header("Display Toggles")]
     [SerializeField] private Toggle fullScreenToggle;
     [SerializeField] private Toggle windowScreenToggle;
@@ -28,11 +34,25 @@ public class OptionUI : MonoBehaviour
         { 1280, 720 }
     };
 
+    private void Awake()
+    {
+        // audioManager를 위한 코드 추가
+        // Awake에서 등록해야 ImageSlider.Start()의 초기값 이벤트보다 먼저 리스너가 준비됨
+        masterSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
+        bgmSlider.onValueChanged.AddListener(AudioManager.Instance.SetBGMVolume);
+        sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
+
+        masterMuteToggle.onValueChanged.AddListener(AudioManager.Instance.SetMasterMute);
+        bgmMuteToggle.onValueChanged.AddListener(AudioManager.Instance.SetBGMMute);
+        sfxMuteToggle.onValueChanged.AddListener(AudioManager.Instance.SetSFXMute);
+    }
+
     private void Start()
     {
         InitScreenMode();
         InitDisplayToggleState();
         InitResolutionDropDown();
+        InitVolumeSliderState();
         InitMuteToggleState();
 
         fullScreenToggle.onValueChanged.AddListener(OnFullScreenToggleChanged);
@@ -177,10 +197,17 @@ public class OptionUI : MonoBehaviour
         Debug.Log($"해상도 적용: {width} x {height}, FullScreen: {isFullScreen}");
     }
 
+    private void InitVolumeSliderState()
+    {
+        masterSlider.SetValue(AudioManager.Instance.GetMasterVolume());
+        bgmSlider.SetValue(AudioManager.Instance.GetBGMVolume());
+        sfxSlider.SetValue(AudioManager.Instance.GetSFXVolume());
+    }
+
     private void InitMuteToggleState()
     {
-        masterMuteToggle.isOn = false;
-        bgmMuteToggle.isOn = false;
-        sfxMuteToggle.isOn = false;
+        masterMuteToggle.isOn = AudioManager.Instance.GetMasterMute();
+        bgmMuteToggle.isOn    = AudioManager.Instance.GetBGMMute();
+        sfxMuteToggle.isOn    = AudioManager.Instance.GetSFXMute();
     }
 }

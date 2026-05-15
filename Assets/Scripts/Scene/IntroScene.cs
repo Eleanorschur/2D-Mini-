@@ -8,6 +8,7 @@ public class IntroScene : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance.PlayIntroBGM(); // audioManager를 위한 코드 추가
         Invoke("NextScene", 1.5f);
     }
 
