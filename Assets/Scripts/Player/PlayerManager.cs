@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public MapLoader mapLoader;
-    private GameObject player;
+    [SerializeField]private GameObject player;
     private SettingCamera settingCamera;
 
     public bool isPlayerLoaded { get; private set; }

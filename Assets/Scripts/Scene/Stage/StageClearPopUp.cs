@@ -19,6 +19,9 @@ public class StageClearPopup : MonoBehaviour
     [SerializeField] private ExitManager exitManager;
     [SerializeField] private StageReset stageReset;
 
+    [Header("Stage Setting")]
+    [SerializeField] private int finalStageNumber = 3;
+
     [Header("Ending Scene")]
     [SerializeField] private string happyEndingSceneName = "HappyEnding";
 
@@ -74,9 +77,21 @@ public class StageClearPopup : MonoBehaviour
          * 현재 스테이지가 마지막 스테이지라면
          * Stage Clear 팝업을 띄우지 않고 바로 HappyEnding 씬으로 이동
          */
-        if (mapLoader != null && mapLoader.IsLastStage())
+
+        SaveStageProgress();
+
+        int currentStageNumber = 1;
+
+        if (mapLoader != null)
+            currentStageNumber = mapLoader.CurrentStageNumber;
+        else
+            currentStageNumber = PlayerPrefs.GetInt("SelectedStage", 1);
+
+        Debug.Log("현재 클리어한 스테이지 번호: " + currentStageNumber);
+
+        if (currentStageNumber >= finalStageNumber)
         {
-            Debug.Log("마지막 스테이지 클리어 - HappyEnding 씬으로 이동");
+            Debug.Log("Stage3 클리어 - HappyEnding 씬으로 이동");
 
             Time.timeScale = 1f;
 
@@ -96,6 +111,7 @@ public class StageClearPopup : MonoBehaviour
             LanguageManager.Instance.UpdateAllTexts();
 
         UpdateStarUI();
+        
 
         if (popupAnimator != null)
             popupAnimator.Open();
@@ -176,8 +192,10 @@ public class StageClearPopup : MonoBehaviour
         if (popupPanel != null)
             popupPanel.SetActive(false);
 
-        if (exitManager != null)
-            exitManager.NextStage();
+        if (mapLoader != null)
+            mapLoader.NextStage();
+        else
+            Debug.LogError("MapLoader가 연결되지 않았습니다.");
     }
 
     private void UpdateStarUI()
@@ -185,24 +203,62 @@ public class StageClearPopup : MonoBehaviour
         if (companionManager == null)
             companionManager = FindAnyObjectByType<CompanionManager>();
 
-        if (companionManager == null)
-            return;
+        int rescuedCount = 0;
 
-        int rescuedCount = companionManager.GetRescuedCompanionCount();
+        if (companionManager != null)
+            rescuedCount = companionManager.GetRescuedCompanionCount();
+
+        Debug.Log("구출한 동료 수: " + rescuedCount);
 
         for (int i = 0; i < starImages.Length; i++)
         {
             if (starImages[i] == null)
                 continue;
 
-            if (i < rescuedCount)
-            {
-                starImages[i].sprite = filledStarSprite;
-            }
-            else
-            {
-                starImages[i].sprite = emptyStarSprite;
-            }
+            starImages[i].sprite = i < rescuedCount ? filledStarSprite : emptyStarSprite;
         }
+
     }
+
+    private void SaveStageProgress()
+    {
+        int currentStage = 1;
+
+        if (mapLoader != null)
+            currentStage = mapLoader.CurrentStageNumber;
+        else
+            currentStage = PlayerPrefs.GetInt("SelectedStage", 1);
+
+        int rescuedCount = 0;
+
+        if (companionManager == null)
+            companionManager = FindAnyObjectByType<CompanionManager>();
+
+        if (companionManager != null)
+            rescuedCount = companionManager.GetRescuedCompanionCount();
+
+        rescuedCount = Mathf.Clamp(rescuedCount, 0, 3);
+
+        string starKey = $"Stage{currentStage}_Stars";
+        int previousStars = PlayerPrefs.GetInt(starKey, 0);
+
+        // 예전에 3개 얻었는데 다시 해서 1개 얻으면 1개로 떨어지지 않게 Max 사용
+        int bestStars = Mathf.Max(previousStars, rescuedCount);
+
+        PlayerPrefs.SetInt(starKey, bestStars);
+
+        // 다음 스테이지 잠금 해제
+        int nextStage = currentStage + 1;
+
+        if (nextStage <= 3)
+        {
+            PlayerPrefs.SetInt($"Stage{nextStage}_Locked", 0);
+        }
+
+        PlayerPrefs.Save();
+
+        Debug.Log($"Stage {currentStage} 저장 완료 / 별: {bestStars} / 다음 스테이지 잠금 해제");
+    }
+
+
 }

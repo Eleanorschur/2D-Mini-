@@ -102,9 +102,6 @@ public class Companion : MonoBehaviour
             activeCompanion = true;
             followPlayer.SetIndex(itemCheck.AddCompanionList(this.gameObject));
 
-            if (companionManager != null)
-                companionManager.UpdateCompanionIconUI();
-
             if (currentZKey != null)
             {
                 currentZKey.Hide();

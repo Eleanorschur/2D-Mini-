@@ -6,7 +6,6 @@ public class CompanionManager : MonoBehaviour
 {
     public MapLoader mapLoader;
     
-    [SerializeField] private CompanionIconUI companionIconUI;
 
     [SerializeField] private List<GameObject> companionList = new();
     
@@ -17,6 +16,9 @@ public class CompanionManager : MonoBehaviour
     void Awake()
     {
         getList = false;
+
+        if (mapLoader == null)
+            mapLoader = FindAnyObjectByType<MapLoader>();
     }
 
     void OnEnable()
@@ -58,8 +60,6 @@ public class CompanionManager : MonoBehaviour
         getList = true;
         GetTransformList();
 
-        if (companionIconUI != null)
-            companionIconUI.ResetIcons();
     }
 
     public int GetIndex(GameObject obj)
@@ -104,8 +104,6 @@ public class CompanionManager : MonoBehaviour
             ++index;
         }
 
-        if (companionIconUI != null)
-            companionIconUI.ResetIcons();
     }
 
     public int GetRescuedCompanionCount()
@@ -124,14 +122,5 @@ public class CompanionManager : MonoBehaviour
 
         return count;
     }
-
-    public void UpdateCompanionIconUI()
-    {
-        if (companionIconUI == null)
-            return;
-
-        companionIconUI.UpdateIcon(GetRescuedCompanionCount());
-    }
-
 
 }

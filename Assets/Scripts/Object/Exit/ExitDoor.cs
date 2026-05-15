@@ -15,6 +15,8 @@ public class ExitDoor : MonoBehaviour
     private bool activeDoor = false;
 
     private StageClearPopup stageClearPopup;
+    private SceneOpenEffect sceneOpenEffect; //2026.05.13 페이드 아웃 동작을 위해 추가 
+
 
 
     void Awake()
@@ -25,7 +27,7 @@ public class ExitDoor : MonoBehaviour
     void OnEnable()
     {
         playerManager = FindAnyObjectByType<PlayerManager>();
-        exitManager = GetComponentInParent<ExitManager>();
+        //exitManager = GetComponentInParent<ExitManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -47,6 +49,7 @@ public class ExitDoor : MonoBehaviour
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();  //2026.05.13 페이드 아웃 동작을 위해 추가 
 
 
     }
@@ -91,7 +94,8 @@ public class ExitDoor : MonoBehaviour
 
     public void ExitStage()
     {
-        exitManager.NextStage();
+        // 이제 문에 들어갔다고 바로 다음 스테이지로 넘기지 않음
+        // 다음 스테이지 이동은 StageClearPopup의 NextStageButton에서만 처리
     }
 
     private void Update()
@@ -133,6 +137,19 @@ public class ExitDoor : MonoBehaviour
                 currentZKey.Hide();
                 currentZKey = null;
             }
+
+            if (sceneOpenEffect != null)  //2026.05.13 페이드 아웃 동작을 위해 추가 
+            {
+                sceneOpenEffect.OnEffectComplete = null;
+                sceneOpenEffect.OnEffectComplete += ExitStage;
+                sceneOpenEffect.SetTarget(playerMovement.transform);
+                sceneOpenEffect.PlayIrisOut();
+            }
+            else
+            {
+                ExitStage();
+            }                             //2026.05.13 페이드 아웃 동작을 위해 추가 
+
         }
     }
 }
