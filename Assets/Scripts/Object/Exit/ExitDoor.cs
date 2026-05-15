@@ -17,6 +17,9 @@ public class ExitDoor : MonoBehaviour
     private bool isDoorOpen = false;
     private bool activeDoor = false;
 
+    private StageClearPopup stageClearPopup;
+
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); // 같은 계층
@@ -42,9 +45,13 @@ public class ExitDoor : MonoBehaviour
         timer = FindAnyObjectByType<Timer>();
         stageReset = FindAnyObjectByType<StageReset>();
 
+        stageClearPopup = FindAnyObjectByType<StageClearPopup>();
+
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+
+
     }
 
     private void PlayerLoadComplete()
@@ -110,7 +117,15 @@ public class ExitDoor : MonoBehaviour
             stageReset.ResetLock(true);
             timer.StopTimer();
             Debug.Log("탈출 완료");
-            ExitStage();
+
+            if (stageClearPopup != null)
+            {
+                stageClearPopup.ShowPopup();
+            }
+            else
+            {
+                Debug.LogError("StageClearPopup을 찾지 못했습니다.");
+            }
 
             if (currentZKey != null)
             {

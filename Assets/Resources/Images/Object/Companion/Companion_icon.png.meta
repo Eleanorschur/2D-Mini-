@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e08cc21abed2bc243bc0c89b280b46d3
+guid: 0c858ccec7587e54cb069d4672fe6843
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5495003277649788570
-    second: NEOWIZ_LOGO_0
+      213: -339527812154463463
+    second: Companion_icon_0
+  - first:
+      213: 8445795925888753990
+    second: Companion_icon_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +49,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -97,7 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NEOWIZ_LOGO_0
+      name: Companion_icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 426
-        height: 441
+        x: 19
+        y: 18
+        width: 102
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 661c31cf1a3ddb3b0800000000000000
-      internalID: -5495003277649788570
+      spriteID: 91bea25f041c94bf0800000000000000
+      internalID: -339527812154463463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Companion_icon_1
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 18
+        width: 104
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6416a0895ae753570800000000000000
+      internalID: 8445795925888753990
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NEOWIZ_LOGO_0: -5495003277649788570
+      Companion_icon_0: -339527812154463463
+      Companion_icon_1: 8445795925888753990
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public class CompanionManager : MonoBehaviour
 {
     public MapLoader mapLoader;
+    
+    [SerializeField] private CompanionIconUI companionIconUI;
 
     [SerializeField] private List<GameObject> companionList = new();
+    
     private List<Vector3> transformList = new();
 
     void Awake()
@@ -50,6 +53,9 @@ public class CompanionManager : MonoBehaviour
         }
 
         GetTransformList();
+
+        if (companionIconUI != null)
+            companionIconUI.ResetIcons();
     }
 
     public int GetIndex(GameObject obj)
@@ -85,5 +91,35 @@ public class CompanionManager : MonoBehaviour
             companion.GetComponent<Companion>().CompanionReset(transformList[index]);
             ++index;
         }
+
+        if (companionIconUI != null)
+            companionIconUI.ResetIcons();
     }
+
+    public int GetRescuedCompanionCount()
+    {
+        int count = 0;
+
+        foreach (GameObject companionObj in companionList)
+        {
+            Companion companion = companionObj.GetComponent<Companion>();
+
+            if (companion != null && companion.ActiveCompanion)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public void UpdateCompanionIconUI()
+    {
+        if (companionIconUI == null)
+            return;
+
+        companionIconUI.UpdateIcon(GetRescuedCompanionCount());
+    }
+
+
 }
