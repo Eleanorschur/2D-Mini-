@@ -14,6 +14,11 @@ public class ExitDoor : MonoBehaviour
     private bool isDoorOpen = false;
     private bool activeDoor = false;
 
+    private StageClearPopup stageClearPopup;
+    private SceneOpenEffect sceneOpenEffect; //2026.05.13 페이드 아웃 동작을 위해 추가 
+
+
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -22,7 +27,7 @@ public class ExitDoor : MonoBehaviour
     void OnEnable()
     {
         playerManager = FindAnyObjectByType<PlayerManager>();
-        exitManager = GetComponentInParent<ExitManager>();
+        //exitManager = GetComponentInParent<ExitManager>();
 
         if (playerManager != null)
             playerManager.PlayerLoadComplete += PlayerLoadComplete;
@@ -39,9 +44,14 @@ public class ExitDoor : MonoBehaviour
         timer = FindAnyObjectByType<Timer>();
         stageReset = FindAnyObjectByType<StageReset>();
 
+        stageClearPopup = FindAnyObjectByType<StageClearPopup>();
+
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();  //2026.05.13 페이드 아웃 동작을 위해 추가 
+
+
     }
 
     private void PlayerLoadComplete()
@@ -84,7 +94,8 @@ public class ExitDoor : MonoBehaviour
 
     public void ExitStage()
     {
-        exitManager.NextStage();
+        // 이제 문에 들어갔다고 바로 다음 스테이지로 넘기지 않음
+        // 다음 스테이지 이동은 StageClearPopup의 NextStageButton에서만 처리
     }
 
     private void Update()
@@ -111,13 +122,34 @@ public class ExitDoor : MonoBehaviour
             stageReset.ResetLock(true);
             timer.StopTimer();
             Debug.Log("탈출 완료");
-            ExitStage();
+
+            if (stageClearPopup != null)
+            {
+                stageClearPopup.ShowPopup();
+            }
+            else
+            {
+                Debug.LogError("StageClearPopup을 찾지 못했습니다.");
+            }
 
             if (currentZKey != null)
             {
                 currentZKey.Hide();
                 currentZKey = null;
             }
+
+            if (sceneOpenEffect != null)  //2026.05.13 페이드 아웃 동작을 위해 추가 
+            {
+                sceneOpenEffect.OnEffectComplete = null;
+                sceneOpenEffect.OnEffectComplete += ExitStage;
+                sceneOpenEffect.SetTarget(playerMovement.transform);
+                sceneOpenEffect.PlayIrisOut();
+            }
+            else
+            {
+                ExitStage();
+            }                             //2026.05.13 페이드 아웃 동작을 위해 추가 
+
         }
     }
 }

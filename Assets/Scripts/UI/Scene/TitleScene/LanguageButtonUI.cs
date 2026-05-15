@@ -11,29 +11,46 @@ public class LanguageButtonUI : MonoBehaviour
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite selectedSprite;
 
-    public void OnClickKorean()
-    {
-        koreanButtonImage.sprite = selectedSprite;
-        englishButtonImage.sprite = normalSprite;
-
-        LanguageManager.Instance.SetKorean();
-    }
-
-    public void onClickEnglish()
-    {
-        koreanButtonImage.sprite = normalSprite;
-        englishButtonImage.sprite = selectedSprite;
-
-        LanguageManager.Instance.SetEnglish();
-    }
-    
     private void Start()
     {
-        int savedLanguage = PlayerPrefs.GetInt("Language", 0); // Language 라는 이름의 정수가 없다면 그냥 0 이라 치고 가져와. 
+        if (LanguageManager.Instance == null)
+        {
+            Debug.LogWarning("LanguageManager.Instance가 없습니다.");
+            return;
+        }
 
-        if (savedLanguage == 0)
-            OnClickKorean();
+        SetButtonVisual(LanguageManager.Instance.CurrentLanguage);
+    }
+
+    public void OnClickKorean()
+    {
+        if (LanguageManager.Instance == null)
+            return;
+
+        LanguageManager.Instance.SetKorean();
+        SetButtonVisual(LanguageManager.Language.Korean);
+    }
+
+    public void OnClickEnglish()
+    {
+        if (LanguageManager.Instance == null)
+            return;
+
+        LanguageManager.Instance.SetEnglish();
+        SetButtonVisual(LanguageManager.Language.English);
+    }
+
+    private void SetButtonVisual(LanguageManager.Language language)
+    {
+        if (language == LanguageManager.Language.Korean)
+        {
+            koreanButtonImage.sprite = selectedSprite;
+            englishButtonImage.sprite = normalSprite;
+        }
         else
-            onClickEnglish();
+        {
+            koreanButtonImage.sprite = normalSprite;
+            englishButtonImage.sprite = selectedSprite;
+        }
     }
 }

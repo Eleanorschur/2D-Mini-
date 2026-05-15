@@ -56,8 +56,4 @@ public class ExitManager : MonoBehaviour
         return exitDoor;
     }
 
-    public void NextStage()
-    {
-        mapLoader.NextStage();
-    }
 }

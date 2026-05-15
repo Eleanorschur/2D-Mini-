@@ -17,6 +17,30 @@ TextureImporter:
   - first:
       213: 1285042575557884799
     second: Stage_BG_Foreground_Fog_4
+  - first:
+      213: -1301434778390195016
+    second: Stage_BG_Foreground_Fog_5
+  - first:
+      213: -478773512446098431
+    second: Stage_BG_Foreground_Fog_6
+  - first:
+      213: 6114182277873114617
+    second: Stage_BG_Foreground_Fog_7
+  - first:
+      213: -5951663969334984749
+    second: Stage_BG_Foreground_Fog_8
+  - first:
+      213: 7086531392381926169
+    second: Stage_BG_Foreground_Fog_9
+  - first:
+      213: -4199080130782770860
+    second: Stage_BG_Foreground_Fog_10
+  - first:
+      213: 7532256472248850763
+    second: Stage_BG_Foreground_Fog_11
+  - first:
+      213: -6036726905082035168
+    second: Stage_BG_Foreground_Fog_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,18 +76,18 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 85
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +111,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,6 +145,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -128,10 +165,10 @@ TextureImporter:
       name: Stage_BG_Foreground_Fog_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1200
-        width: 1587
-        height: 240
+        x: 204
+        y: 845
+        width: 1439
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +187,10 @@ TextureImporter:
       name: Stage_BG_Foreground_Fog_1
       rect:
         serializedVersion: 2
-        x: 1591
-        y: 1227
-        width: 962
-        height: 213
+        x: 1889
+        y: 838
+        width: 873
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +209,10 @@ TextureImporter:
       name: Stage_BG_Foreground_Fog_2
       rect:
         serializedVersion: 2
-        x: 2551
-        y: 1393
-        width: 25
-        height: 36
+        x: 2762
+        y: 1033
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +231,10 @@ TextureImporter:
       name: Stage_BG_Foreground_Fog_3
       rect:
         serializedVersion: 2
-        x: 2564
-        y: 1119
-        width: 1276
-        height: 321
+        x: 2986
+        y: 830
+        width: 751
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +253,10 @@ TextureImporter:
       name: Stage_BG_Foreground_Fog_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3840
-        height: 412
+        x: 2754
+        y: 1020
+        width: 8
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,6 +267,182 @@ TextureImporter:
       bones: []
       spriteID: f7b716df96365d110800000000000000
       internalID: 1285042575557884799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_5
+      rect:
+        serializedVersion: 2
+        x: 2416
+        y: 831
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b496bfd6ff50fde0800000000000000
+      internalID: -1301434778390195016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_6
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 834
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 104c8cee60e0b59f0800000000000000
+      internalID: -478773512446098431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_7
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 788
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fd9d9c2360f9d450800000000000000
+      internalID: 6114182277873114617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_8
+      rect:
+        serializedVersion: 2
+        x: 1111
+        y: 65
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dffb453721776da0800000000000000
+      internalID: -5951663969334984749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_9
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 0
+        width: 1551
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b349c51ca685260800000000000000
+      internalID: 7086531392381926169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_10
+      rect:
+        serializedVersion: 2
+        x: 3018
+        y: 0
+        width: 686
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 459ca456eded9b5c0800000000000000
+      internalID: -4199080130782770860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_11
+      rect:
+        serializedVersion: 2
+        x: 1095
+        y: 34
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4997899a53f78860800000000000000
+      internalID: 7532256472248850763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage_BG_Foreground_Fog_12
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 42
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024ca802ddc393ca0800000000000000
+      internalID: -6036726905082035168
       vertices: []
       indices: 
       edges: []
@@ -250,9 +463,17 @@ TextureImporter:
     nameFileIdTable:
       Stage_BG_Foreground_Fog_0: -7439495024674606147
       Stage_BG_Foreground_Fog_1: -4391726363678275738
+      Stage_BG_Foreground_Fog_10: -4199080130782770860
+      Stage_BG_Foreground_Fog_11: 7532256472248850763
+      Stage_BG_Foreground_Fog_12: -6036726905082035168
       Stage_BG_Foreground_Fog_2: -2688168441670384833
       Stage_BG_Foreground_Fog_3: -5767099596254220441
       Stage_BG_Foreground_Fog_4: 1285042575557884799
+      Stage_BG_Foreground_Fog_5: -1301434778390195016
+      Stage_BG_Foreground_Fog_6: -478773512446098431
+      Stage_BG_Foreground_Fog_7: 6114182277873114617
+      Stage_BG_Foreground_Fog_8: -5951663969334984749
+      Stage_BG_Foreground_Fog_9: 7086531392381926169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

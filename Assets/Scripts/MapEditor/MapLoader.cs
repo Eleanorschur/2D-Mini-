@@ -37,6 +37,8 @@ public class MapLoader : MonoBehaviour
 
     private int currentColumnCount;
     private int currentRowCount;
+    public int CurrentStageNumber => currentStageIndex + 1;
+
 
     private readonly Dictionary<string, string> codeToPrefabName = new Dictionary<string, string>()
 {
@@ -81,6 +83,8 @@ public class MapLoader : MonoBehaviour
     private GameObject checkPointManager;
     private GameObject companionManager;
     private GameObject decorationManager;
+    private SceneOpenEffect sceneOpenEffect;//2026.05.13 페이드 인 동작을 위해 추가 
+
 
     private List<GameObject> objList = new();
 
@@ -99,6 +103,8 @@ public class MapLoader : MonoBehaviour
         objList.Add(checkPointManager = FindAnyObjectByType<CheckPointManager>().gameObject);
         objList.Add(companionManager = FindAnyObjectByType<CompanionManager>().gameObject);
         objList.Add(decorationManager = FindAnyObjectByType<DecorationManager>().gameObject);
+
+        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();//2026.05.13 페이드 인 동작을 위해 추가 
     }
 
     private void Start()
@@ -108,8 +114,13 @@ public class MapLoader : MonoBehaviour
 
         if (loadOnStart)
         {
-            LoadStage(0);
-            currentStageIndex = 0;
+            int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+
+            currentStageIndex = selectedStage - 1;
+
+            LoadStage(currentStageIndex);
+
+            Debug.Log("로드할 스테이지 인덱스: " + currentStageIndex);
         }
     }
 
@@ -139,12 +150,33 @@ public class MapLoader : MonoBehaviour
             return;
         }
 
+        PlayerPrefs.SetInt("SelectedStage", currentStageIndex + 1);
+        PlayerPrefs.Save();
+
         LoadStage(currentStageIndex);
-        stageReset.NextStageReset();
+
+        if (stageReset != null)
+            stageReset.NextStageReset();
+    }
+
+    public void RetryCurrentStage()
+    {
+        LoadStage(currentStageIndex);
+
+        if (stageReset != null)
+            stageReset.NextStageReset();
+    }
+    public bool IsLastStage()
+    {
+        Debug.Log($"현재 스테이지 인덱스: {currentStageIndex}, 전체 스테이지 수: {stageList.Count}");
+
+        return currentStageIndex >= stageList.Count - 1;
     }
 
     public void LoadStage(int stageIndex)
     {
+        currentStageIndex = stageIndex;
+
         playerTransform = null;
 
         TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{stageList[stageIndex].name}");
@@ -169,12 +201,21 @@ public class MapLoader : MonoBehaviour
         ApplyStageSize(stageData);
         BuildMap(stageData);
 
+        if (sceneOpenEffect != null) //2026.05.13 페이드 인 동작을 위해 추가 
+        {
+            sceneOpenEffect.OnEffectComplete = null;
+            sceneOpenEffect.SetTarget(playerTransform);
+            sceneOpenEffect.PlayIrisIn();
+        }                            //2026.05.13 페이드 인 동작을 위해 추가 
+
         isMapLoaded = true;
         MapLoadComplete?.Invoke();
 
         Debug.Log($"맵 로드 완료: {stageList[stageIndex].name}");
         return;
+
     }
+
 
     private void ApplyStageSize(StageButtonData stageData)
     {

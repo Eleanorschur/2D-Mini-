@@ -15,11 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/2_Title.unity
     guid: 9375d3f2165be9a45a919f07bfdc391c
   - enabled: 1
+    path: Assets/Scenes/BadEnding.unity
+    guid: df98c37f0dc846b4cb0429a184bbf6e3
+  - enabled: 1
+    path: Assets/Scenes/HappyEnding.unity
+    guid: 7f2997ba719a86745a597cbf69f047e5
+  - enabled: 1
+    path: Assets/Scenes/Lock.unity
+    guid: e51e7c27230be6c439e3392cc1c4bd4b
+  - enabled: 1
     path: Assets/Scenes/3_StageSelect.unity
     guid: d6b65f1b3de23c04b89ecc20766594f4
-  - enabled: 1
-    path: Assets/Scenes/4_Intro.unity
-    guid: c4edb5b5408e9c644ad6442490bdce44
   - enabled: 1
     path: Assets/Scenes/5_Stage.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02

@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerMoveSpeed: 5
-  playerJumpForce: 15
+  playerJumpForce: 16
   playerLandingdelay: 0.3
 --- !u!114 &2776707279015771464
 MonoBehaviour:
