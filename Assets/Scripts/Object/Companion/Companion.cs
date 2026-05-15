@@ -100,6 +100,7 @@ public class Companion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && nearCompanion && playerMovement.IsGrounded)
         {
             activeCompanion = true;
+            AudioManager.Instance?.PlayRescueSFX(); //05.16. AudioManager를 위해 추가
             followPlayer.SetIndex(itemCheck.AddCompanionList(this.gameObject));
 
             if (currentZKey != null)

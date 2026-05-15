@@ -30,6 +30,7 @@ public class TransformCheck : MonoBehaviour
             return;
 
         isFalling = true;
+        AudioManager.Instance?.PlayFallSFX(); //05.16. AudioManager를 위해 추가
         stageReset.DeadStageReset();
         cameraShaker.Shake();
     }

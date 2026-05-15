@@ -120,6 +120,7 @@ public class StageReset : MonoBehaviour
         playerManager.GetPlayerObj().transform.position = revivePosition;
 
         playerManager.GetPlayerObj().GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+        AudioManager.Instance?.PlayRespawnSFX(); //05.16. AudioManager를 위해 추가
     }
 
     public void NextStageReset()
