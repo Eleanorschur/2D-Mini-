@@ -213,7 +213,6 @@ public class MapLoader : MonoBehaviour
 
         Debug.Log($"맵 로드 완료: {stageList[stageIndex].name}");
         return;
-
     }
 
 
@@ -372,6 +371,8 @@ public class MapLoader : MonoBehaviour
 
     public void ClearMap()
     {
+        Debug.Log("오브젝트 디스트로이");
+
         foreach (GameObject obj in objList)
         {
             for (int i = obj.transform.childCount - 1; i >= 0; i--)

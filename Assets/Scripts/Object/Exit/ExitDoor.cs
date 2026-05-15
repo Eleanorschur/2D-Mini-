@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ExitDoor : MonoBehaviour
 {
@@ -16,8 +17,6 @@ public class ExitDoor : MonoBehaviour
 
     private StageClearPopup stageClearPopup;
     private SceneOpenEffect sceneOpenEffect; //2026.05.13 페이드 아웃 동작을 위해 추가 
-
-
 
     void Awake()
     {
@@ -49,9 +48,8 @@ public class ExitDoor : MonoBehaviour
         nearDoor = false;
         isDoorOpen = false;
         activeDoor = false;
+        DoorOpen(false);
         sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();  //2026.05.13 페이드 아웃 동작을 위해 추가 
-
-
     }
 
     private void PlayerLoadComplete()
@@ -83,7 +81,7 @@ public class ExitDoor : MonoBehaviour
     public void DoorOpen(bool open)
     {
         if (this == null || animator == null) return;
-
+        Debug.Log("Door" + open);
         isDoorOpen = open;
 
         if (open)

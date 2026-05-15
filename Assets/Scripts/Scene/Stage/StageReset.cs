@@ -59,7 +59,10 @@ public class StageReset : MonoBehaviour
             exitManager.ExitLoadComplete -= OnExitLoadFinished;
     }
 
-    private void OnMapLoadFinished() { }
+    private void OnMapLoadFinished()
+    {
+
+    }
 
     private void PlayerLoadComplete()
     {

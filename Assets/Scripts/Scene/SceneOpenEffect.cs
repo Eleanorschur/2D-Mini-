@@ -25,6 +25,8 @@ public class SceneOpenEffect : MonoBehaviour
     public void PlayIrisIn()
     {
         gameObject.SetActive(true);
+        slimeMask.gameObject.SetActive(true);
+
         StopAllCoroutines();
         StartCoroutine(IrisRoutine(open: true));
     }
@@ -33,6 +35,8 @@ public class SceneOpenEffect : MonoBehaviour
     public void PlayIrisOut()
     {
         gameObject.SetActive(true);
+        slimeMask.gameObject.SetActive(true);
+
         StopAllCoroutines();
         StartCoroutine(IrisRoutine(open: false));
     }
@@ -67,7 +71,10 @@ public class SceneOpenEffect : MonoBehaviour
         OnEffectComplete?.Invoke();
 
         if (open)
+        {
             gameObject.SetActive(false);
+            slimeMask.gameObject.SetActive(false);
+        }
     }
 
     private float GetTargetScale()

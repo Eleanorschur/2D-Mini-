@@ -23,6 +23,7 @@ public class StatusCheck : MonoBehaviour
 
     public void ChangeForm(int status)
     {
+        Debug.Log("ChangeForm" + status);
         currentStatus = status;
         spriteChange.ChangeForm(status);
     }
