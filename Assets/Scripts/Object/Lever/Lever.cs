@@ -6,6 +6,7 @@ public class Lever : MonoBehaviour
     private Movement playerMovement;
     private LeverManager leverManager;
     private SpriteRenderer spriteRenderer;
+    private ItemCheck itemCheck;
     public Sprite upSprite;
     public Sprite downSprite;
     private ZKey currentZKey;
@@ -45,6 +46,7 @@ public class Lever : MonoBehaviour
     private void PlayerLoadComplete()
     {
         playerMovement = playerManager.GetPlayerObj().GetComponent<Movement>();
+        itemCheck = playerManager.GetPlayerObj().GetComponent<ItemCheck>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -75,7 +77,7 @@ public class Lever : MonoBehaviour
         spriteRenderer.sprite = open ? downSprite : upSprite;
 
         if (open)
-            leverManager.leverAddCounter();
+            leverManager.LeverAddCounter();
     }
 
     private void Update()
@@ -98,6 +100,7 @@ public class Lever : MonoBehaviour
         {
             activeLever = true;
             LeverAct(true);
+            itemCheck.AddLeverList(this.gameObject);
 
             if (currentZKey != null)
             {

@@ -312,7 +312,7 @@ public class MapLoader : MonoBehaviour
 
         obj.transform.localPosition = GetLocalPosition(col, row);
         obj.transform.localRotation = Quaternion.identity;
-        obj.transform.localScale = Vector3.one;
+        // obj.transform.localScale = Vector3.one; // 스케일값 다른 오브젝트 존재
 
         if (code == playerCode)
         {

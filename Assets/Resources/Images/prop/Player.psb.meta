@@ -646,7 +646,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 91, y: 8}
     spritePosition: {x: 28, y: 23}
-  - name: BodyB
+  - name: BodyR
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -968,7 +968,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 8, y: 8}
     spritePosition: {x: 0, y: 0}
-  - name: BodyR
+  - name: BodyB
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -1870,8 +1870,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: BodyB
-    spriteName: BodyB
+  - name: BodyR
+    spriteName: BodyR
     isGroup: 0
     parentIndex: -1
     spriteID: 1a988bec5466e3e419b1b62fa09349a3
@@ -1880,8 +1880,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: BodyR
-    spriteName: BodyR
+  - name: BodyB
+    spriteName: BodyB
     isGroup: 0
     parentIndex: -1
     spriteID: c352bd86ccb1c1547a0047eed10e3c9a

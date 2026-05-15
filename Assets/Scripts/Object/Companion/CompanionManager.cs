@@ -8,10 +8,12 @@ public class CompanionManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> companionList = new();
     private List<Vector3> transformList = new();
+    private bool getList = false;
+    public bool GetList => getList;
 
     void Awake()
     {
-
+        getList = false;
     }
 
     void OnEnable()
@@ -30,6 +32,7 @@ public class CompanionManager : MonoBehaviour
     {
         
     }
+
     private void OnMapLoadFinished()
     {
         StartCoroutine(CollectCompanionRoutine());
@@ -49,6 +52,7 @@ public class CompanionManager : MonoBehaviour
             }
         }
 
+        getList = true;
         GetTransformList();
     }
 
@@ -64,6 +68,14 @@ public class CompanionManager : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public List<GameObject> GetCompanionList()
+    {
+        if ( ! getList)
+            return null;
+
+        return companionList;
     }
 
     private void GetTransformList()

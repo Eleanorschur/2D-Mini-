@@ -7,6 +7,7 @@ public class FollowPlayer : MonoBehaviour
     private Rigidbody2D rigid2D;
     private Companion companion;
     private RecodeMovement recode;
+    private Animator animator;
 
     private Vector3 originScale;
     private Vector3 leftScale;
@@ -20,10 +21,12 @@ public class FollowPlayer : MonoBehaviour
     private float currentOffset = 0f;
     private float offsetSmoothSpeed = 5f;
     private float followSpeed = 50f;
+    [SerializeField] private float offsetYpos = 0.05f;
 
     void Awake()
     {
         companion = GetComponent<Companion>(); // 같은 계층
+        animator = GetComponent<Animator>(); // 같은 계층
     }
 
     void OnEnable()
@@ -42,7 +45,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-        originScale = transform.localScale;
+        originScale = new Vector3(1, 1, 1);
         leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
         rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
     }
@@ -72,7 +75,7 @@ public class FollowPlayer : MonoBehaviour
             RecodeMovement.PlayerMove targetData = path[targetIndex];
 
             Vector3 targetPos = targetData.Position;
-            targetPos.y -= 0.16f;
+            targetPos.y += offsetYpos;
 
             if (Mathf.Abs(rigid2D.linearVelocityX) < 0.01f)
                 stopCount++;
@@ -94,7 +97,8 @@ public class FollowPlayer : MonoBehaviour
                 transform.localScale = rightScale;
             else if (targetData.Dir.x < 0)
                 transform.localScale = leftScale;
-        
+
+            animator.SetFloat("X", Mathf.Abs(targetData.Dir.x));
         }
     }
 
@@ -102,5 +106,11 @@ public class FollowPlayer : MonoBehaviour
     {
         currentFollowIndex = index;
         delayFrames = (currentFollowIndex + 1) * 10;
+    }
+
+    public void animatorStop()
+    {
+        animator.SetFloat("X", 0);
+        animator.SetFloat("Y", 0);
     }
 }

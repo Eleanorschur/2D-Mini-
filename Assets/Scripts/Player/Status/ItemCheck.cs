@@ -3,13 +3,11 @@ using System.Collections.Generic;
 
 public class ItemCheck : MonoBehaviour
 {
-    private PlayerManager playerManager;
-    private StatusCheck statusCheck;
     private LeverManager leverManager;
+    private CompanionCountPool CCCountPool;
 
     [SerializeField] private List<GameObject> leversList;
-    [SerializeField] private List<GameObject> redSwitchList;
-    [SerializeField] private List<GameObject> blueSwitchList;
+    [SerializeField] private List<GameObject> SwitchList;
     [SerializeField] private List<GameObject> companionList;
 
     public List<GameObject> LeverList => leversList;
@@ -21,15 +19,13 @@ public class ItemCheck : MonoBehaviour
 
     void Awake()
     {
-        statusCheck = GetComponent<StatusCheck>(); // 같은 계층
+
     }
 
     void Start()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
         leverManager = FindAnyObjectByType<LeverManager>();
-
-        GetSwitchList();
+        CCCountPool = FindAnyObjectByType<CompanionCountPool>();
     }
 
     public void AddLeverList(GameObject lever)
@@ -37,20 +33,16 @@ public class ItemCheck : MonoBehaviour
         leversList.Add(lever);
     }
 
-    public void GetSwitchList()
+    public void AddSwitchList(GameObject sw)
     {
-        redSwitchList.Clear();
-        blueSwitchList.Clear();
-        GameObject[] redSwitchs = GameObject.FindGameObjectsWithTag("Switch_Red");
-        GameObject[] blueSwitchs = GameObject.FindGameObjectsWithTag("Switch_Blue");
-        redSwitchList.AddRange(redSwitchs);
-        blueSwitchList.AddRange(blueSwitchs);
+        SwitchList.Add(sw);
     }
 
     public int AddCompanionList(GameObject companion)
     {
         ++companionCount;
         companionList.Add(companion);
+        CCCountPool.UpdateCCImage(companionCount + 1);
 
         return companionCount;
     }
@@ -64,6 +56,42 @@ public class ItemCheck : MonoBehaviour
 
         companionList.Clear();
         companionCount = -1;
+        CCCountPool.UpdateCCImage(companionCount + 1);
+
+        SwitchList.Clear();
+    }
+
+    public void CheckpointReset()
+    {
+        foreach (GameObject sw in SwitchList)
+        {
+            sw.gameObject.GetComponent<Switch>().SwitchActive(true);
+        }
+        SwitchList.Clear();
+
+        foreach (GameObject lv in leversList)
+        {
+            lv.gameObject.GetComponent<Lever>().LeverReset();
+        }
+        leversList.Clear();
+        leverManager.UpdateCurrentLever();
+
+        int ccCount = 0;
+        foreach (GameObject cc in companionList)
+        {
+            ++ccCount;
+            cc.gameObject.GetComponent<Companion>().CompanionReset(Vector3.zero);
+        }
+        companionCount = companionCount - ccCount;
+        CCCountPool.UpdateCCImage(companionCount + 1);
+        companionList.Clear();
+    }
+
+    public void ListClear()
+    {
+        SwitchList.Clear();
+        leversList.Clear();
+        companionList.Clear();
     }
 
     void OnTriggerEnter2D(Collider2D other)

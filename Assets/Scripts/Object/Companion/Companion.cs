@@ -13,6 +13,13 @@ public class Companion : MonoBehaviour
     private bool activeCompanion;
     public bool ActiveCompanion => activeCompanion;
 
+    private Vector3 originPos = Vector3.zero;
+    private Vector3 originScale;
+    private Vector3 leftScale;
+    private Vector3 rightScale;
+
+    private float offsetYpos = -0.5f;
+
     void Awake()
     {
         followPlayer = GetComponent<FollowPlayer>(); // 같은 계층
@@ -35,6 +42,14 @@ public class Companion : MonoBehaviour
     void Start()
     {
         companionManager = GetComponentInParent<CompanionManager>();
+
+        originPos = this.gameObject.transform.position;
+        originPos.y += offsetYpos;
+        this.gameObject.transform.position = originPos;
+
+        originScale = new Vector3(1, 1, 1);
+        leftScale = new Vector3(-originScale.x, originScale.y, originScale.z);
+        rightScale = new Vector3(originScale.x, originScale.y, originScale.z);
     }
 
     private void PlayerLoadComplete()
@@ -68,6 +83,8 @@ public class Companion : MonoBehaviour
     {
         if (activeCompanion) return;
 
+        CompanionStandDir();
+
         if (nearCompanion && playerMovement.IsGrounded && currentZKey == null)
         {
             currentZKey = ZKeyPool.Instance.GetZKey();
@@ -93,10 +110,26 @@ public class Companion : MonoBehaviour
         }
     }
 
+    private void CompanionStandDir()
+    {
+        float playerX =  playerManager.GetPlayerObj().transform.position.x;
+        float companionX = this.gameObject.transform.position.x;
+
+        if (playerX - companionX > 0)
+            this.transform.localScale = rightScale;
+        else if (playerX - companionX < 0)
+            this.transform.localScale = leftScale;
+    }
+
     public void CompanionReset(Vector3 position)
     {
         nearCompanion = false;
         activeCompanion = false;
-        transform.position = position;
+        followPlayer.animatorStop();
+
+        if (position == Vector3.zero)
+            transform.position = originPos;
+        else
+            transform.position = position;
     }
 }

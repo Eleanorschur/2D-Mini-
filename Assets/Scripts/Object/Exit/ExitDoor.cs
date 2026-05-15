@@ -3,15 +3,12 @@ using UnityEngine;
 public class ExitDoor : MonoBehaviour
 {
     public ExitManager exitManager;
+    private Animator animator;
     private PlayerManager playerManager;
     private Movement playerMovement;
-    private SpriteRenderer spriteRenderer;
     private StageReset stageReset;
     private Timer timer;
     private ZKey currentZKey;
-
-    public Sprite openDoor;
-    public Sprite closeDoor;
 
     private bool nearDoor = false;
     private bool isDoorOpen = false;
@@ -19,7 +16,7 @@ public class ExitDoor : MonoBehaviour
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // °°Àº °èÃþ
+        animator = GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -75,10 +72,14 @@ public class ExitDoor : MonoBehaviour
 
     public void DoorOpen(bool open)
     {
-        if (this == null || spriteRenderer == null) return;
+        if (this == null || animator == null) return;
 
         isDoorOpen = open;
-        spriteRenderer.sprite = open ? openDoor : closeDoor;
+
+        if (open)
+            animator.SetTrigger("Open");
+        else
+            animator.SetTrigger("Close");
     }
 
     public void ExitStage()

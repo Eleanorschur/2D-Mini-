@@ -2,18 +2,25 @@ using UnityEngine;
 
 public class SpriteChange : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    public Sprite slimeGreen; 
-    public Sprite slimeRed; 
-    public Sprite slimeBlue; 
+    private Transform bodyRtf;
+    private Transform bodyGtf;
+    private Transform bodyBtf;
+
+    private string bodyR = "BodyR";
+    private string bodyG = "BodyG";
+    private string bodyB = "BodyB";
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // 같은 계층
+
     }
 
     void Start()
     {
+        bodyRtf = transform.Find(bodyR);
+        bodyGtf = transform.Find(bodyG);
+        bodyBtf = transform.Find(bodyB);
+
         ChangeForm(0);
     }
 
@@ -22,13 +29,19 @@ public class SpriteChange : MonoBehaviour
         switch (status)
         {
             case 0:
-                spriteRenderer.sprite = slimeGreen;
+                bodyRtf.gameObject.SetActive(false);
+                bodyGtf.gameObject.SetActive(true);
+                bodyBtf.gameObject.SetActive(false);
                 break;
             case 1:
-                spriteRenderer.sprite = slimeRed;
+                bodyRtf.gameObject.SetActive(true);
+                bodyGtf.gameObject.SetActive(false);
+                bodyBtf.gameObject.SetActive(false);
                 break;
             case 2:
-                spriteRenderer.sprite = slimeBlue;
+                bodyRtf.gameObject.SetActive(false);
+                bodyGtf.gameObject.SetActive(false);
+                bodyBtf.gameObject.SetActive(true);
                 break;
         }
     }

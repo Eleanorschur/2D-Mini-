@@ -3,7 +3,7 @@ using UnityEngine;
 public class DecorationManager : MonoBehaviour
 {
     public MapLoader mapLoader;
-
+    
     void Awake()
     {
     }
