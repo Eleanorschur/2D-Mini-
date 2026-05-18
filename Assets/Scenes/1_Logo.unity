@@ -288,7 +288,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -647,10 +647,11 @@ MonoBehaviour:
   stage3: {fileID: 8300000, guid: 08218fb3bde5c264fb0ecb0dbb92eb3a, type: 3}
   happyEnding: {fileID: 8300000, guid: e97ae3d454600d44889a1ac9f3613458, type: 3}
   badEnding: {fileID: 8300000, guid: 51a95993359b37e499ab94fb610c2f0e, type: 3}
+  clear: {fileID: 8300000, guid: 1fdb37f3835aa924f838af962363b08d, type: 3}
   button: {fileID: 8300000, guid: 80ed42bbb1e1d6647a4611315f33c2ed, type: 3}
   stageSelect: {fileID: 8300000, guid: bad239dc781293442aa91e74ed4aabdb, type: 3}
   logo: {fileID: 8300000, guid: c2b2651c1ac49834590adf7f1a965aaf, type: 3}
-  jump: {fileID: 8300000, guid: 6b4042290e8f24941bafbfb708854eb0, type: 3}
+  jump: {fileID: 8300000, guid: 88068ec5cfaa9dd4590f4d1b7612bfd4, type: 3}
   fall: {fileID: 8300000, guid: 386b410a08b429948a86dbf0abdc568c, type: 3}
   respawn: {fileID: 8300000, guid: 755cea3c7c26cdd469e54fe7b49a64be, type: 3}
   lever: {fileID: 8300000, guid: 6ebd74d1dddbb634c8caeb706c235d55, type: 3}
@@ -659,6 +660,7 @@ MonoBehaviour:
   door: {fileID: 8300000, guid: e41a19c48f4d86d4aa793976c008dd6d, type: 3}
   countdown: {fileID: 8300000, guid: 1f0e9bac0f43b18448b7f403a9f57379, type: 3}
   fail: {fileID: 8300000, guid: 8574c73958f16aa4fa990b1306d0cd14, type: 3}
+  colorSwitch: {fileID: 8300000, guid: 34e8cdcf0bff55241826a7060553ed6b, type: 3}
 --- !u!114 &814469520
 MonoBehaviour:
   m_ObjectHideFlags: 0

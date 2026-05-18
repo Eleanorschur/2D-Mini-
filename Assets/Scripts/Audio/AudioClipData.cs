@@ -10,6 +10,7 @@ public class AudioClipData : MonoBehaviour
     public AudioClip stage3;
     public AudioClip happyEnding;
     public AudioClip badEnding;
+    public AudioClip clear;
 
     [Header("SFX")]
     public AudioClip button;
@@ -24,4 +25,7 @@ public class AudioClipData : MonoBehaviour
     public AudioClip door;
     public AudioClip countdown;
     public AudioClip fail;
+    public AudioClip colorSwitch;
+   
+
 }
