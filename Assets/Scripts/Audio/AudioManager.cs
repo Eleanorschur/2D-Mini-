@@ -76,6 +76,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySelectBGM()      => PlayBGM(clipData.select);
     public void PlayHappyEndingBGM() => PlayBGM(clipData.happyEnding);
     public void PlayBadEndingBGM()   => PlayBGM(clipData.badEnding);
+    public void PlayClearBGM() => PlayBGM(clipData.clear);
 
     public void PlayStageBGM(int stageIndex)
     {
@@ -102,6 +103,7 @@ public class AudioManager : MonoBehaviour
     public void PlayDoorSFX()        => PlaySFX(clipData.door);
     public void PlayCountdownSFX()   => PlaySFX(clipData.countdown);
     public void PlayFailSFX()        => PlaySFX(clipData.fail);
+    public void PlayColorSwitchSFX() => PlaySFX(clipData.colorSwitch);
 
     // --- Core ---
 

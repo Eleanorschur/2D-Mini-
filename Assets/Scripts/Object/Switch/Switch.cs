@@ -47,6 +47,7 @@ public class Switch : MonoBehaviour
             return;
 
         statusCheck.ChangeForm(switchNumber);
+        AudioManager.Instance?.PlayColorSwitchSFX();
 
         if (switchNumber == 1)
             switchRed.Switching();
