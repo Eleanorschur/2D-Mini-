@@ -3,15 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
-    private Timer timer;
     private StageReset stageReset;
+    private Timer timer;
 
     [Header("Option UI")]
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject blurOverlay;
     [SerializeField] private SettingPanelAnimator settingPanelAnimator;
 
-    private bool pauseGame = false;
     private bool isSettingsOpen = false;
 
     private void Awake()
@@ -24,7 +23,6 @@ public class StageManager : MonoBehaviour
     {
         timer = FindAnyObjectByType<Timer>();
 
-        pauseGame = false;
         isSettingsOpen = false;
 
         Cursor.visible = true;
@@ -39,6 +37,7 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log($"ESC 감지 / 오브젝트: {gameObject.name} / ID: {GetInstanceID()} / 씬: {gameObject.scene.name}");
             ToggleSettings();
         }
     }
@@ -79,7 +78,6 @@ public class StageManager : MonoBehaviour
             blurOverlay.SetActive(false);
 
         isSettingsOpen = false;
-        pauseGame = false;
     }
 
     public void ToggleSettings()
@@ -96,24 +94,21 @@ public class StageManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        Debug.Log("옵션창 열기");
 
         AutoFindOptionReferences();
 
         if (isSettingsOpen)
             return;
 
+        Debug.Log($"옵션창 열기 / 오브젝트: {gameObject.name} / ID: {GetInstanceID()} / 씬: {gameObject.scene.name}");
+
         isSettingsOpen = true;
-        pauseGame = true;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
         if (stageReset != null)
             stageReset.ResetLock(true);
-
-        if (timer != null)
-            timer.PauseTimer();
 
         if (blurOverlay != null)
             blurOverlay.SetActive(true);
@@ -125,44 +120,45 @@ public class StageManager : MonoBehaviour
         {
             settingPanelAnimator.Open();
         }
+        if (timer != null)
+            timer.PauseTimer();
         else
         {
             Debug.LogError("SettingPanelAnimator를 찾지 못했습니다.");
         }
-
-        Time.timeScale = 0f;
     }
 
     public void CloseSettings()
     {
-        Debug.Log("옵션창 닫기");
 
         AutoFindOptionReferences();
 
         if (!isSettingsOpen)
             return;
 
-        isSettingsOpen = false;
-        pauseGame = false;
+        Debug.Log("옵션창 닫기");
 
-        Time.timeScale = 1f;
+        isSettingsOpen = false;
+      
+        if (timer != null)
+        timer.ResumeTimer();
 
         if (settingPanelAnimator != null)
             settingPanelAnimator.Close();
 
         if (blurOverlay != null)
             blurOverlay.SetActive(false);
+       
+        if (settingPanel != null)
+            settingPanel.SetActive(false);
+
 
         if (stageReset != null)
             stageReset.ResetLock(false);
 
-        if (timer != null)
-            timer.ResumeTimer();
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-
     public void ReturnToTitle()
     {
         Debug.Log("타이틀 화면으로 이동");

@@ -66,9 +66,23 @@ public class StageReset : MonoBehaviour
 
     private void PlayerLoadComplete()
     {
-        startPosition = playerManager.GetPlayerObj().transform.position;
-        itemCheck = playerManager.GetPlayerObj().GetComponent<ItemCheck>();
-        statusCheck = playerManager.GetPlayerObj().GetComponent<StatusCheck>();
+        GameObject playerObj = playerManager.GetPlayerObj();
+
+        startPosition = playerObj.transform.position;
+        itemCheck = playerObj.GetComponent<ItemCheck>();
+        statusCheck = playerObj.GetComponent<StatusCheck>();
+
+        // 새 스테이지 시작 시 무조건 기본 초록색으로 초기화
+        if (statusCheck != null)
+            statusCheck.ChangeForm(0);
+
+        if (itemCheck != null)
+            itemCheck.itemReset();
+
+        Rigidbody2D rb = playerObj.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
     }
 
     private void OnExitLoadFinished() { }

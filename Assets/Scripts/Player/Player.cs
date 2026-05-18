@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-
+       
     }
     void Start()
     {
@@ -17,3 +17,4 @@ public class Player : MonoBehaviour
     }
 
 }
+

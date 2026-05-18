@@ -12,20 +12,24 @@ public class SpriteChange : MonoBehaviour
 
     void Awake()
     {
-
+        bodyRtf = transform.Find(bodyR);
+        bodyGtf = transform.Find(bodyG);
+        bodyBtf = transform.Find(bodyB);
     }
 
     void Start()
     {
-        bodyRtf = transform.Find(bodyR);
-        bodyGtf = transform.Find(bodyG);
-        bodyBtf = transform.Find(bodyB);
-
         ChangeForm(0);
     }
 
     public void ChangeForm(int status)
     {
+        if (bodyRtf == null || bodyGtf == null || bodyBtf == null)
+        {
+            Debug.LogError("BodyR, BodyG, BodyB 중 하나를 찾지 못했습니다. Player 프리팹 자식 이름을 확인하세요.");
+            return;
+        }
+
         switch (status)
         {
             case 0:
@@ -33,11 +37,13 @@ public class SpriteChange : MonoBehaviour
                 bodyGtf.gameObject.SetActive(true);
                 bodyBtf.gameObject.SetActive(false);
                 break;
+
             case 1:
                 bodyRtf.gameObject.SetActive(true);
                 bodyGtf.gameObject.SetActive(false);
                 bodyBtf.gameObject.SetActive(false);
                 break;
+
             case 2:
                 bodyRtf.gameObject.SetActive(false);
                 bodyGtf.gameObject.SetActive(false);

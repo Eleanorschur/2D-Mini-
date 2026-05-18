@@ -19,6 +19,7 @@ public class StatusCheck : MonoBehaviour
     void Start()
     {
         currentStatus = 0;
+        ChangeForm(0);
     }
 
     public void ChangeForm(int status)

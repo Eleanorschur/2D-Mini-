@@ -16,7 +16,7 @@ public class ExitDoor : MonoBehaviour
     private bool activeDoor = false;
 
     private StageClearPopup stageClearPopup;
-    private SceneOpenEffect sceneOpenEffect; //2026.05.13 ���̵� �ƿ� ������ ���� �߰� 
+    private SceneOpenEffect sceneOpenEffect; //2026.05.13
 
     void Awake()
     {
@@ -49,7 +49,7 @@ public class ExitDoor : MonoBehaviour
         isDoorOpen = false;
         activeDoor = false;
         DoorOpen(false);
-        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();  //2026.05.13 ���̵� �ƿ� ������ ���� �߰� 
+        sceneOpenEffect = FindAnyObjectByType<SceneOpenEffect>();  //2026.05.13
     }
 
     private void PlayerLoadComplete()
@@ -67,7 +67,7 @@ public class ExitDoor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if ( ! collision.CompareTag("Player")) return;
+        if (!collision.CompareTag("Player")) return;
 
         nearDoor = false;
 
@@ -95,8 +95,7 @@ public class ExitDoor : MonoBehaviour
 
     public void ExitStage()
     {
-        // ���� ���� ���ٰ� �ٷ� ���� ���������� �ѱ��� ����
-        // ���� �������� �̵��� StageClearPopup�� NextStageButton������ ó��
+
     }
 
     private void Update()
@@ -122,16 +121,15 @@ public class ExitDoor : MonoBehaviour
             playerMovement.MoveLock(true);
             stageReset.ResetLock(true);
             timer.StopTimer();
-            Debug.Log("Ż�� �Ϸ�");
 
             if (stageClearPopup != null)
             {
                 stageClearPopup.ShowPopup();
-                AudioManager.Instance?.PlayClearSFX();
+                AudioManager.Instance?.PlayClearBGM();
             }
             else
             {
-                Debug.LogError("StageClearPopup�� ã�� ���߽��ϴ�.");
+
             }
 
             if (currentZKey != null)
@@ -139,18 +137,10 @@ public class ExitDoor : MonoBehaviour
                 currentZKey.Hide();
                 currentZKey = null;
             }
-
-            if (sceneOpenEffect != null)  //2026.05.13 ���̵� �ƿ� ������ ���� �߰� 
-            {
-                sceneOpenEffect.OnEffectComplete = null;
-                sceneOpenEffect.OnEffectComplete += ExitStage;
-                sceneOpenEffect.SetTarget(playerMovement.transform);
-                sceneOpenEffect.PlayIrisOut();
-            }
             else
             {
                 ExitStage();
-            }                             //2026.05.13 ���̵� �ƿ� ������ ���� �߰� 
+            }
 
         }
     }

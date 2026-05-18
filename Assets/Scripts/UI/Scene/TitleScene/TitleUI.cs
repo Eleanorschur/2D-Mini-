@@ -5,6 +5,8 @@ public class TitleUI : MonoBehaviour
 {
     [SerializeField] private SettingPanelAnimator settingPanelAnimator;
     [SerializeField] private GameObject blurOverlay;
+
+    [SerializeField] private GameObject settingPanel;
     private void Start()
     {
         blurOverlay.SetActive(false);
@@ -28,9 +30,14 @@ public class TitleUI : MonoBehaviour
 
     public void OnClickCloseSettings()
     {
-        PlayButtonSFX(); //05.16. AudioManager를 위해 추가
+        PlayButtonSFX();
+
         settingPanelAnimator.Close();
+
         blurOverlay.SetActive(false);
+
+        if (settingPanel != null)
+            settingPanel.SetActive(false);
     }
 
     public void HideBlurOverlay()

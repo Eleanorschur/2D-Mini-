@@ -19,13 +19,13 @@ public class ItemCheck : MonoBehaviour
 
     void Awake()
     {
-
+        leverManager = FindAnyObjectByType<LeverManager>();
+        CCCountPool = FindAnyObjectByType<CompanionCountPool>();
     }
 
     void Start()
     {
-        leverManager = FindAnyObjectByType<LeverManager>();
-        CCCountPool = FindAnyObjectByType<CompanionCountPool>();
+        
     }
 
     public void AddLeverList(GameObject lever)

@@ -31,10 +31,17 @@ public class StageClearPopup : MonoBehaviour
     [SerializeField] private Sprite emptyStarSprite;
     [SerializeField] private Sprite filledStarSprite;
 
+    [Header("Next Button Text")]
+    [SerializeField] private TMP_Text nextStageButtonText;
+
+    [Header("Next Button Localized Text")]
+    [SerializeField] private LocalizedText nextStageButtonLocalizedText;
+
     private CompanionManager companionManager;
 
     private bool isClearProcessing = false;
 
+    private StatusCheck statusCheck;
     private void Start()
     {
         if (mapLoader == null)
@@ -89,15 +96,6 @@ public class StageClearPopup : MonoBehaviour
 
         Debug.Log("현재 클리어한 스테이지 번호: " + currentStageNumber);
 
-        if (currentStageNumber >= finalStageNumber)
-        {
-            Debug.Log("Stage3 클리어 - HappyEnding 씬으로 이동");
-
-            Time.timeScale = 1f;
-
-            LoadHappyEndingScene();
-            return;
-        }
 
         /*
          * 마지막 스테이지가 아니면
@@ -105,6 +103,8 @@ public class StageClearPopup : MonoBehaviour
          */
         if (popupPanel != null)
             popupPanel.SetActive(true);
+
+        UpdateNextButtonText(currentStageNumber);
 
         // StageClearPopUpPanel이 켜진 직후, 현재 언어로 텍스트 다시 갱신
         if (LanguageManager.Instance != null)
@@ -121,6 +121,25 @@ public class StageClearPopup : MonoBehaviour
         StartCoroutine(UpdateElapsedTimeTextNextFrame());
 
         Debug.Log("Stage Clear Popup 열림");
+    }
+
+    private void UpdateNextButtonText(int currentStageNumber)
+    {
+        if (nextStageButtonLocalizedText == null)
+            return;
+
+        if (currentStageNumber >= finalStageNumber)
+        {
+            nextStageButtonLocalizedText.koreanText = "엔딩";
+            nextStageButtonLocalizedText.englishText = "Ending";
+        }
+        else
+        {
+            nextStageButtonLocalizedText.koreanText = "다음 스테이지";
+            nextStageButtonLocalizedText.englishText = "Next Stage";
+        }
+
+        nextStageButtonLocalizedText.UpdateText();
     }
 
     private void LoadHappyEndingScene()

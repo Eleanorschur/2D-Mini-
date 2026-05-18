@@ -4,38 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class StageSelectManager : MonoBehaviour
 {
-    [Header("카드경로트랙")]
+    [Header("카드 경로 트랙")]
     public GameObject stageCardPrefab;
     public RectTransform cardTrack;
-    public float cardWidth = 1000;
+    public float cardWidth = 1000f;
 
-    [Header("방향")]
+    [Header("방향 버튼")]
     public Button btnLeft;
     public Button btnRight;
 
-    [Header("백버튼")]
+    [Header("백 버튼")]
     public Button btnBack;
 
-    [SerializeField] float WaitTime = 0.0f;
+    [SerializeField] private float waitTime = 0.0f;
 
     private StageData[] stageDatas;
     private StageCard[] cards;
+
     private int currentIndex = 0;
     private bool isMoving = false;
+
     private Coroutine[] animCoroutines;
 
-    [SerializeField] private bool resetProgressOnStart = false;
-
-    void Start()
+    private void Start()
     {
-        if (resetProgressOnStart)
-            ResetStageProgressForTest();
-
         InitStageData();
         BuildCards();
+
         UpdateCardVisuals();
         UpdateArrows();
 
@@ -44,56 +41,70 @@ public class StageSelectManager : MonoBehaviour
         btnBack.onClick.AddListener(OnClickBack);
     }
 
-    private void ResetStageProgressForTest()
-    {
-        PlayerPrefs.DeleteKey("Stage1_Stars");
-        PlayerPrefs.DeleteKey("Stage2_Stars");
-        PlayerPrefs.DeleteKey("Stage3_Stars");
-
-        PlayerPrefs.DeleteKey("Stage1_Locked");
-        PlayerPrefs.DeleteKey("Stage2_Locked");
-        PlayerPrefs.DeleteKey("Stage3_Locked");
-
-        PlayerPrefs.DeleteKey("SelectedStage");
-
-        PlayerPrefs.Save();
-
-        Debug.Log("테스트용 스테이지 저장값 초기화 완료");
-    }
-
-    void InitStageData()
+    private void InitStageData()
     {
         stageDatas = new StageData[]
         {
-            new StageData { stageIndex = 1, stageName = "Stage 1", starCount = 0, isLocked = false },
-            new StageData { stageIndex = 2, stageName = "Stage 2", starCount = 0, isLocked = true },
-            new StageData { stageIndex = 3, stageName = "Stage 3", starCount = 0, isLocked = true },
+            new StageData
+            {
+                stageIndex = 1,
+                stageName = "Stage 1",
+                starCount = 0,
+                isLocked = false
+            },
+
+            new StageData
+            {
+                stageIndex = 2,
+                stageName = "Stage 2",
+                starCount = 0,
+                isLocked = true
+            },
+
+            new StageData
+            {
+                stageIndex = 3,
+                stageName = "Stage 3",
+                starCount = 0,
+                isLocked = true
+            },
         };
 
         for (int i = 0; i < stageDatas.Length; i++)
         {
-            stageDatas[i].starCount = PlayerPrefs.GetInt($"Stage{i+1}_Stars", 0);
-            stageDatas[i].isLocked = PlayerPrefs.GetInt($"Stage{i+1}_Locked", i == 0 ? 0 : 1) == 1;
+            stageDatas[i].starCount =
+                PlayerPrefs.GetInt($"Stage{i + 1}_Stars", 0);
+
+            stageDatas[i].isLocked =
+                PlayerPrefs.GetInt($"Stage{i + 1}_Locked", i == 0 ? 0 : 1) == 1;
         }
     }
 
-    void BuildCards()
+    private void BuildCards()
     {
         cards = new StageCard[stageDatas.Length];
 
         for (int i = 0; i < stageDatas.Length; i++)
         {
             GameObject obj = Instantiate(stageCardPrefab, cardTrack);
+
             StageCard card = obj.GetComponent<StageCard>();
             card.Init(stageDatas[i]);
 
-            if (obj.GetComponent<CanvasGroup>() == null) obj.AddComponent<CanvasGroup>();
+            if (obj.GetComponent<CanvasGroup>() == null)
+            {
+                obj.AddComponent<CanvasGroup>();
+            }
 
             RectTransform rt = obj.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(i * cardWidth, 0);
 
             int idx = i;
-            card.selectButton.onClick.AddListener(() => OnSelectStage(idx));
+
+            card.selectButton.onClick.AddListener(() =>
+            {
+                OnSelectStage(idx);
+            });
 
             cards[i] = card;
         }
@@ -101,90 +112,124 @@ public class StageSelectManager : MonoBehaviour
         cardTrack.anchoredPosition = Vector2.zero;
     }
 
-    void Move(int dir)
+    private void Move(int dir)
     {
-        if (isMoving) return;
+        if (isMoving)
+            return;
 
         int next = currentIndex + dir;
-        if (next < 0 || next >= stageDatas.Length) return;
 
-        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
+        if (next < 0 || next >= stageDatas.Length)
+            return;
+
+        AudioManager.Instance?.PlayButtonSFX();
 
         currentIndex = next;
+
         float targetX = -currentIndex * cardWidth;
+
         StartCoroutine(MoveTrack(targetX));
+
         UpdateArrows();
         UpdateCardVisuals();
     }
 
-    IEnumerator MoveTrack(float targetX)
+    private IEnumerator MoveTrack(float targetX)
     {
         isMoving = true;
 
         float startX = cardTrack.anchoredPosition.x;
+
         float elapsed = 0f;
         float duration = 0.3f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
+
             float t = elapsed / duration;
             t = t * t * (3f - 2f * t);
-            cardTrack.anchoredPosition = new Vector2(Mathf.Lerp(startX, targetX, t), 0);
+
+            cardTrack.anchoredPosition =
+                new Vector2(Mathf.Lerp(startX, targetX, t), 0);
+
             yield return null;
         }
 
         cardTrack.anchoredPosition = new Vector2(targetX, 0);
+
         isMoving = false;
     }
 
-    void UpdateArrows()
+    private void UpdateArrows()
     {
-        btnLeft.interactable  = currentIndex > 0;
-        btnRight.interactable = currentIndex < stageDatas.Length - 1;
+        btnLeft.interactable = currentIndex > 0;
+
+        btnRight.interactable =
+            currentIndex < stageDatas.Length - 1;
     }
 
-    void OnSelectStage(int idx)
+    private void OnSelectStage(int idx)
     {
-        AudioManager.Instance?.PlayStageSelectSFX(); //05.16. AudioManager를 위해 추가
+        AudioManager.Instance?.PlayStageSelectSFX();
+
         foreach (var card in cards)
         {
-            CanvasGroup cg = card.GetComponent<CanvasGroup>() ?? card.gameObject.AddComponent<CanvasGroup>();
+            CanvasGroup cg =
+                card.GetComponent<CanvasGroup>()
+                ?? card.gameObject.AddComponent<CanvasGroup>();
+
             cg.interactable = false;
             cg.blocksRaycasts = false;
         }
 
         cards[idx].PlaySelectAnimation();
+
         StartCoroutine(FadeOutUI(idx));
         StartCoroutine(LoadAfterAnimation(idx));
     }
 
-    IEnumerator FadeOutUI(int selectedIdx)
+    private IEnumerator FadeOutUI(int selectedIdx)
     {
-        CanvasGroup cgLeft  = btnLeft.GetComponent<CanvasGroup>()  ?? btnLeft.gameObject.AddComponent<CanvasGroup>();
-        CanvasGroup cgRight = btnRight.GetComponent<CanvasGroup>() ?? btnRight.gameObject.AddComponent<CanvasGroup>();
-        CanvasGroup cgBack  = btnBack.GetComponent<CanvasGroup>()  ?? btnBack.gameObject.AddComponent<CanvasGroup>();
+        CanvasGroup cgLeft =
+            btnLeft.GetComponent<CanvasGroup>()
+            ?? btnLeft.gameObject.AddComponent<CanvasGroup>();
 
-        List<CanvasGroup> sideCards = new List<CanvasGroup>();
+        CanvasGroup cgRight =
+            btnRight.GetComponent<CanvasGroup>()
+            ?? btnRight.gameObject.AddComponent<CanvasGroup>();
+
+        CanvasGroup cgBack =
+            btnBack.GetComponent<CanvasGroup>()
+            ?? btnBack.gameObject.AddComponent<CanvasGroup>();
+
+        List<CanvasGroup> sideCards = new();
+
         for (int i = 0; i < cards.Length; i++)
         {
             if (i != selectedIdx)
+            {
                 sideCards.Add(cards[i].GetComponent<CanvasGroup>());
+            }
         }
 
         float duration = 0.2f;
-        float elapsed  = 0f;
+        float elapsed = 0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
+
             float alpha = 1f - (elapsed / duration);
 
-            cgLeft.alpha  = alpha;
+            cgLeft.alpha = alpha;
             cgRight.alpha = alpha;
-            cgBack.alpha  = alpha;
+            cgBack.alpha = alpha;
 
-            foreach (var cg in sideCards) cg.alpha = alpha;
+            foreach (var cg in sideCards)
+            {
+                cg.alpha = alpha;
+            }
 
             yield return null;
         }
@@ -194,32 +239,52 @@ public class StageSelectManager : MonoBehaviour
         btnBack.gameObject.SetActive(false);
     }
 
-    void OnClickBack()
+    private void OnClickBack()
     {
-        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
+        AudioManager.Instance?.PlayButtonSFX();
+
         SceneManager.LoadScene("2_Title");
     }
 
-    void UpdateCardVisuals()
+    private void UpdateCardVisuals()
     {
         if (animCoroutines == null)
+        {
             animCoroutines = new Coroutine[cards.Length];
+        }
 
         for (int i = 0; i < cards.Length; i++)
         {
-            float targetScale = (i == currentIndex) ? 1f : 0.85f;
-            float targetAlpha = (i == currentIndex) ? 1f : 0.5f;
+            float targetScale =
+                (i == currentIndex) ? 1f : 0.85f;
+
+            float targetAlpha =
+                (i == currentIndex) ? 1f : 0.5f;
 
             if (animCoroutines[i] != null)
+            {
                 StopCoroutine(animCoroutines[i]);
+            }
 
-            animCoroutines[i] = StartCoroutine(AnimateCard(cards[i].gameObject, targetScale, targetAlpha));
+            animCoroutines[i] =
+                StartCoroutine(
+                    AnimateCard(
+                        cards[i].gameObject,
+                        targetScale,
+                        targetAlpha
+                    )
+                );
         }
     }
 
-    IEnumerator AnimateCard(GameObject card, float targetScale, float targetAlpha)
+    private IEnumerator AnimateCard(
+        GameObject card,
+        float targetScale,
+        float targetAlpha
+    )
     {
         CanvasGroup cg = card.GetComponent<CanvasGroup>();
+
         float duration = 0.3f;
         float elapsed = 0f;
 
@@ -229,29 +294,47 @@ public class StageSelectManager : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
 
-            card.transform.localScale = Vector3.one * Mathf.Lerp(startScale, targetScale, t);
-            cg.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+            float t =
+                Mathf.SmoothStep(0f, 1f, elapsed / duration);
+
+            card.transform.localScale =
+                Vector3.one * Mathf.Lerp(startScale, targetScale, t);
+
+            cg.alpha =
+                Mathf.Lerp(startAlpha, targetAlpha, t);
 
             yield return null;
         }
 
-        card.transform.localScale = Vector3.one * targetScale;
+        card.transform.localScale =
+            Vector3.one * targetScale;
+
         cg.alpha = targetAlpha;
     }
 
-    IEnumerator LoadAfterAnimation(int idx)
+    private IEnumerator LoadAfterAnimation(int idx)
     {
         Animator anim = cards[idx].GetComponent<Animator>();
+
         yield return null;
+
         yield return new WaitUntil(() =>
         {
-            AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
-            return state.IsName("Select") && state.normalizedTime >= 1f;
+            AnimatorStateInfo state =
+                anim.GetCurrentAnimatorStateInfo(0);
+
+            return state.IsName("Select")
+                   && state.normalizedTime >= 1f;
         });
-        yield return new WaitForSeconds(WaitTime);
-        PlayerPrefs.SetInt("SelectedStage", stageDatas[idx].stageIndex);
+
+        yield return new WaitForSeconds(waitTime);
+
+        PlayerPrefs.SetInt(
+            "SelectedStage",
+            stageDatas[idx].stageIndex
+        );
+
         SceneManager.LoadScene("5_Stage");
     }
 }

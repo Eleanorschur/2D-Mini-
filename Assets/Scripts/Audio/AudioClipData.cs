@@ -25,6 +25,7 @@ public class AudioClipData : MonoBehaviour
     public AudioClip countdown;
     public AudioClip fail;
     public AudioClip colorSwitch;
+    public AudioClip gameOver;
     public AudioClip clear;
 
 

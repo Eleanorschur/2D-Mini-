@@ -16,7 +16,7 @@ public class LocalizedText : MonoBehaviour
         textUI = GetComponent<TextMeshProUGUI>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
         UpdateText();
     }
@@ -38,7 +38,7 @@ public class LocalizedText : MonoBehaviour
             return;
         }
 
-        if (LanguageManager.Instance.currentLanguage == LanguageManager.Language.Korean)
+        if (LanguageManager.Instance.CurrentLanguage == LanguageManager.Language.Korean)
         {
             textUI.text = koreanText;
         }

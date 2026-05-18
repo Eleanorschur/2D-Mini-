@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class OptionUI : MonoBehaviour
 {
     [Header("Volume Sliders")]
-    [SerializeField] private ImageSlider masterVolumeSlider; //05.16. AudioManager를 위해 추가
-    [SerializeField] private ImageSlider bgmVolumeSlider;    //05.16. AudioManager를 위해 추가
-    [SerializeField] private ImageSlider sfxVolumeSlider;   //05.16. AudioManager를 위해 추가
+    [SerializeField] private ImageSlider masterVolumeSlider;
+    [SerializeField] private ImageSlider bgmVolumeSlider;
+    [SerializeField] private ImageSlider sfxVolumeSlider;
 
     [Header("Mute Toggles")]
     [SerializeField] private Toggle masterMuteToggle;
@@ -27,6 +27,14 @@ public class OptionUI : MonoBehaviour
     private const string ScreenModeKey = "ScreenMode";
     private const string ResolutionIndexKey = "ResolutionIndex";
 
+    private const string MasterVolumeKey = "MasterVolume";
+    private const string BGMVolumeKey = "BGMVolume";
+    private const string SFXVolumeKey = "SFXVolume";
+
+    private const string MasterMuteKey = "MasterMute";
+    private const string BGMMuteKey = "BGMMute";
+    private const string SFXMuteKey = "SFXMute";
+
     private readonly int[,] resolutionOptions =
     {
         { 1920, 1080 },
@@ -38,36 +46,81 @@ public class OptionUI : MonoBehaviour
         InitScreenMode();
         InitDisplayToggleState();
         InitResolutionDropDown();
+
+        InitVolumeSliderState();
         InitMuteToggleState();
 
         fullScreenToggle.onValueChanged.AddListener(OnFullScreenToggleChanged);
         windowScreenToggle.onValueChanged.AddListener(OnWindowScreenToggleChanged);
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
 
-        masterVolumeSlider.onValueChanged.AddListener(v => AudioManager.Instance?.SetMasterVolume(v)); //05.16. AudioManager를 위해 추가
-        bgmVolumeSlider.onValueChanged.AddListener(v => AudioManager.Instance?.SetBGMVolume(v)); //05.16. AudioManager를 위해 추가
-        sfxVolumeSlider.onValueChanged.AddListener(v => AudioManager.Instance?.SetSFXVolume(v)); //05.16. AudioManager를 위해 추가
+        masterVolumeSlider.onValueChanged.AddListener(v =>
+        {
+            AudioManager.Instance?.SetMasterVolume(v);
+            PlayerPrefs.SetFloat(MasterVolumeKey, v);
+            PlayerPrefs.Save();
+        });
 
-        masterMuteToggle.onValueChanged.AddListener(v => AudioManager.Instance?.SetMasterMute(v)); //05.16. AudioManager를 위해 추가
-        bgmMuteToggle.onValueChanged.AddListener(v => AudioManager.Instance?.SetBGMMute(v)); //05.16. AudioManager를 위해 추가
-        sfxMuteToggle.onValueChanged.AddListener(v => AudioManager.Instance?.SetSFXMute(v)); //05.16. AudioManager를 위해 추가
+        bgmVolumeSlider.onValueChanged.AddListener(v =>
+        {
+            AudioManager.Instance?.SetBGMVolume(v);
+            PlayerPrefs.SetFloat(BGMVolumeKey, v);
+            PlayerPrefs.Save();
+        });
+
+        sfxVolumeSlider.onValueChanged.AddListener(v =>
+        {
+            AudioManager.Instance?.SetSFXVolume(v);
+            PlayerPrefs.SetFloat(SFXVolumeKey, v);
+            PlayerPrefs.Save();
+        });
+
+        masterMuteToggle.onValueChanged.AddListener(v =>
+        {
+            AudioManager.Instance?.SetMasterMute(v);
+            PlayerPrefs.SetInt(MasterMuteKey, v ? 1 : 0);
+            PlayerPrefs.Save();
+        });
+
+        bgmMuteToggle.onValueChanged.AddListener(v =>
+        {
+            AudioManager.Instance?.SetBGMMute(v);
+            PlayerPrefs.SetInt(BGMMuteKey, v ? 1 : 0);
+            PlayerPrefs.Save();
+        });
+
+        sfxMuteToggle.onValueChanged.AddListener(v =>
+        {
+            AudioManager.Instance?.SetSFXMute(v);
+            PlayerPrefs.SetInt(SFXMuteKey, v ? 1 : 0);
+            PlayerPrefs.Save();
+        });
     }
 
     private void InitScreenMode()
     {
-        PlayerPrefs.SetInt(ScreenModeKey, 1);
-        PlayerPrefs.Save();
+        int savedScreenMode = PlayerPrefs.GetInt(ScreenModeKey, 1);
 
-        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-        Screen.fullScreen = true;
+        if (savedScreenMode == 1)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.fullScreen = true;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Screen.fullScreen = false;
+        }
     }
 
     private void InitDisplayToggleState()
     {
+        int savedScreenMode = PlayerPrefs.GetInt(ScreenModeKey, 1);
+
         isChangingToggle = true;
 
-        fullScreenToggle.isOn = true;
-        windowScreenToggle.isOn = false;
+        fullScreenToggle.isOn = savedScreenMode == 1;
+        windowScreenToggle.isOn = savedScreenMode == 0;
 
         isChangingToggle = false;
     }
@@ -87,9 +140,7 @@ public class OptionUI : MonoBehaviour
         int savedResolutionIndex = PlayerPrefs.GetInt(ResolutionIndexKey, 0);
 
         if (savedResolutionIndex < 0 || savedResolutionIndex >= resolutionOptions.GetLength(0))
-        {
             savedResolutionIndex = 0;
-        }
 
         resolutionDropdown.value = savedResolutionIndex;
         resolutionDropdown.RefreshShownValue();
@@ -97,12 +148,40 @@ public class OptionUI : MonoBehaviour
         ApplyResolution(savedResolutionIndex);
     }
 
+    private void InitVolumeSliderState()
+    {
+        float master = PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
+        float bgm = PlayerPrefs.GetFloat(BGMVolumeKey, 1f);
+        float sfx = PlayerPrefs.GetFloat(SFXVolumeKey, 1f);
+
+        masterVolumeSlider.SetValue(master);
+        bgmVolumeSlider.SetValue(bgm);
+        sfxVolumeSlider.SetValue(sfx);
+
+        AudioManager.Instance?.SetMasterVolume(master);
+        AudioManager.Instance?.SetBGMVolume(bgm);
+        AudioManager.Instance?.SetSFXVolume(sfx);
+    }
+
+    private void InitMuteToggleState()
+    {
+        bool masterMute = PlayerPrefs.GetInt(MasterMuteKey, 0) == 1;
+        bool bgmMute = PlayerPrefs.GetInt(BGMMuteKey, 0) == 1;
+        bool sfxMute = PlayerPrefs.GetInt(SFXMuteKey, 0) == 1;
+
+        masterMuteToggle.isOn = masterMute;
+        bgmMuteToggle.isOn = bgmMute;
+        sfxMuteToggle.isOn = sfxMute;
+
+        AudioManager.Instance?.SetMasterMute(masterMute);
+        AudioManager.Instance?.SetBGMMute(bgmMute);
+        AudioManager.Instance?.SetSFXMute(sfxMute);
+    }
+
     private void OnFullScreenToggleChanged(bool isOn)
     {
         if (isChangingToggle) return;
         if (!isOn) return;
-
-        Debug.Log("Full Screen 선택됨");
 
         SetFullScreen();
     }
@@ -112,15 +191,11 @@ public class OptionUI : MonoBehaviour
         if (isChangingToggle) return;
         if (!isOn) return;
 
-        Debug.Log("Window Screen 선택됨");
-
         SetWindowScreen();
     }
 
     private void SetFullScreen()
     {
-        Debug.Log("전체화면 적용됨");
-
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         Screen.fullScreen = true;
 
@@ -139,8 +214,6 @@ public class OptionUI : MonoBehaviour
 
     private void SetWindowScreen()
     {
-        Debug.Log("창모드 적용됨");
-
         Screen.fullScreenMode = FullScreenMode.Windowed;
         Screen.fullScreen = false;
 
@@ -163,8 +236,6 @@ public class OptionUI : MonoBehaviour
 
         PlayerPrefs.SetInt(ResolutionIndexKey, index);
         PlayerPrefs.Save();
-
-        Debug.Log("해상도 선택됨");
     }
 
     private void ApplyCurrentResolution()
@@ -176,24 +247,32 @@ public class OptionUI : MonoBehaviour
     private void ApplyResolution(int index)
     {
         if (index < 0 || index >= resolutionOptions.GetLength(0))
-        {
             index = 0;
-        }
 
         int width = resolutionOptions[index, 0];
         int height = resolutionOptions[index, 1];
 
         bool isFullScreen = fullScreenToggle.isOn;
 
-        Screen.SetResolution(width, height, isFullScreen);
+        if (isFullScreen)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
 
-        Debug.Log($"해상도 적용: {width} x {height}, FullScreen: {isFullScreen}");
-    }
+            Screen.SetResolution(
+                Display.main.systemWidth,
+                Display.main.systemHeight,
+                FullScreenMode.FullScreenWindow
+            );
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
 
-    private void InitMuteToggleState()
-    {
-        masterMuteToggle.isOn = false;
-        bgmMuteToggle.isOn = false;
-        sfxMuteToggle.isOn = false;
+            Screen.SetResolution(
+                width,
+                height,
+                FullScreenMode.Windowed
+            );
+        }
     }
 }

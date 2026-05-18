@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class MapLoader : MonoBehaviour
 {
@@ -146,7 +147,9 @@ public class MapLoader : MonoBehaviour
 
         if (currentStageIndex >= stageList.Count)
         {
-            Debug.Log("모든 스테이지 종료");
+            Debug.Log("모든 스테이지 종료 - HappyEnding 이동");
+
+            SceneManager.LoadScene("HappyEnding");
             return;
         }
 
@@ -332,7 +335,7 @@ public class MapLoader : MonoBehaviour
 
     private void CreateObject(string code, int col, int row)
     {
-        if ( ! codeToPrefabName.TryGetValue(code, out string prefabName))
+        if (!codeToPrefabName.TryGetValue(code, out string prefabName))
         {
             Debug.LogWarning($"등록되지 않은 코드입니다: {code}");
             return;
@@ -451,22 +454,22 @@ public class MapLoader : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            LoadStage(0);
-            currentStageIndex = 0;
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    LoadStage(0);
+        //    currentStageIndex = 0;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            LoadStage(1);
-            currentStageIndex = 1;
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    LoadStage(1);
+        //    currentStageIndex = 1;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            LoadStage(2);
-            currentStageIndex = 2;
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    LoadStage(2);
+        //    currentStageIndex = 2;
+        //}
     }
 }

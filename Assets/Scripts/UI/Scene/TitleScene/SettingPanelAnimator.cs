@@ -58,6 +58,9 @@ public class SettingPanelAnimator : MonoBehaviour
 
     public void Close()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 
@@ -134,6 +137,8 @@ public class SettingPanelAnimator : MonoBehaviour
         panelCanvasGroup.blocksRaycasts = false;
 
         currentCoroutine = null;
+
+        gameObject.SetActive(false);
     }
 
     private float EaseOutBack(float t)
