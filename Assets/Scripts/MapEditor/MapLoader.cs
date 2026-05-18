@@ -208,6 +208,8 @@ public class MapLoader : MonoBehaviour
             sceneOpenEffect.PlayIrisIn();
         }                            //2026.05.13 페이드 인 동작을 위해 추가 
 
+        AudioManager.Instance?.PlayStageBGM(stageIndex); //05.16. AudioManager를 위해 추가
+
         isMapLoaded = true;
         MapLoadComplete?.Invoke();
 

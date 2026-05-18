@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 public class OptionUI : MonoBehaviour
 {
+    [Header("Volume Sliders")]
+    [SerializeField] private ImageSlider masterVolumeSlider; //05.16. AudioManager를 위해 추가
+    [SerializeField] private ImageSlider bgmVolumeSlider;    //05.16. AudioManager를 위해 추가
+    [SerializeField] private ImageSlider sfxVolumeSlider;   //05.16. AudioManager를 위해 추가
+
     [Header("Mute Toggles")]
     [SerializeField] private Toggle masterMuteToggle;
     [SerializeField] private Toggle bgmMuteToggle;
@@ -38,6 +43,14 @@ public class OptionUI : MonoBehaviour
         fullScreenToggle.onValueChanged.AddListener(OnFullScreenToggleChanged);
         windowScreenToggle.onValueChanged.AddListener(OnWindowScreenToggleChanged);
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
+
+        masterVolumeSlider.onValueChanged.AddListener(v => AudioManager.Instance?.SetMasterVolume(v)); //05.16. AudioManager를 위해 추가
+        bgmVolumeSlider.onValueChanged.AddListener(v => AudioManager.Instance?.SetBGMVolume(v)); //05.16. AudioManager를 위해 추가
+        sfxVolumeSlider.onValueChanged.AddListener(v => AudioManager.Instance?.SetSFXVolume(v)); //05.16. AudioManager를 위해 추가
+
+        masterMuteToggle.onValueChanged.AddListener(v => AudioManager.Instance?.SetMasterMute(v)); //05.16. AudioManager를 위해 추가
+        bgmMuteToggle.onValueChanged.AddListener(v => AudioManager.Instance?.SetBGMMute(v)); //05.16. AudioManager를 위해 추가
+        sfxMuteToggle.onValueChanged.AddListener(v => AudioManager.Instance?.SetSFXMute(v)); //05.16. AudioManager를 위해 추가
     }
 
     private void InitScreenMode()

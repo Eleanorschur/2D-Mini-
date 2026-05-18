@@ -162,6 +162,7 @@ public class StageClearPopup : MonoBehaviour
     {
         Debug.Log("타이틀 화면으로 이동");
 
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
         Time.timeScale = 1f;
         isClearProcessing = false;
 
@@ -172,6 +173,7 @@ public class StageClearPopup : MonoBehaviour
     {
         Debug.Log("현재 스테이지 다시 시작");
 
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
         Time.timeScale = 1f;
         isClearProcessing = false;
 
@@ -186,6 +188,7 @@ public class StageClearPopup : MonoBehaviour
     {
         Debug.Log("다음 스테이지로 이동");
 
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
         Time.timeScale = 1f;
         isClearProcessing = false;
 

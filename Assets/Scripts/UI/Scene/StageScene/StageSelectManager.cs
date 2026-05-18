@@ -108,6 +108,8 @@ public class StageSelectManager : MonoBehaviour
         int next = currentIndex + dir;
         if (next < 0 || next >= stageDatas.Length) return;
 
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
+
         currentIndex = next;
         float targetX = -currentIndex * cardWidth;
         StartCoroutine(MoveTrack(targetX));
@@ -144,6 +146,7 @@ public class StageSelectManager : MonoBehaviour
 
     void OnSelectStage(int idx)
     {
+        AudioManager.Instance?.PlayStageSelectSFX(); //05.16. AudioManager를 위해 추가
         foreach (var card in cards)
         {
             CanvasGroup cg = card.GetComponent<CanvasGroup>() ?? card.gameObject.AddComponent<CanvasGroup>();
@@ -193,6 +196,7 @@ public class StageSelectManager : MonoBehaviour
 
     void OnClickBack()
     {
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
         SceneManager.LoadScene("2_Title");
     }
 

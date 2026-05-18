@@ -71,6 +71,7 @@ public class CheckPoint : MonoBehaviour
         if (nearCheckPoint && playerMovement.IsGrounded && ! activateCheckPoint)
         {
             activateCheckPoint = true;
+            AudioManager.Instance?.PlayCheckPointSFX(); //05.16. AudioManager를 위해 추가
             spriteRenderer.sprite = activeSprite;
             checkPointManager.SetFinalCheckPoint(this.gameObject);
             itemCheck.ListClear();

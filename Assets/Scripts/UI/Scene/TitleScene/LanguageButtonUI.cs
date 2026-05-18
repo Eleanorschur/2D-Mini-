@@ -27,6 +27,7 @@ public class LanguageButtonUI : MonoBehaviour
         if (LanguageManager.Instance == null)
             return;
 
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
         LanguageManager.Instance.SetKorean();
         SetButtonVisual(LanguageManager.Language.Korean);
     }
@@ -36,6 +37,7 @@ public class LanguageButtonUI : MonoBehaviour
         if (LanguageManager.Instance == null)
             return;
 
+        AudioManager.Instance?.PlayButtonSFX(); //05.16. AudioManager를 위해 추가
         LanguageManager.Instance.SetEnglish();
         SetButtonVisual(LanguageManager.Language.English);
     }
