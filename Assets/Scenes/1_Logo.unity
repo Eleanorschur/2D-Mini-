@@ -649,7 +649,7 @@ MonoBehaviour:
   badEnding: {fileID: 8300000, guid: 51a95993359b37e499ab94fb610c2f0e, type: 3}
   clear: {fileID: 8300000, guid: 1fdb37f3835aa924f838af962363b08d, type: 3}
   button: {fileID: 8300000, guid: 80ed42bbb1e1d6647a4611315f33c2ed, type: 3}
-  stageSelect: {fileID: 8300000, guid: bad239dc781293442aa91e74ed4aabdb, type: 3}
+  stageSelect: {fileID: 8300000, guid: 2396a5b4b6dd17541a2cac335753b740, type: 3}
   logo: {fileID: 8300000, guid: c2b2651c1ac49834590adf7f1a965aaf, type: 3}
   jump: {fileID: 8300000, guid: 88068ec5cfaa9dd4590f4d1b7612bfd4, type: 3}
   fall: {fileID: 8300000, guid: 386b410a08b429948a86dbf0abdc568c, type: 3}
