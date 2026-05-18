@@ -3885,7 +3885,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 7.2890625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10762,12 +10762,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5709086410524368067}
     - target: {fileID: 7712296052913159787, guid: 84d2f7f64a6d7aa4ea1cca8904ef6c1e, type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7712296052913159787, guid: 84d2f7f64a6d7aa4ea1cca8904ef6c1e, type: 3}
       propertyPath: slimeMask
       value: 
       objectReference: {fileID: 545632366}
     - target: {fileID: 7712296052913159787, guid: 84d2f7f64a6d7aa4ea1cca8904ef6c1e, type: 3}
       propertyPath: delayBeforeStart
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12676,7 +12680,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30, y: -8.5, z: 0}
-  m_LocalScale: {x: 60, y: 17, z: 1}
+  m_LocalScale: {x: 60, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

@@ -127,7 +127,7 @@ public class ExitDoor : MonoBehaviour
             if (stageClearPopup != null)
             {
                 stageClearPopup.ShowPopup();
-                AudioManager.Instance?.PlayClearBGM();
+                AudioManager.Instance?.PlayClearSFX();
             }
             else
             {
